@@ -8,8 +8,16 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 
 ## Key features
 * **Automatic layout** (no need to specify block positions!)
-* **Intuitive interface** (e.g. writing `res = a+b` creates an add block with input lines to a and b)
+* **Intuitive interface** (you can "add","subtract","multiply",... simulink blocks)
 * **Extensible library** (easily add new blocks from your custom libraries)
+
+| Source script (.m)             |  Resulting model |
+:-------------------------:|:-------------------------:
+`c = Constant(1)` | Create a Constant block with value 1
+`res = a+b` | Create an Add block and connect its inputs to blocks `a` and `b`
+`res = [a,b]` | Create an Mux block and connect its inputs to blocks `a` and `b`
+`res = IF(a>0,a+b,a-b)` | Create a Switch block that if `a>0` passes the result of `a+b`
+`res = 1 - u1./(u2.*u3)` | Create a group of simulink blocks that computes a complex expression
 
 ## Installation
 
