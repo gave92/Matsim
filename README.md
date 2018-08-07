@@ -23,8 +23,8 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 
 The automatic layout feature relies on [GraphViz](https://www.graphviz.org/), which you need to install separately.
 
-1. Install GraphViz and add it to the system PATH
-2. Download and extract the Matsim package
+1. Install [GraphViz](https://www.graphviz.org/download/) and add it to the system PATH
+2. Download and extract the Matsim package (from [File Exhange](https://it.mathworks.com/matlabcentral/fileexchange/68436-matsim) or from here)
 3. Add Matsim folder (and subfolders) to the Matlab path
 
 ## Quick guide
