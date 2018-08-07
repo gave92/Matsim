@@ -67,8 +67,7 @@ end
 function callGraphViz(obj)
 % Call GraphViz to determine an optimal layout. Write this layout in
 % layout.dot for later parsing. 
-   graphviz_path = getenv('GRAPHVIZ');
-   err = system([fullfile(graphviz_path, 'dot'),' -Tdot -Gmaxiter=5000 -Gstart=7 -o ',obj.layoutFile,' ',obj.adjFile]);
+   err = system(['dot -Tdot -Gmaxiter=5000 -Gstart=7 -o ',obj.layoutFile,' ',obj.adjFile]);
    if(err),error('Sorry, unknown GraphViz failure, try another layout'); end
 end
 
