@@ -1,4 +1,6 @@
 %% Init
+close all
+
 % Create or load model
 sys = simulation.load('matsim_model');
 sys.setSolver('Ts',0.01,'DiscreteOnly',true)
