@@ -4,103 +4,56 @@
 
 ![logo](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Facebook ([Messenger](https://www.messenger.com/)) client library for C#. This is a porting from the excellent [fbchat](https://github.com/carpedm20/fbchat) library for Python.
+Matsim is a high level interface to create Simulink models from a [Matlab](https://www.mathworks.com/) script. Matsim is a wrapper around the standard [simulink API](https://it.mathworks.com/help/simulink/ug/approach-modeling-programmatically.html) that makes building a simulink model programmatically much faster.
 
-**No XMPP or API key is needed**. Just use your email and password.
+## Key features
+* **Automatic layout** (no need to specify block positions!)
+* **Intuitive interface** (e.g. writing `res = a+b` creates an add block with input lines to a and b)
+* **Extensible library** (easily add new blocks from your custom libraries)
 
 ## Installation
 
-$ Install-Package Gave.Libs.Fbchat
+The automatic layout feature relies on [GraphViz](https://www.graphviz.org/), which you need to install separately.
 
-## Key features
-* **Powerful** (not limited to the facebook chatbot api)
-* **Portable** (designed as a PCL - supporting .NET Standard 1.2)
-
-The key difference from other C# messenger libraries is that *fbchat-sharp* does not use the chatbot api. The library is able to read and send chat messages to any of the user contacts.
+1. Install GraphViz and add it to the system PATH
+2. Download and extract the Matsim package
+3. Add Matsim folder (and subfolders) to the Matlab path
 
 ## Quick guide
 
-The simple example will login to messenger and get the last 20 messages from a user friend.
+Quick example to get started.
 
-#### 1. Implement the abstract MessengerClient class
+#### 1. Create or load a simulink model
 
-```cs
-// The 4 abstract methods allow to load and save an active session to avoid logging in every time and to provide the 2FA code if requested
-// In this example the mothods do nothing
-public class FBClient : MessengerClient
-{
-    protected override string on2FACode()
-    {
-        return null;
-    }
-    
-    protected override async Task DeleteCookiesAsync()
-    {
-        await Task.Yield();
-    }    
-        
-    protected override async Task<List<Cookie>> ReadCookiesFromDiskAsync()
-    {
-        await Task.Yield();
-        return null;
-    }
-
-    protected override async Task WriteCookiesToDiskAsync(List<Cookie> cookieJar)
-    {
-        await Task.Yield();
-    }
-}
+```matlab
+sys = simulation.load('my_model');            % Create or load a model named 'my_model'
+sys.setSolver('Ts',0.01,'DiscreteOnly',true)  % Set solver for the model
+sys.clear()                                   % Delete all blocks
+sys.show()                                    % Show the model
 ```
 
-#### 2. Instantiate FBClient class and login user
+#### 2. Create blocks
 
-```cs
-using fbchat_sharp.API;
-...
-// Instantiate FBClient
-FBClient client = new FBClient();
-// Login with username and password
-var logged_in = await client.DoLogin(email, password);
+```matlab
+Vx = FromWorkspace('V_x');                    % Add FromWorkspace and Constant blocks
+Wr = FromWorkspace('W_r');
+Rr = Constant(0.32);
 
-// Check login was successful
-if (logged_in)
-{
-    // Send a message to myself
-    var msg_uid = await client.SendMessage("Hi me!", thread_id: client.GetUserUid());
-                
-    if (msg_uid != null)
-    {
-        Console.WriteLine("Message sent: {0}", msg_uid);
-    }
+slip = 1 - Vx./(Wr.*Rr);                      % Evaluate complex mathematical expression
+sys.log(slip,'slip')                          % Log the output of the "slip" block
 
-    // Do logout
-    await client.DoLogout();
-}
-else
-{
-    Console.WriteLine("Error logging in");
-}
+s = Scope(slip);                              % Create and open scope block
+s.open()
+
+simlayout(sys.handle)                         % Connect and layout model
 ```
 
-#### 3. After login, you can get user's thread list and messages.
+#### 3. Simulate the system
 
-```cs
-// Get user's last 10 threads
-List<FB_Thread> threads = await client.FetchThreadList(limit: 10);
-// Get user's last 20 messages in a thread
-List<FB_Message> messages = await client.FetchThreadMessages(threads.First().uid);
+```matlab
+V_x = [0:0.1:10;linspace(5,20,101)]';         % Define input variables
+W_r = [0:0.1:10;linspace(5,23,101)/0.32]';
+simOut = sys.run('tstop',10).Logs;            % Simulate the system
 ```
-
-## Supported platforms
-
-fbchat-sharp has been created as a PCL targeting .NET Standard 1.2 that supports a wide range of platforms. The list includes but is not limited to:
-
-* .NET Core 1.0
-* .NET Framework 4.5.1
-* Universal Windows Platform
-* Windows 8.1
-* Windows Phone 8.1
-* Xamarin.Android
-* Xamarin.iOS
 
 © Copyright 2017 - 2018 by Marco Gavelli
