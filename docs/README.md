@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <a href="https://gave92.github.io/Matsim/">
     <img src="https://github.com/gave92/matsim/blob/master/images/matsim-icon.png?raw=true" width="150" />
   </a>
@@ -26,7 +26,7 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 * **Intuitive interface** (you can "add","subtract","multiply",... simulink blocks)
 * **Extensible library** (easily add new blocks from your custom libraries)
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;script&nbsp;(.m)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Resulting model | Notes |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;script&nbsp;(.m)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Resulting model | Notes |
 :-------------------------:|:-------------------------:|:-------------------------:
 `c = Constant(1)` | <img src="https://github.com/gave92/matsim/blob/master/images/readme_1.PNG?raw=true" height="80" /> | Create a Constant block with value 1
 `res = a+b` | <img src="https://github.com/gave92/matsim/blob/master/images/readme_2.PNG?raw=true" height="80" /> | Create an Add block and connect its inputs to blocks `a` and `b`
