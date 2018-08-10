@@ -8,6 +8,15 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify-themeable/dist/css/theme-simple.css">
   <style>
+    :root {
+      --sidebar-toggle-icon-stroke-width            : 2px;
+      --sidebar-toggle-width                        : 36px;
+      --sidebar-toggle-offset-top                   : 0px;
+    }
+    .sidebar-toggle {
+      width: 36px;
+      height: 36px;
+    }
     .markdown-section img {
       max-width: 60%;
     }
@@ -29,6 +38,7 @@
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-matlab.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify-themeable"></script>
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')

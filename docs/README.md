@@ -13,6 +13,7 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 * **Intuitive interface** (you can "add", "subtract", "multiply", ... simulink blocks)
 * **Extensible library** (easily add new blocks from your custom libraries)
 
+## Matsim vs Simulink API
 <table>
 <tr>
 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -62,6 +63,6 @@ res <span class="token operator">=</span> Vx<span class="token operator">+</span
 
 ## Quick start
 
-Jump right in with the [installation guide](quickstart.md#install) and the [examples](quickstart.md#examples)!
+Jump right in with the [installation guide](quickstart.md#installation) and the [examples](quickstart.md#examples)!
 
 © Copyright 2017 - 2018 by Marco Gavelli
