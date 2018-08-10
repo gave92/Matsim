@@ -6,20 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <!--<link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css">-->
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//unpkg.com/docsify-themeable/dist/css/theme-simple.css">
+  <style>
+    .markdown-section img {
+      max-width: 60%;
+    }
+    .markdown-section h1 {
+      margin: 0px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Matsim',
+      name: '<img src="images/matsim-logo.png" style="height:4em;"><div style="margin-top:-.65em">Matsim</div>',
       repo: 'https://github.com/gave92/Matsim',
-      logo: 'https://raw.githubusercontent.com/gave92/matsim/master/images/matsim-icon.png'
+      auto2top: true,
+      loadSidebar: 'sidebar.md',
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/prismjs/components/prism-matlab.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('sw.js')
