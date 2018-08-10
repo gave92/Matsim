@@ -1,6 +1,6 @@
 ﻿<p align="center">
   <a href="https://gave92.github.io/Matsim/">
-    <img src="https://github.com/gave92/matsim/blob/master/docs/images/matsim-icon.png?raw=true" width="150" />
+    <img src="https://github.com/gave92/matsim/blob/master/docs/images/matsim-logo.png?raw=true" width="170" />
   </a>
 
   <h3 align="center">Matsim</h3>
@@ -23,7 +23,7 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 
 ## Key features
 * **Automatic layout** (no need to specify block positions!)
-* **Intuitive interface** (you can "add","subtract","multiply",... simulink blocks)
+* **Intuitive interface** (you can "add", "subtract", "multiply", ... simulink blocks)
 * **Extensible library** (easily add new blocks from your custom libraries)
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;script&nbsp;(.m)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  Resulting model | Notes |
