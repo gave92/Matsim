@@ -1,6 +1,6 @@
-﻿![banner](/images/matsim-icon.png)
+![banner](/images/matsim-icon.png)
 
-# Matsim&nbsp;&nbsp;![logo](https://img.shields.io/badge/license-MIT-blue.svg)
+# Matsim&nbsp;&nbsp;![logo](https://img.shields.io/badge/license-MIT-blue.svg)&nbsp;[![donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/gave92)
 
 > A sleek, intuitive interface for building Simulink models from a Matlab script.
 
