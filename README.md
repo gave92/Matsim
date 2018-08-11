@@ -1,4 +1,4 @@
-﻿<p align="center">
+<p align="center">
   <a href="https://gave92.github.io/Matsim/">
     <img src="https://github.com/gave92/matsim/blob/master/docs/images/matsim-logo.png?raw=true" width="170" />
   </a>
@@ -19,7 +19,7 @@
 
 Matsim is a high level interface to create Simulink models from a [Matlab](https://www.mathworks.com/) script. Matsim is a wrapper around the standard [simulink API](https://it.mathworks.com/help/simulink/ug/approach-modeling-programmatically.html) that makes building a simulink model programmatically much faster.
 
-![logo](https://img.shields.io/badge/license-MIT-blue.svg)
+![logo](https://img.shields.io/badge/license-MIT-blue.svg)&nbsp;[![donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/gave92)
 
 ## Key features
 * **Automatic layout** (no need to specify block positions!)
