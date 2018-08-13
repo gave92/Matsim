@@ -1,0 +1,1998 @@
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Derivative (Derivative)
+CoefficientInTFapproximation@Coefficient c in the transfer function approximation s/(c*s+1) used for linearization@{'inf'}
+Integrator (Integrator)
+ExternalReset@External reset@{'none'} | 'rising' | 'falling' | 'either' | 'level' | 'level hold'
+InitialConditionSource@Initial condition source@{'internal'} | 'external'
+InitialCondition@Initial condition@scalar or vector — {'0'}
+LimitOutput@Limit output@{'off'} | 'on'
+UpperSaturationLimit@Upper saturation limit@scalar or vector — {'inf'}
+LowerSaturationLimit@Lower saturation limit@scalar or vector — {'-inf'}
+ShowSaturationPort@Show saturation port@{'off'} | 'on'
+ShowStatePort@Show state port@{'off'} | 'on'
+AbsoluteTolerance@Absolute tolerance@character vector, scalar, or vector — {'auto'} | {'–1'} | any real scalar or vector
+IgnoreLimit@Ignore limit and reset when linearizing@{'off'} | 'on'
+ZeroCross@Enable zero–crossing detection@'off' | {'on'}
+ContinuousStateAttributes@State Name@{''} | user-defined
+WrapState@Wrap state@{'off'} | 'on'
+WrappedStateUpperValue@Upper value of wrapped state@scalar or vector — {'pi'}
+WrappedStateLowerValue@Lower value of wrapped state@scalar or vector — {'-pi'}
+Second-Order Integrator (SecondOrderIntegrator)
+ICSourceX@Initial condition source x@{'internal'} | 'external'
+ICX@Initial condition x@scalar or vector — {'0'}
+LimitX@Limit x@{'off'} | 'on'
+UpperLimitX@Upper limit x@scalar or vector — {'inf'}
+LowerLimitX@Lower limit x@scalar or vector — {'-inf'}
+WrapStateX@Enable wrapping of x@{'off'} | 'on'
+WrappedUpperValueX@Upper value for wrapping x@scalar or vector — {'pi'}
+WrappedLowerValueX@Lower value for wrapping x@scalar or vector — {'-pi'}
+AbsoluteToleranceX@Absolute tolerance x@character vector, scalar, or vector — {'auto'} | {'–1'} | any real scalar or vector
+StateNameX@State name x@{} | user-defined
+ICSourceDXDT@Initial condition source dx/dt@{'internal'} | 'external'
+ICDXDT@Initial condition dx/dt@scalar or vector — {'0'}
+LimitDXDT@Limit dx/dt@{'off'} | 'on'
+UpperLimitDXDT@Upper limit dx/dt@scalar or vector — {'inf'}
+LowerLimitDXDT@Lower limit dx/dt@scalar or vector — {'-inf'}
+AbsoluteToleranceDXDT@Absolute tolerance dx/dt@character vector, scalar, or vector — {'auto'} | {'–1'} | any real scalar or vector
+StateNameDXDT@State name dx/dt@{} | user-defined
+ExternalReset@External reset@{'none'} | 'rising' | 'falling' | 'either'
+ZeroCross@Enable zero-crossing detection@{'on'} | 'off'
+ReinitDXDTwhenXreachesSaturation@Reinitialize dx/dt when x reaches saturation@{'off'} | 'on'
+IgnoreStateLimitsAndResetForLinearization@Ignore state limits and the reset for linearization@{'off'} | 'on'
+ShowOutput@Show output@{'both'} | 'x' | 'dxdt'
+State-Space (StateSpace)
+A@A@matrix — {'1'}
+B@B@matrix — {'1'}
+C@C@matrix — {'1'}
+D@D@matrix — {'1'}
+InitialCondition@Initial conditions@vector — {'0'}
+AbsoluteTolerance@Absolute tolerance@character vector, scalar, or vector — {'auto'} | {'–1'} | any real scalar or vector
+ContinuousStateAttributes@State Name@{''} | user-defined
+Transfer Fcn (TransferFcn)
+Numerator@Numerator coefficients@vector or matrix — {'[1]'}
+Denominator@Denominator coefficients@vector — {'[1 1]'}
+AbsoluteTolerance@Absolute tolerance@character vector, scalar, or vector — {'auto'} | {'–1'} | any real scalar or vector
+ContinuousStateAttributes@State Name@{''} | user-defined
+Transport Delay (TransportDelay)
+DelayTime@Time delay@scalar or vector — {'1'}
+InitialOutput@Initial output@scalar or vector — {'0'}
+BufferSize@Initial buffer size@scalar — {'1024'}
+FixedBuffer@Use fixed buffer size@{'off'} | 'on'
+TransDelayFeedthrough@Direct feedthrough of input during linearization@{'off'} | 'on'
+PadeOrder@Pade order (for linearization)@{'0'}
+Variable Time Delay (VariableTimeDelay)
+VariableDelayType@Select delay type@'Variable transport delay' | {'Variable time delay'}
+MaximumDelay@Maximum delay@scalar or vector — {'10'}
+InitialOutput@Initial output@scalar or vector — {'0'}
+MaximumPoints@Initial buffer size@scalar — {'1024'}
+FixedBuffer@Use fixed buffer size@{'off'} | 'on'
+ZeroDelay@Handle zero delay@{'off'} | 'on'
+TransDelayFeedthrough@Direct feedthrough of input during linearization@{'off'} | 'on'
+PadeOrder@Pade order (for linearization)@{'0'}
+ContinuousStateAttributes@State Name@{''} | user-defined
+Variable Transport Delay (VariableTransportDelay)
+VariableDelayType@Select delay type@{'Variable transport delay'} | 'Variable time delay'
+MaximumDelay@Maximum delay@scalar or vector — {'10'}
+InitialOutput@Initial output@scalar or vector — {'0'}
+MaximumPoints@Initial buffer size@scalar — {'1024'}
+FixedBuffer@Use fixed buffer size@{'off'} | 'on'
+TransDelayFeedthrough@Direct feedthrough of input during linearization@{'off'} | 'on'
+PadeOrder@Pade order (for linearization)@{'0'}
+AbsoluteTolerance@Absolute tolerance@character vector, scalar, or vector — {'auto'} | {'–1'} | any positive real scalar or vector
+ContinuousStateAttributes@State Name@{''} | user-defined
+Zero-Pole (ZeroPole)
+Zeros@Zeros@vector — {'[1]'}
+Poles@Poles@vector — {'[0 -1]'}
+Gain@Gain@vector — {'[1]'}
+AbsoluteTolerance@Absolute tolerance@character vector, scalar, or vector — {'auto'} | {'–1'} | any positive real scalar or vector
+ContinuousStateAttributes@State Name@{''} | user-defined
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Backlash (Backlash)
+BacklashWidth@Deadband width@scalar or vector — {'1'}
+InitialOutput@Initial output@scalar or vector — {'0'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Coulomb & Viscous Friction (Coulombic and Viscous Friction) (masked subsystem)
+offset@Coulomb friction value (Offset)@{'[1 3 2 0]'}
+gain@Coefficient of viscous friction (Gain)@{'1'}
+Dead Zone (DeadZone)
+LowerValue@Start of dead zone@scalar or vector — {'-0.5'}
+UpperValue@End of dead zone@scalar or vector — {'0.5'}
+SaturateOnIntegerOverflow@Saturate on integer overflow@'off' | {'on'}
+LinearizeAsGain@Treat as gain when linearizing@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Dead Zone Dynamic (Dead Zone Dynamic) (masked subsystem)
+Hit Crossing (HitCross)
+HitCrossingOffset@Hit crossing offset@scalar or vector — {'0'}
+HitCrossingDirection@Hit crossing direction@'rising' | 'falling' | {'either'}
+ShowOutputPort@Show output port@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Quantizer (Quantizer)
+QuantizationInterval@Quantization interval@scalar or vector — {'0.5'}
+LinearizeAsGain@Treat as gain when linearizing@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Rate Limiter (RateLimiter)
+RisingSlewLimit@Rising slew rate@{'1'}
+FallingSlewLimit@Falling slew rate@{'-1'}
+SampleTimeMode@Sample time mode@'continuous' | {'inherited'}
+InitialCondition@Initial condition@{'0'}
+LinearizeAsGain@Treat as gain when linearizing@'off' | {'on'}
+Rate Limiter Dynamic (Rate Limiter Dynamic) (masked subsystem)
+Relay (Relay)
+OnSwitchValue@Switch on point@{'eps'}
+OffSwitchValue@Switch off point@{'eps'}
+OnOutputValue@Output when on@{'1'}
+OffOutputValue@Output when off@{'0'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via back propagation' | {'Inherit: All ports same datatype'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Saturation (Saturate)
+UpperLimit@Upper limit@scalar or vector — {'0.5'}
+LowerLimit@Lower limit@scalar or vector — {'-0.5'}
+LinearizeAsGain@Treat as gain when linearizing@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via back propagation' | {'Inherit: Same as input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+Saturation Dynamic (Saturation Dynamic) (masked subsystem)
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Same as second input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScalingMode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate on integer overflow@{'off'} | 'on'
+Wrap To Zero (Wrap To Zero) (masked subsystem)
+Threshold@Threshold@{'255'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Delay (Delay)
+DelayLengthSource@Delay length > Source@{'Dialog'} | 'Input port'
+DelayLength@Delay length > Value@{'2'}
+DelayLengthUpperLimit@Delay length > Upper limit@{'100'}
+InitialConditionSource@Initial condition > Source@{'Dialog'} | 'Input port'
+InitialCondition@Initial condition > Value@{'0.0'}
+ExternalReset@External reset@{'None'} | 'Rising' | 'Falling' | 'Either' | 'Level' | 'Level hold'
+InputProcessing@Input processing@'Columns as channels (frame based)' | {'Elements as channels (sample based)'} | 'Inherited'
+UseCircularBuffer@Use circular buffer for state@{'off'} | 'on'
+PreventDirectFeedthrough@Prevent direct feedthrough@{'off'} | 'on'
+RemoveDelayLengthCheckInGeneratedCode@Remove delay length check in generated code@{'off'} | 'on'
+DiagnosticForDelayLength@Diagnostic for delay length@{'None'} | 'Warning' | 'Error'
+SampleTime@Sample time (–1 for inherited)@{'-1'}
+StateName@State name@{''}
+StateMustResolveToSignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+CodeGenStateStorageTypeQualifier@Code generation storage type qualifier@{''}
+Difference (Difference) (masked subsystem)
+ICPrevInput@Initial condition for previous input@{'0.0'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScalingMode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Discrete Derivative (Discrete Derivative) (masked subsystem)
+gainval@Gain value@{'1.0'}
+ICPrevScaledInput@Initial condition for previous weighted input K*u/Ts@{'0.0'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScalingMode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Discrete FIR Filter (Discrete FIR Filter)
+CoefSource@Coefficient source@{'Dialog parameters'} | 'Input port'
+FilterStructure@Filter structure@{'Direct form'} | 'Direct form symmetric' | 'Direct form antisymmetric' | 'Direct form transposed' | 'Lattice MA' NoteYou must have a DSP System Toolbox™ license to use a filter structure other than Direct form.
+Coefficients@Coefficients@vector — {'[0.5 0.5]'}
+InputProcessing@Input processing@'Columns as channels (frame based)' | {'Elements as channels (sample based)'}
+InitialStates@Initial states@scalar or vector — {'0'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+CoefMin@Coefficients minimum@{'[]'}
+CoefMax@Coefficients maximum@{'[]'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+TapSumDataTypeStr@Tap sum data type@{'Inherit: Same as input'} | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)'
+CoefDataTypeStr@Coefficients data type@{'Inherit: Same word length as input'} | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)'
+ProductDataTypeStr@Product output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)'
+AccumDataTypeStr@Accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Same as product output' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)'
+StateDataTypeStr@State data type@'Inherit: Same as input' | {'Inherit: Same as accumulator'} | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)'
+OutDataTypeStr@Output data type@'Inherit: Same as input' | {'Inherit: Same as accumulator'} | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnIntegerOverflow@Saturate on integer overflow@{'off'} | 'on'
+Discrete Filter (DiscreteFilter)
+Numerator@Numerator coefficients@vector — {'[1]'}
+Denominator@Denominator coefficients@vector — {'[1 0.5]'}
+IC@Initial states@{'0'}
+SampleTime@Sample time (-1 for inherited)@{'1'}
+a0EqualsOne@Optimize by skipping divide by leading denominator coefficient (a0)@{'off'} | 'on'
+NumCoefMin@Numerator coefficient minimum@{'[]'}
+NumCoefMax@Numerator coefficient maximum@{'[]'}
+DenCoefMin@Denominator coefficient minimum@{'[]'}
+DenCoefMax@Denominator coefficient maximum@{'[]'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+StateDataTypeStr@State data type@{'Inherit: Same as input'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+NumCoefDataTypeStr@Numerator coefficient data type@{'Inherit: Inherit via internal rule'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16)' | 'fixdt(1,16,0)'
+DenCoefDataTypeStr@Denominator coefficient data type@{'Inherit: Inherit via internal rule'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16)' | 'fixdt(1,16,0)'
+NumProductDataTypeStr@Numerator product output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+DenProductDataTypeStr@Denominator product output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+NumAccumDataTypeStr@Numerator accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Same as product output' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+DenAccumDataTypeStr@Denominator accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Same as product output' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnIntegerOverflow@Saturate on integer overflow@{'off'} | 'on'
+StateName@State name@{''}
+StateMustResolveToSignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageTypeQualifier@Code generation storage type qualifier@{''}
+Discrete State-Space (DiscreteStateSpace)
+A@A@matrix — {'1'}
+B@B@matrix — {'1'}
+C@C@matrix — {'1'}
+D@D@matrix — {'1'}
+InitialCondition@Initial conditions@vector — {'0'}
+SampleTime@Sample time (-1 for inherited)@{'1'}
+StateName@State name@{''}
+StateMustResolveToSignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageTypeQualifier@Code generation storage type qualifier@{''}
+Discrete Transfer Fcn (DiscreteTransferFcn)
+Numerator@Numerator coefficients@vector — {'[1]'}
+Denominator@Denominator coefficients@vector — {'[1 0.5]'}
+InitialStates@Initial states@{'0'}
+SampleTime@Sample time (-1 for inherited)@{'1'}
+a0EqualsOne@Optimize by skipping divide by leading denominator coefficient (a0)@{'off'} | 'on'
+NumCoefMin@Numerator coefficient minimum@{'[]'}
+NumCoefMax@Numerator coefficient maximum@{'[]'}
+DenCoefMin@Denominator coefficient minimum@{'[]'}
+DenCoefMax@Denominator coefficient maximum@{'[]'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+StateDataTypeStr@State data type@{'Inherit: Same as input'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+NumCoefDataTypeStr@Numerator coefficient data type@{'Inherit: Inherit via internal rule'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+DenCoefDataTypeStr@Denominator coefficient data type@{'Inherit: Inherit via internal rule'} | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+NumProductDataTypeStr@Numerator product output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+DenProductDataTypeStr@Denominator product output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+NumAccumDataTypeStr@Numerator accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Same as product output' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+DenAccumDataTypeStr@Denominator accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Same as product output' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'int8' | 'int16' | 'int32' | 'fixdt(1,16,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnIntegerOverflow@Saturate on integer overflow@{'off'} | 'on'
+StateName@State name@{''}
+StateMustResolveToSignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageTypeQualifier@Code generation storage type qualifier@{''}
+Discrete Zero-Pole (DiscreteZeroPole)
+Zeros@Zeros@vector — {'[1]'}
+Poles@Poles@vector — {'[0 0.5]'}
+Gain@Gain@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'1'}
+StateName@State name@{''}
+StateMustResolveToSignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageType Qualifier@Code generation storage type qualifier@{''}
+Discrete-Time Integrator (DiscreteIntegrator)
+IntegratorMethod@Integrator method@{'Integration: Forward Euler'} | 'Integration: Backward Euler' | 'Integration: Trapezoidal' | 'Accumulation: Forward Euler' | 'Accumulation: Backward Euler' | 'Accumulation: Trapezoidal'
+gainval@Gain value@{'1.0'}
+ExternalReset@External reset@{'none'} | 'rising' | 'falling' | 'either' | 'level' | 'sampled level'
+InitialConditionSource@Initial condition source@{'internal'} | 'external'
+InitialCondition@Initial condition@scalar or vector — {'0'}
+InitialConditionSetting@Initial condition setting@{'State (most efficient)'} | 'Output' | 'Compatibility'
+SampleTime@Sample time (-1 for inherited)@{'1'}
+LimitOutput@Limit output@{'off'} | 'on'
+UpperSaturationLimit@Upper saturation limit@scalar or vector — {'inf'}
+LowerSaturationLimit@Lower saturation limit@scalar or vector — {'-inf'}
+ShowSaturationPort@Show saturation port@{'off'} | 'on'
+ShowStatePort@Show state port@{'off'} | 'on'
+IgnoreLimit@Ignore limit and reset when linearizing@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+StateName@State name@{''}
+StateMustResolveTo SignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageType Qualifier@Code generation storage type qualifier@{''}
+First-Order Hold (First-Order Hold) (masked subsystem)
+Ts@Sample time@{'1'}
+Memory (Memory)
+InitialCondition@Initial condition@scalar or vector — {'0'}
+InheritSampleTime@Inherit sample time@{'off'} | 'on'
+LinearizeMemory@Direct feedthrough of input during linearization@{'off'} | 'on'
+LinearizeAsDelay@Treat as a unit delay when linearizing with discrete sample time@{'off'} | 'on'
+StateName@State name@{''}
+StateMustResolveTo SignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+RTWStateStorageType Qualifier@Code generation storage type qualifier@{''}
+Tapped Delay (S-Function) (Tapped Delay Line) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+samptime@Sample time@{'-1'}
+NumDelays@Number of delays@{'4'}
+DelayOrder@Order output vector starting with@{'Oldest'} | 'Newest'
+includeCurrent@Include current input in output vector@{'off'} | 'on'
+Transfer Fcn First Order (First Order Transfer Fcn) (masked subsystem)
+PoleZ@Pole (in Z plane)@{'0.95'}
+ICPrevOutput@Initial condition for previous output@{'0.0'}
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Transfer Fcn Lead or Lag (Lead or Lag Compensator) (masked subsystem)
+PoleZ@Pole of compensator (in Z plane)@{'0.95'}
+ZeroZ@Zero of compensator (in Z plane)@{'0.75'}
+ICPrevOutput@Initial condition for previous output@{'0.0'}
+ICPrevInput@Initial condition for previous input@{'0.0'}
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Transfer Fcn Real Zero (Transfer Fcn Real Zero) (masked subsystem)
+ZeroZ@Zero (in Z plane)@{'0.75'}
+ICPrevInput@Initial condition for previous input@{'0.0'}
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Unit Delay (UnitDelay)
+InitialCondition@Initial condition@scalar or vector — {'0'}
+InputProcessing@Input processing@'Columns as channels (frame based)' | {'Elements as channels (sample based)'} | 'Inherited'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+StateName@State name@{''}
+StateMustResolveTo SignalObject@State name must resolve to Simulink signal object@{'off'} | 'on'
+StateSignalObject@Signal object class Code generation storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StateStorageClass@Code generation storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+CodeGenStateStorageType Qualifier@Code generation storage type qualifier@{''}
+Zero-Order Hold (ZeroOrderHold)
+SampleTime@Sample time (-1 for inherited)@{'1'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Bit Clear (Bit Clear) (masked subsystem)
+iBit@Index of bit (0 is least significant)@{'0'}
+Bit Set (Bit Set) (masked subsystem)
+iBit@Index of bit (0 is least significant)@{'0'}
+Bitwise Operator (S-Function) (Bitwise Operator) (masked subsystem)
+logicop@Operator@{'AND'} | 'OR' | 'NAND' | 'NOR' | 'XOR' | 'NOT'
+UseBitMask@Use bit mask ...@'off' | {'on'}
+NumInputPorts@Number of input ports@{'1'}
+BitMask@Bit Mask@{'bin2dec('11011001')'}
+BitMaskRealWorld@Treat mask as@'Real World Value' | {'Stored Integer'}
+Combinatorial Logic (CombinatorialLogic)
+TruthTable@Truth table@{'[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Compare To Constant (Compare To Constant) (masked subsystem)
+relop@Operator@'==' | '~=' | '<' | {'<='} | '>=' | '>'
+const@Constant value@{'3.0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+Compare To Zero (Compare To Zero) (masked subsystem)
+relop@Operator@'==' | '~=' | '<' | {'<='} | '>=' | '>'
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+Detect Change (Detect Change) (masked subsystem)
+vinit@Initial condition@{'0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Decrease (Detect Decrease) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Fall Negative (Detect Fall Negative) (masked subsystem)
+vinit@Initial condition@{'0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Fall Nonpositive (Detect Fall Nonpositive) (masked subsystem)
+vinit@Initial condition@{'0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Increase (Detect Increase) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Rise Nonnegative (Detect Rise Nonnegative) (masked subsystem)
+vinit@Initial condition@{'0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Detect Rise Positive (Detect Rise Positive) (masked subsystem)
+vinit@Initial condition@{'0'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Extract Bits (Extract Bits) (masked subsystem)
+bitsToExtract@Bits to extract@{'Upper half'} | 'Lower half' | 'Range starting with most significant bit' | 'Range ending with least significant bit' | 'Range of bits'
+numBits@Number of bits@{'8'}
+bitIdxRange@Bit indices ([start end], 0-based relative to LSB)@{'[0 7]'}
+outScalingMode@Output scaling mode@{'Preserve fixed-point scaling'} | 'Treat bit field as an integer'
+Interval Test (Interval Test) (masked subsystem)
+IntervalClosedRight@Interval closed on right@'off' | {'on'}
+uplimit@Upper limit@{'0.5'}
+IntervalClosedLeft@Interval closed on left@'off' | {'on'}
+lowlimit@Lower limit@{'-0.5'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Interval Test Dynamic (Interval Test Dynamic) (masked subsystem)
+IntervalClosedRight@Interval closed on right@'off' | {'on'}
+IntervalClosedLeft@Interval closed on left@'off' | {'on'}
+OutDataTypeStr@Output data type@{'boolean'} | 'uint8'
+Logical Operator (Logic)
+Operator@Operator@{'AND'} | 'OR' | 'NAND' | 'NOR' | 'XOR' | 'NXOR' | 'NOT'
+Inputs@Number of input ports@{'2'}
+IconShape@Icon shape@{'rectangular'} | 'distinctive'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+AllPortsSameDT@Require all inputs and output to have the same data type@{'off'} | 'on'
+OutDataTypeStr@Output data type@'Inherit: Logical (see Configuration Parameters: Optimization)' | {'boolean'} | 'fixdt(1,16)'
+Relational Operator (RelationalOperator)
+Operator@Relational operator@'==' | '~=' | '<' | {'<='} | '>=' | '>' | 'isInf' | 'isNaN' | 'isFinite'
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+OutDataTypeStr@Output data type@'Inherit: Logical (see Configuration Parameters: Optimization)' | {'boolean'} | 'fixdt(1,16)'
+Shift Arithmetic (ArithShift)
+BitShiftNumberSource@Bits to shift > Source@{'Dialog'} | 'Input port'
+BitShiftDirection@Bits to shift > Direction@'Left' | 'Right' | {'Bidirectional'}
+BitShiftNumber@Bits to shift > Number@{'8'}
+BinPtShiftNumber@Binary points to shift > Number@{'0'}
+DiagnosticForOORShift@Diagnostic for out-of-range shift value@{'None'} | 'Warning' | 'Error'
+CheckOORBitShift@Check for out-of-range 'Bits to shift' in generated code@{'off'} | 'on'
+nBitShiftRight@Deprecated in R2011a@
+nBinPtShiftRight@Deprecated in R2011a@
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Cosine (Cosine) (masked subsystem)
+Formula@Output formula@'sin(2*pi*u)' | {'cos(2*pi*u)'} | 'exp(j*2*pi*u)' | 'sin(2*pi*u) and cos(2*pi*u)'
+NumDataPoints@Number of data points for lookup table@{'(2^5)+1'}
+OutputWordLength@Output word length@{'16'}
+InternalRulePriority@Internal rule priority for lookup table@{'Speed'} | 'Precision'
+Direct Lookup Table (n-D) (LookupNDDirect)
+NumberOfTableDimensions@Number of table dimensions@'1' | {'2'} | '3' | '4'
+InputsSelectThisObjectFromTable@Inputs select this object from table@{'Element'} | 'Vector' | '2-D Matrix'
+TableIsInput@Make table an input@{'off'} | 'on'
+Table@Table data@{'[4 5 6;16 19 20;10 18 23]'}
+DiagnosticForOutOfRangeInput@Diagnostic for out-of-range input@'None' | {'Warning'} | 'Error'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+TableMin@Table minimum@{'[]'}
+TableMax@Table maximum@{'[]'}
+TableDataTypeStr@Table data type@{'Inherit: Inherit from 'Table data''} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+maskTabDims@Deprecated in R2009b@
+explicitNumDims@Deprecated in R2009b@
+outDims@Deprecated in R2009b@
+tabIsInput@Deprecated in R2009b@
+mxTable@Deprecated in R2009b@
+clipFlag@Deprecated in R2009b@
+samptime@Deprecated in R2009b@
+Interpolation Using Prelookup (Interpolation_n-D)
+NumberOfTableDimensions@Number of table dimensions@'1' | {'2'} | '3' | '4'
+Table@Table data > Value@{'sqrt([1:11]' * [1:11])'}
+TableSource@Table data > Source@{'Dialog'} | 'Input port'
+TableSpecification@Specification@{'Explicit values'} | | 'Lookup table object' To set this parameter from 'Explicit values' to 'Lookup table object', use the same call to set_param to set the parameter LookupTableObject. For example: set_param('myModel/myInterpBlock',... 'TableSpecification',... 'Lookup table object',... 'LookupTableObject','myLUTObject')
+LookupTableObject@Name of lookup table object@{''}
+InterpMethod@Interpolation method@'Flat' | {'Linear point-slope'} | 'Nearest' | 'Linear Lagrange'
+ExtrapMethod@Extrapolation method@'Clip' | {'Linear'}
+ValidIndexMayReachLast@Valid index input may reach last index@{'off'} | 'on'
+DiagnosticForOutOfRange Input@Diagnostic for out-of-range input@{'None'} | 'Warning' | 'Error'
+RemoveProtectionIndex@Remove protection against out-of-range index in generated code@{'off'} | 'on'
+NumSelectionDims@Number of sub-table selection dimensions@{'0'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+TableDataTypeStr@Table data > Data Type@'Inherit: Inherit from 'Table data'' | {'Inherit: Same as output'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+TableMin@Table data > Minimum@{'[]'}
+TableMax@Table data > Maximum@{'[]'}
+IntermediateResultsDataTypeStr@Intermediate results > Data Type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutDataTypeStr@Output > Data Type@'Inherit: Inherit via back propagation' | {'Inherit: Inherit from table data'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output > Minimum@{'[]'}
+OutMax@Output > Maximum@{'[]'}
+InternalRulePriority@Internal rule priority@{'Speed'} | 'Precision'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnIntegerOverflow@Saturate on integer overflow@{'off'} | 'on'
+CheckIndexInCode@Deprecated in R2011a@
+n-D Lookup Table, 1-D Lookup Table, 2-D Lookup Table (Lookup_n-D)
+NumberOfTableDimensions@Number of table dimensions@'1' | '2' | '3' | '4'. Default is ‘1’ for 1-D Lookup Table, ‘2’ for 2-D Lookup Table, ‘3’ for n-D Lookup Table.
+DataSpecification@(n-D Lookup Table) Data specification@{'Table and breakpoints'} | 'Lookup table object' To set this parameter from 'Table and breakpoints' to 'Lookup table object', use the same call to set_param to set the parameter LookupTableObject. For example: set_param('myModel/myLookupBlock',... 'DataSpecification','Lookup table... object',... 'LookupTableObject','myLUTObject')
+LookupTableObject@Name of lookup table object.@{''}
+Table@Table data@{'reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])'}
+BreakpointsSpecification@Breakpoints specification@{'Explicit values'} | 'Even spacing'
+BreakpointsForDimension1FirstPoint@First point@{'1'}
+BreakpointsForDimension2FirstPoint@First point@{'1'}
+BreakpointsForDimension3FirstPoint@First point@{'1'}
+...@...@...
+BreakpointsForDimension30FirstPoint@First point@{'1'}
+BreakpointsForDimension1Spacing@Spacing@{'1'}
+BreakpointsForDimension2Spacing@Spacing@{'1'}
+BreakpointsForDimension3Spacing@Spacing@{'1'}
+...@...@...
+BreakpointsForDimension30Spacing@Spacing@{'1'}
+BreakpointsForDimension1@Breakpoints 1@{'[10,22,31]'}
+BreakpointsForDimension2@Breakpoints 2@{'[10,22,31]'}
+BreakpointsForDimension3@Breakpoints 3@{'[5, 7]'}
+...@...@...
+BreakpointsForDimension30@Breakpoints 30@{'[1:3]'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InterpMethod@Interpolation method@'Flat' | 'Nearest' | {'Linear point-slope'} | 'Linear Lagrange' | 'Cubic spline'
+ExtrapMethod@Extrapolation method@'Clip' | {'Linear'} | 'Cubic spline'
+UseLastTableValue@Use last table value for inputs at or above last breakpoint@{'off'} | 'on'
+DiagnosticForOutOfRange Input@Diagnostic for out-of-range input@{'None'} | 'Warning' | 'Error'
+RemoveProtectionInput@Remove protection against out-of-range input in generated code@{'off'} | 'on'
+IndexSearchMethod@Index search method@'Evenly spaced points' | 'Linear search' | {'Binary search'}
+BeginIndexSearchUsing PreviousIndexResult@Begin index search using previous index result@{'off'} | 'on'
+UseOneInputPortForAll InputData@Use one input port for all input data@{'off'} | 'on'
+SupportTunableTableSize@Support tunable table size in code generation@{'off'} | 'on'
+MaximumIndicesForEach Dimension@Maximum indices for each dimension@{'[]'}
+TableDataTypeStr@Table data > Data Type@'Inherit: Inherit from 'Table data'' | {'Inherit: Same as output'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+TableMin@Table data > Minimum@{'[]'}
+TableMax@Table data > Maximum@{'[]'}
+BreakpointsForDimension1 DataTypeStr@Breakpoints 1 > Data Type@{'Inherit: Same as corresponding input'} | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+BreakpointsForDimension1 Min@Breakpoints 1 > Minimum@{'[]'}
+BreakpointsForDimension1 Max@Breakpoints 1 > Maximum@{'[]'}
+BreakpointsForDimension2 DataTypeStr@Breakpoints 2 > Data Type@{'Inherit: Same as corresponding input'} | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+BreakpointsForDimension2 Min@Breakpoints 2 > Minimum@{'[]'}
+BreakpointsForDimension2 Max@Breakpoints 2 > Maximum@{'[]'}
+...@...@...
+BreakpointsForDimension30 DataTypeStr@Breakpoints 30 > Data Type@{'Inherit: Same as corresponding input'} | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+BreakpointsForDimension30 Min@Breakpoints 30 > Minimum@{'[]'}
+BreakpointsForDimension30 Max@Breakpoints 30 > Maximum@{'[]'}
+FractionDataTypeStr@Fraction > Data Type@{'Inherit: Inherit via internal rule'} | 'double' | 'single' | 'fixdt(1,16,0)'
+IntermediateResults DataTypeStr@Intermediate results > Data Type@'Inherit: Inherit via internal rule' | {'Inherit: Same as output'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutDataTypeStr@Output > Data Type@'Inherit: Inherit via back propagation' | 'Inherit: Inherit from table data' | {'Inherit: Same as first input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output > Minimum@{'[]'}
+OutMax@Output > Maximum@{'[]'}
+InternalRulePriority@Internal rule priority@{'Speed'} | 'Precision'
+InputSameDT@Require all inputs to have the same data type@'off' | {'on'}
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | {'Simplest'} | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+ProcessOutOfRangeInput@Deprecated in R2009b@
+Lookup Table Dynamic (Lookup Table Dynamic) (masked subsystem)
+LookUpMeth@Lookup Method@'Interpolation-Extrapolation' | {'Interpolation-Use End Values'} | 'Use Input Nearest' | 'Use Input Below' | 'Use Input Above'
+OutDataTypeStr@Output data type@{'fixdt('double')'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScaling Mode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round'| 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Prelookup (PreLookup)
+BreakpointsSpecification@Specification@{'Explicit values'} | 'Even spacing' | 'Breakpoint object' To set this parameter from 'Explicit values' or 'Even spacing' to 'Breakpoint object', use the same call to set_param to set the parameter BreakpointObject. For example: set_param('myModel/myPrelookupBlock',... 'BreakpointsSpecification',... 'Breakpoint object',... 'BreakpointObject','myBPObject')
+BreakpointObject@Name of breakpoint object@{''}
+BreakpointsFirstPoint@First point@{'10'}
+BreakpointsSpacing@Spacing@{'10'}
+BreakpointsNumPoints@Number of points@{'11'}
+BreakpointsData@Value@{'[10:10:110]'}
+BreakpointsDataSource@Source@{'Dialog'} | 'Input port'
+IndexSearchMethod@Index search method@'Evenly spaced points' | 'Linear search' | {'Binary search'}
+BeginIndexSearchUsing PreviousIndexResult@Begin index search using previous index result@{'off'} | 'on'
+OutputOnlyTheIndex@Output only the index@{'off'} | 'on'
+ExtrapMethod@Extrapolation method@'Clip' | {'Linear'}
+UseLastBreakpoint@Use last breakpoint for input at or above upper limit@{'off'} | 'on'
+DiagnosticForOutOfRange Input@Diagnostic for out-of-range input@{'None'} | 'Warning' | 'Error'
+RemoveProtectionInput@Remove protection against out-of-range input in generated code@{'off'} | 'on'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+BreakpointDataTypeStr@Breakpoint > Data Type@{'Inherit: Same as input'} | 'Inherit: Inherit from 'Breakpoint data'' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+BreakpointMin@Breakpoint > Minimum@{'[]'}
+BreakpointMax@Breakpoint > Maximum@{'[]'}
+IndexDataTypeStr@Index > Data Type@'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | {'uint32'} | 'fixdt(1,16)'
+FractionDataTypeStr@Fraction > Data Type@{'Inherit: Inherit via internal rule'} | 'double' | 'single' | 'fixdt(1,16,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+ProcessOutOfRangeInput@Deprecated in R2011a@
+Sine (Sine) (masked subsystem)
+Formula@Output formula@{'sin(2*pi*u)'} | 'cos(2*pi*u)' | 'exp(j*2*pi*u)' | 'sin(2*pi*u) and cos(2*pi*u)'
+NumDataPoints@Number of data points for lookup table@{'(2^5)+1'}
+OutputWordLength@Output word length@{'16'}
+InternalRulePriority@Internal rule priority for lookup table@{'Speed'} | 'Precision'
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Abs (Abs)
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via internal rule' | 'Inherit: Inherit via back propagation' | {'Inherit: Same as input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Add (Sum)
+IconShape@Icon shape@{'rectangular'} | 'round'
+Inputs@List of signs@{'++'}
+CollapseMode@Sum over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+AccumDataTypeStr@Accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'Inherit: Same as accumulator' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Algebraic Constraint (Algebraic Constraint)
+Constraint@Constraint on input signal@{'f(z) = 0'} | 'f(z) = z'
+Solver@Algebraic Loop Solver@{'auto'} | 'Trust Region' | 'Line Search'
+Tolerance@Solver Tolerance@{'auto'}
+InitialGuess@Initial guess@{'0'}
+Assignment (Assignment)
+NumberOfDimensions@Number of output dimensions@{'1'}
+IndexMode@Index mode@'Zero-based' | {'One-based'}
+OutputInitialize@Initialize output (Y)@{'Initialize using input port <Y0>'} | 'Specify size for each dimension in table'
+IndexOptionArray@Index Option@'Assign all' | {'Index vector (dialog)'} | 'Index vector (port)' | 'Starting index (dialog)' | 'Starting index (port)'
+IndexParamArray@Index@cell array
+OutputSizeArray@Output Size@cell array
+DiagnosticForDimensions@Action if any output element is not assigned@'Error' | 'Warning' | {'None'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+IndexOptions@See the IndexOptionArray parameter for more information.@
+Indices@See the IndexParamArray parameter for more information.@
+OutputSizes@See the OutputSizeArray parameter for more information.@
+Bias (Bias)
+Bias@Bias@{'0.0'}
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Complex to Magnitude-Angle (ComplexToMagnitudeAngle)
+Output@Output@'Magnitude' | 'Angle' | {'Magnitude and angle'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Complex to Real-Imag (ComplexToRealImag)
+Output@Output@'Real' | 'Imag' | {'Real and imag'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Divide (Product)
+Inputs@Number of inputs@{'*/'}
+Multiplication@Multiplication@{'Element-wise(.*)'} | 'Matrix(*)'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Dot Product (DotProduct)
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have same data type@'off' | {'on'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScaling Mode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Find (Find)
+IndexOutputFormat@Index output format@{'Linear indices'} | 'Subscripts'
+NumberOfInputDimensions@Number of input dimensions@integer — {'1'}
+IndexMode@Index mode@{'Zero-based'} | 'One-based'
+ShowOutputForNonzero InputValues@Show output port for nonzero input values@{'off'} | 'on'
+SampleTime@Sample time (–1 for inherited)@{'-1'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)'
+Gain (Gain)
+Gain@Gain@{'1'}
+Multiplication@Multiplication@{'Element-wise(K.*u)'} | 'Matrix(K*u)' | 'Matrix(u*K)' | 'Matrix(K*u) (u vector)'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+ParamMin@Parameter minimum@{'[]'}
+ParamMax@Parameter maximum@{'[]'}
+ParamDataTypeStr@Parameter data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as input' | 'Inherit: Inherit from 'Gain'' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+Magnitude-Angle to Complex (MagnitudeAngleToComplex)
+Input@Input@'Magnitude' | 'Angle' | {'Magnitude and angle'}
+ConstantPart@Magnitude or Angle@{'0'}
+ApproximationMethod@Approximation method@{'None'} | 'CORDIC'
+NumberOfIterations@Number of iterations@{'11'}
+ScaleReciprocalGainFactor@Scale output by reciprocal of gain factor@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Math Function (Math)
+Operator@Function@{'exp'} | 'log' | '10^u' | 'log10' | 'magnitude^2' | 'square' | 'pow' | 'conj' | 'reciprocal' | 'hypot' | 'rem' | 'mod' | 'transpose' | 'hermitian'
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via internal rule' | 'Inherit: Inherit via back propagation' | {'Inherit: Same as first input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@'off' | {'on'}
+Matrix Concatenate (Concatenate)
+NumInputs@Number of inputs@{'2'}
+Mode@Mode@'Vector' | {'Multidimensional array'}
+ConcatenateDimension@Concatenate dimension@{'2'}
+MinMax (MinMax)
+Function@Function@{'min'} | 'max'
+Inputs@Number of input ports@{'1'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+MinMax Running Resettable (MinMax Running Resettable) (masked subsystem)
+Function@Function@{'min'} | 'max'
+vinit@Initial condition@{'0.0'}
+Permute Dimensions (PermuteDimensions)
+Order@Order@{'[2,1]'}
+Polynomial (Polyval)
+coefs@Polynomial Coefficients@{'[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]'}
+Product (Product)
+Inputs@Number of inputs@{'2'}
+Multiplication@Multiplication@{'Element-wise(.*)'} | 'Matrix(*)'
+CollapseMode@Multiply over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'Round' | 'Simplest' | {'Zero'}
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Product of Elements (Product)
+Inputs@Number of inputs@{'*'}
+Multiplication@Multiplication@{'Element-wise(.*)'} | 'Matrix(*)'
+CollapseMode@Multiply over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Real-Imag to Complex (RealImagToComplex)
+Input@Input@'Real' | 'Imag' | {'Real and imag'}
+ConstantPart@Real part or Imag part@{'0'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Reciprocal Sqrt (Sqrt)
+Operator@Function@'sqrt' | 'signedSqrt' | {'rSqrt'}
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via internal rule' | 'Inherit: Inherit via back propagation' | {'Inherit: Same as first input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@'off' | {'on'}
+IntermediateResults DataTypeStr@Intermediate results data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit from input' | 'Inherit: Inherit from output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+AlgorithmType@Method@'Exact' | {'Newton-Raphson'}
+Iterations@Number of iterations@{'3'}
+Reshape (Reshape)
+OutputDimensionality@Output dimensionality@{'1-D array'} | 'Column vector (2-D)' | 'Row vector (2-D)' | 'Customize' | 'Derive from reference input port'
+OutputDimensions@Output dimensions@{'[1,1]'}
+Rounding Function (Rounding)
+Operator@Function@{'floor'} | 'ceil' | 'round' | 'fix'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Sign (Signum)
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Signed Sqrt (Sqrt)
+Operator@Function@'sqrt' | {'signedSqrt'} | 'rSqrt'
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via internal rule' | 'Inherit: Inherit via back propagation' | {'Inherit: Same as first input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@'off' | {'on'}
+IntermediateResults DataTypeStr@Intermediate results data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit from input' | 'Inherit: Inherit from output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+AlgorithmType@Method@{'Exact'} | 'Newton-Raphson'
+Iterations@Number of iterations@{'3'}
+Sine Wave Function (Sin)
+SineType@Sine type@{'Time based'} | 'Sample based'
+TimeSource@Time@'Use simulation time' | {'Use external signal'}
+Amplitude@Amplitude@{'1'}
+Bias@Bias@{'0'}
+Frequency@Frequency@{'1'}
+Phase@Phase@{'0'}
+Samples@Samples per period@{'10'}
+Offset@Number of offset samples@{'0'}
+SampleTime@Sample time@{'0'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Slider Gain (Slider Gain) (masked subsystem)
+low@Low@{'0'}
+gain@Gain@{'1'}
+high@High@{'2'}
+Sqrt (Sqrt)
+Operator@Function@{'sqrt'} | 'signedSqrt' | 'rSqrt'
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via internal rule' | 'Inherit: Inherit via back propagation' | {'Inherit: Same as first input'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@'off' | {'on'}
+IntermediateResults DataTypeStr@Intermediate results data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit from input' | 'Inherit: Inherit from output' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+AlgorithmType@Method@{'Exact'} | 'Newton-Raphson'
+Iterations@Number of iterations@{'3'}
+Squeeze (Squeeze) (masked subsystem)
+None@None@None
+Subtract (Sum)
+IconShape@Icon shape@{'rectangular'} | 'round'
+Inputs@List of signs@{'+-'}
+CollapseMode@Sum over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+AccumDataTypeStr@Accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'Inherit: Same as accumulator' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Sum (Sum)
+IconShape@Icon shape@'rectangular' | {'round'}
+Inputs@List of signs@{'|++'}
+CollapseMode@Sum over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+AccumDataTypeStr@Accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'Inherit: Same as accumulator' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Sum of Elements (Sum)
+IconShape@Icon shape@{'rectangular'} | 'round'
+Inputs@List of signs@{'+'}
+CollapseMode@Sum over@{'All dimensions'} | 'Specified dimension'
+CollapseDim@Dimension@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all inputs to have the same data type@{'off'} | 'on'
+AccumDataTypeStr@Accumulator data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Same as first input' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'Inherit: Same as first input' | 'Inherit: Same as accumulator' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock data type settings against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Trigonometric Function (Trigonometry)
+Operator@Function@{'sin'} | 'cos' | 'tan' | 'asin' | 'acos' | 'atan' | 'atan2' | 'sinh' | 'cosh' | 'tanh' | 'asinh' | 'acosh' | 'atanh' | 'sincos' | 'cos + jsin'
+ApproximationMethod@Approximation method@{'None'} | 'CORDIC'
+NumberOfIterations@Number of iterations@{'11'}
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Unary Minus (UnaryMinus)
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+Vector Concatenate (Concatenate)
+NumInputs@Number of inputs@{'2'}
+Mode@Mode@{'Vector'} | 'Multidimensional array'
+Weighted Sample Time Math (SampleTimeMath)
+TsampMathOp@Operation@{'+'} | '-' | '*' | '/' | 'Ts Only' | '1/Ts Only'
+weightValue@Weight value@{'1.0'}
+TsampMathImp@Implement using@{'Online Calculations'} | 'Offline Scaling Adjustment'
+OutDataTypeStr@Output data type@{'Inherit via internal rule'} | 'Inherit via back propagation'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+OutputDataTypeScaling Mode@Deprecated in R2009b@
+DoSatur@Deprecated in R2009b@
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Assertion (Assertion)
+Enabled@Enable assertion@'off' | {'on'}
+AssertionFailFcn@Simulation callback when assertion fails@{''}
+StopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Check Dynamic Gap (Checks_DGap) (masked subsystem)
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Dynamic Range (Checks_DRange) (masked subsystem)
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Static Gap (Checks_SGap) (masked subsystem)
+max@Upper bound@{'100'}
+max_included@Inclusive upper bound@'off' | {'on'}
+min@Lower bound@{'0'}
+min_included@Inclusive lower bound@'off' | {'on'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Static Range (Checks_SRange) (masked subsystem)
+max@Upper bound@{'100'}
+max_included@Inclusive upper bound@'off' | {'on'}
+min@Lower bound@{'0'}
+min_included@Inclusive lower bound@'off' | {'on'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Discrete Gradient (Checks_Gradient) (masked subsystem)
+gradient@Maximum gradient@{'1'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Dynamic Lower Bound (Checks_DMin) (masked subsystem)
+Enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Dynamic Upper Bound (Checks_DMax) (masked subsystem)
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Input Resolution (Checks_Resolution) (masked subsystem)
+resolution@Resolution@{'1'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+Check Static Lower Bound (Checks_SMin) (masked subsystem)
+min@Lower bound@{'0'}
+min_included@Inclusive boundary@'off' | {'on'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Check Static Upper Bound (Checks_SMax) (masked subsystem)
+max@Upper bound@{'0'}
+max_included@Inclusive boundary@'off' | {'on'}
+enabled@Enable assertion@'off' | {'on'}
+callback@Simulation callback when assertion fails (optional)@{''}
+stopWhenAssertionFail@Stop simulation when assertion fails@'off' | {'on'}
+export@Output assertion signal@{'off'} | 'on'
+icon@Select icon type@{'graphic'} | 'text'
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Block Support Table (Block Support Table) (masked subsystem)
+DocBlock (DocBlock) (masked subsystem)
+ECoderFlag@Embedded Coder® Flag@{''}
+DocumentType@Document Type@{'Text'} | 'RTF' | 'HTML'
+Model Info (CMBlock) (masked subsystem)
+InitialSaveTempField@InitialSaveTempField@{''}
+InitialBlockCM@InitialBlockCM@{'None'}
+BlockCM@BlockCM@{'None'}
+Frame@Show block frame@'off' | {'on'}
+SaveTempField@SaveTempField@{''}
+DisplayStringWithTags@DisplayStringWithTags@{'Model Info'}
+MaskDisplayString@MaskDisplayString@{'Model Info'}
+HorizontalTextAlignment@Horizontal text alignment@{'Center'}
+LeftAlignmentValue@LeftAlignmentValue@{'0.5'}
+SourceBlockDiagram@SourceBlockDiagram@{'untitled'}
+TagMaxNumber@TagMaxNumber@{'20'}
+CMTag1@CMTag1@{''}
+CMTag2@CMTag2@{''}
+CMTag3@CMTag3@{''}
+CMTag4@CMTag4@{''}
+CMTag5@CMTag5@{''}
+CMTag6@CMTag6@{''}
+CMTag7@CMTag7@{''}
+CMTag8@CMTag8@{''}
+CMTag9@CMTag9@{''}
+CMTag10@CMTag10@{''}
+CMTag11@CMTag11@{''}
+CMTag12@CMTag12@{''}
+CMTag13@CMTag13@{''}
+CMTag14@CMTag14@{''}
+CMTag15@CMTag15@{''}
+CMTag16@CMTag16@{''}
+CMTag17@CMTag17@{''}
+CMTag18@CMTag18@{''}
+CMTag19@CMTag19@{''}
+CMTag20@CMTag20@{''}
+Timed-Based Linearization (Timed Linearization) (masked subsystem)
+LinearizationTime@Linearization time@{'1'}
+SampleTime@Sample time (of linearized model)@{'0'}
+Trigger-Based Linearization (Triggered Linearization) (masked subsystem)
+TriggerType@Trigger type@{'rising'} | 'falling' | 'either' | 'function-call'
+SampleTime@Sample time (of linearized model)@{'0'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Action Port (ActionPort)
+InitializeStates@States when execution is resumed@{'held'} | 'reset'
+PropagateVarSize@Propagate sizes of variable-size signals@{'Only when execution is resumed'} | 'During execution'
+Atomic Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+TreatAsGroupedWhenPropagatingVariantConditions@Treat as grouped when propagating variant conditions@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+FunctionInterfaceSpec@Function interfaceThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'void_void'} | 'Allow arguments'
+FunctionWithSeparateData@Function with separate dataThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'off'} | 'on'
+RTWMemSecFuncInitTerm@Memory section for initialize/terminate functionsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecFuncExecute@Memory section for execution functionsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataConstants@Memory section for constantsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataInternal@Memory section for internal dataThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataParameters@Memory section for parametersThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+SimViewingDevice@No dialog box promptIf set to 'on', designates the block as a Signal Viewing Subsystem — an atomic subsystem that encapsulates processing and viewing of signals received from the target system in External mode. For more information, see Signal Viewing Subsystems (Simulink Coder).@{'off'} | 'on'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Code Reuse Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@'Auto' | 'Inline' | 'Nonreusable function' | {'Reusable function'}
+RTWFcnNameOpts@Function name options@'Auto' | {'Use subsystem name'} | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@'Auto' | {'Use subsystem name'} | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+RTWMemSecFuncInitTerm@Memory section for initialize/terminate functionsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecFuncExecute@Memory section for execution functionsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataConstants@Memory section for constantsThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataInternal@Memory section for internal dataThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+RTWMemSecDataParameters@Memory section for parametersThis parameter requires a license for Embedded Coder software and an ERT-based system target file.@{'Inherit from model'} | 'Default' | list of memory sections from model's package
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Configurable Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{'self'}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@{'off'} | 'on'
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+SimViewingDevice@No dialog box promptIf set to 'on', designates the block as a Signal Viewing Subsystem — an atomic subsystem that encapsulates processing and viewing of signals received from the target system in External mode. For more information, see Signal Viewing Subsystems (Simulink Coder).@{'off'} | 'on'
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@No dialog box prompt@boolean — {'on'} | 'off'Read-only
+Enable (EnablePort)
+StatesWhenEnabling@States when enabling@{'held'} | 'reset'
+PropagateVarSize@Propagate sizes of variable-size signals@{'Only when enabling'} | 'During execution'
+ShowOutputPort@Show output port@{'off'} | 'on'
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+Enabled and Triggered Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Enabled Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+For Each(ForEach)
+InputPartition@Partition@cell array of character vectors
+InputPartitionDimension@Partition dimension for input signal@cell array of character vectors
+InputPartitionWidth@Width of partition for input signal@cell array of character vectors
+OutputConcatenationDimension@Concatenation dimension of output signal@cell array of character vectors
+For Iterator (ForIterator)
+ResetStates@States when starting@{'held'} | 'reset'
+IterationSource@Iteration limit source@{'internal'} | 'external'
+IterationLimit@Iteration limit@{'5'}
+ExternalIncrement@Set next i (iteration variable) externally@{'off'} | 'on'
+ShowIterationPort@Show iteration variable@'off' | {'on'}
+IndexMode@Index mode@'Zero-based' | {'One-based'}
+IterationVariable DataType@Iteration variable data type@{'int32'} | 'int16' | 'int8' | 'double'
+For Iterator Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation . Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Function-Call Generator (Function-Call Generator) (masked subsystem)
+sample_time@Sample time@{'1'}
+numberOfIterations@Number of iterations@{'1'}
+Function-Call Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+If (If)
+NumInputs@Number of inputs@{'1'}
+IfExpression@If expression (e.g., u1 ~= 0)@{'u1 > 0'}
+ElseIfExpressions@Elseif expressions (comma-separated list, e.g., u2 ~= 0, u3(2) < u2)@{''}
+ShowElse@Show else condition@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+If Action Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Function name@{''}
+RTWFileNameOpts@File name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@File name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'Off'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+In1 (Inport)
+Port@Port number@{'1'}
+IconDisplay@Icon display@'Signal name' | {'Port number'} | 'Port number and signal name'
+LatchByDelaying OutsideSignal@Latch input by delaying outside signal@{'off'} | 'on'
+LatchInputFor FeedbackSignals@Latch input for feedback signals of function-call subsystem outputs@{'off'} | 'on'
+Interpolate@Interpolate data@'off' | {'on'}
+UseBusObject@Specify properties via bus object@{'off'} | 'on'
+BusObject@Bus object for specifying bus properties@{'BusObject'}
+BusOutputAsStruct@Output as nonvirtual bus@{'off'} | 'on'
+PortDimensions@Port dimensions (-1 for inherited)@{'-1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Unit@Specify physical unit of the input signal to the block.@{'inherit'}| '<Enter unit>'
+UnitNoProp@Specify physical unit of the input signal to the block without propagation. For a list of acceptable units, see Allowed Units.@'<Enter unit>'
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+Model (ModelReference)
+ModelNameDialog@The name of the referenced model exactly as you typed it in, with any surrounding whitespace removed. When you set ModelNameDialog programmatically or with the GUI, Simulink automatically sets the values of ModelName and ModelFile based on the value of ModelNameDialog.@{'<Enter Model Name>'}
+ModelName@The value of ModelNameDialog stripped of any filename extension that you provided. For backward compatibility, setting ModelName programatically actually sets ModelNameDialog, which then sets ModelName as described. You cannot use get_param to obtain the ModelName of a protected model, because the name without a suffix would be ambiguous. Use get_param on ModelFile instead. You can test ProtectedModel to determine programmatically whether a referenced model is protected.@character vector — Set automatically when ModelNameDialog is set.
+ModelFile@The value of ModelNameDialog with a filename extension. The suffix of the first match Simulink finds becomes the suffix of ModelFile. Setting ModelFile programmatically actually sets ModelNameDialog, which then sets ModelFile as described.@character vector — Set automatically when ModelNameDialog is set.
+ProtectedModel@Read-only boolean indicating whether the model referenced by the block is protected (on) or unprotected (off).@boolean — 'off' | 'on' — Set automatically when ModelNameDialog is set.
+ParameterArgumentNames@Names of model arguments that the referenced model defines. Corresponds to the Name column in the table under Arguments > Model arguments.@{''}
+ParameterArgumentValues@Values for model arguments. Corresponds to the Value column in the table under Arguments > Model arguments.@structure with no fields
+SimulationMode@Specifies whether to simulate the model by generating and executing code or by interpreting the model in Simulink software.@{'Normal'} | 'Accelerator' | 'Software-in-the-loop (SIL)' | 'Processor-in-the-loop (PIL)'
+Variant@Specifies whether the Model block references variant models. NoteFor new models, use a Model block for model variants only if you need to use variants that are conditionally executed models (models with control ports). Model variants are supported for backward compatibility. However, support for model variants will be removed in a future release.To convert a Model block that contains variant models to a Variant Subsystem block, right-click the Model block and select Subsystems & Model Reference > Convert to > Variant Subsystem. This conversion can require that you update scripts that use the Variants command-line parameter.@{'off'} | 'on'
+Variants@An array of variant structures where each element specifies one variant. The structure fields are as follows:@array — [ ]
+variant.Name – The name of the Simulink.Variant object that represents the variant to which this element applies.@{''}
+variant.ModelName – The name of the referenced model associated with the specified variant object in the Model block.@{''}
+variant.ParameterArgument Names – Read-only character vector containing the names of the model arguments for which the Model block must supply values.@{''}
+variant.ParameterArgument Values – The values to supply for the model arguments when this variant is the active variant.@{''}
+variant.SimulationMode – The execution mode to use when this variant is the active variant.@{'Accelerator'} | 'Normal' | 'Processor-in-the-loop (PIL)'
+VariantConfigurationObject@Specifies the variant configuration object that is associated with the model.@{''} The value is an empty character vector if no configuration object is associated; otherwise, it is the name of a Simulink.VariantConfigurationData object.
+OverrideUsingVariant@Whether to override the variant conditions and make a specified variant the active variant, and if so, the name of that variant.@{''} The value is the empty character vector if no overriding variant object is specified; or the name of the overriding object.
+ActiveVariant@The variant that is currently active, either because its variant condition is true or OverrideUsingVariant has overridden the variant conditions and specified this variant.@{''} The value is the empty character vector if no variant is active; or the name of the active variant.
+GeneratePreprocessor Conditionals@Locally controls whether generated code contains preprocessor conditionals. This parameter applies only to Simulink Coder code generation and has no effect on the behavior of a model in Simulink.The parameter is available only for ERT targets. For more information, see Variant Systems (Embedded Coder).@{'off'} | 'on'
+DefaultDataLogging@@{'off'} | 'on'
+Out1 (Outport)
+Port@Port number@{'1'}
+IconDisplay@Icon display@'Signal name' | {'Port number'} | 'Port number and signal name'
+UseBusObject@Specify properties via bus object@{'off'} | 'on'
+BusObject@Bus object for validating input bus@{'BusObject'}
+BusOutputAsStruct@Output as nonvirtual bus in parent model@{'off'} | 'on'
+PortDimensions@Port dimensions (-1 for inherited)@{'-1'}
+VarSizeSig@Variable-size signal@{'Inherit'} | 'No' | 'Yes'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Unit@Specify physical unit of the input signal to the block. For a list of acceptable units, see Allowed Units.@{'inherit'}| '<Enter unit>'
+UnitNoProp@Specify physical unit of the input signal to the block without propagation. For a list of acceptable units, see Allowed Units.@'<Enter unit>'
+SignalObject@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See Design Data Interface by Configuring Inport and Outport Blocks (Simulink Coder).@Simulink.Signal objectObject of a class that is derived from Simulink.Signal
+StorageClass@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See Design Data Interface by Configuring Inport and Outport Blocks (Simulink Coder).@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+SignalName@Signal name@character vector
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+OutputWhenDisabled@Output when disabled@{'held'} | 'reset'
+InitialOutput@Initial output@{'[]'}
+MustResolveToSignalObject@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See For Signals.@{'off'} | 'on'
+Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@{'off'} | 'on'
+TreatAsGroupedWhenPropagatingVariantConditions@Treat as grouped when propagating variant conditions@'off' | {'on'}
+VariantControl@Variant control@{'Variant'} | '(default)'
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Code generation function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Code generation function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Code generation function name@{''}
+RTWFileNameOpts@Code generation file name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@Code generation file name (no extension)@{''}
+DataTypeOverride@Specifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'on'} | 'off'Read-only
+Virtual@For internal use@
+Switch Case (SwitchCase)
+CaseConditions@Case conditions (e.g., {1,[2,3]})@{'{1}'}
+ShowDefaultCase@Show default case@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+CaseShowDefault@Deprecated in R2009b@
+Switch Case Action Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Code generation function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Code generation function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Code generation function name@{''}
+RTWFileNameOpts@Code generation file name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@Code generation file name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Trigger (TriggerPort)
+TriggerType@Trigger type@{'rising'} | 'falling' | 'either' | 'function-call'
+IsSimulinkFunction@Configure the Function-call subsystem to be a Simulink Function@{'off'} | 'on'
+StatesWhenEnabling@States when enabling@{'held'} | 'reset' | 'inherit'
+PropagateVarSize@Propagate sizes of variable-size signals@{'During execution'} | 'Only when enabling'
+ShowOutputPort@Show output port@{'off'} | 'on'
+OutputDataType@Output data type@{'auto'} | 'double' | 'int8'
+SampleTimeType@Sample time type@{'triggered'} | 'periodic'
+SampleTime@Sample time@{'1'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+PortDimensions@Port dimensions (-1 for inherited)@{'-1'}
+TriggerSignalSampleTime@Trigger signal sample time@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+Interpolate@Interpolate data@'off' | {'on'}
+Triggered Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Code generation function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Code generation function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Code generation function name@{''}
+RTWFileNameOpts@Code generation file name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@Code generation file name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Unit Conversion
+OutDataTypeStr@Output data type@{'Inherit via internal rule'} | 'Inherit via back propagation'
+Unit System Configuration
+AllowAllUnitSystems@Allow or restrict unit systems.@boolean — {'on'} | 'off'
+UnitSystems@Displays allowed unit system.@cell array of character vectors — {'SI','English',SI (extended)','CGS'}
+While Iterator (WhileIterator)
+MaxIters@Maximum number of iterations (-1 for unlimited)@{'5'}
+WhileBlockType@While loop type@{'while'} | 'do-while'
+ResetStates@States when starting@{'held'} | 'reset'
+ShowIterationPort@Show iteration number port@{'off'} | 'on'
+OutputDataType@Output data type@{'int32'} | 'int16' | 'int8' | 'double'
+While Iterator Subsystem (SubSystem)
+ShowPortLabels@Show port labelsNoteThe values 'off' and 'on' are for backward compatibility only and should not be used in new models or when updating existing models.@'none' | {'FromPortIcon'} | 'FromPortBlockName' | 'SignalName' | 'off' | 'on'
+BlockChoice@Block choice@{''}
+TemplateBlock@Template block@{''}
+MemberBlocks@Member blocks@{''}
+Permissions@Read/Write permissions@{'ReadWrite'} | 'ReadOnly' | 'NoReadOrWrite'
+ErrorFcn@Name of error callback function@{''}
+PermitHierarchical Resolution@Permit hierarchical resolution@{'All'} | 'ExplicitOnly' | 'None'
+TreatAsAtomicUnit@Treat as atomic unit@'off' | {'on'}
+MinAlgLoopOccurrences@Minimize algebraic loop occurrences@{'off'} | 'on'
+PropExecContext OutsideSubsystem@Propagate execution context across subsystem boundary@{'off'} | 'on'
+CheckFcnCallInp InsideContextMsg@Warn if function-call inputs are context-specific@{'off'} | 'on'
+SystemSampleTime@Sample time (-1 for inherited)@{'-1'}
+RTWSystemCode@Code generation function packaging@{'Auto'} | 'Inline' | 'Nonreusable function' | 'Reusable function'
+RTWFcnNameOpts@Code generation function name options@{'Auto'} | 'Use subsystem name' | 'User specified'
+RTWFcnName@Code generation function name@{''}
+RTWFileNameOpts@Code generation file name options@{'Auto'} | 'Use subsystem name' | 'Use function name' | 'User specified'
+RTWFileName@Code generation file name (no extension)@{''}
+DataTypeOverride@No dialog box promptSpecifies data type used to override fixed-point data types. Set by Data type override on the Fixed-Point Tool.@{'UseLocalSettings'} | 'ScaledDouble' | 'Double' | 'Single' | 'Off'
+MinMaxOverflowLogging@No dialog box promptSetting for fixed-point instrumentation. Set by Fixed-point instrumentation mode on the Fixed-Point Tool.@{'UseLocalSettings'} | 'MinMaxAndOverflow' | 'OverflowOnly' | 'ForceOff'
+IsSubsystemVirtual@@boolean — {'off'} | 'on'Read-only
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Bus to Vector (BusToVector)
+Data Type Conversion (DataTypeConversion)
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via back propagation'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+ConvertRealWorld@Input and output to have equal@{'Real World Value (RWV)'} | 'Stored Integer (SI)'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Data Type Conversion Inherited (Conversion Inherited) (masked subsystem)
+ConvertRealWorld@Input and Output to have equal@{'Real World Value'} | 'Stored Integer'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Data Type Duplicate (DataTypeDuplicate)
+NumInputPorts@Number of input ports@{'2'}
+Data Type Propagation (Data Type Propagation) (masked subsystem)
+PropDataTypeMode@1. Propagated data type@'Specify via dialog' | {'Inherit via propagation rule'}
+PropDataType@1.1. Propagated data type (e.g., fixdt(1,16), fixdt('single'))@{'fixdt(1,16)'}
+IfRefDouble@1.1. If any reference input is double, output is@{'double'} | 'single'
+IfRefSingle@1.2. If any reference input is single, output is@'double' | {'single'}
+IsSigned@1.3. Is-Signed@'IsSigned1' | 'IsSigned2' | {'IsSigned1 or IsSigned2'} | 'TRUE' | 'FALSE'
+NumBitsBase@1.4.1. Number-of-Bits: Base@'NumBits1' | 'NumBits2' | {'max([NumBits1 NumBits2])'} | 'min([NumBits1 NumBits2])' | 'NumBits1+NumBits2'
+NumBitsMult@1.4.2. Number-of-Bits: Multiplicative adjustment@{'1'}
+NumBitsAdd@1.4.3. Number-of-Bits: Additive adjustment@{'0'}
+NumBitsAllowFinal@1.4.4. Number-of-Bits: Allowable final values@{'1:128'}
+PropScalingMode@2. Propagated scaling@'Specify via dialog' | {'Inherit via propagation rule'} | 'Obtain via best precision'
+PropScaling@2.1. Propagated scaling: Slope or [Slope Bias] ex. 2^-9@{'2^-10'}
+ValuesUsedBestPrec@2.1. Values used to determine best precision scaling@{'[5 -7]'}
+SlopeBase@2.1.1. Slope: Base@'Slope1' | 'Slope2' | 'max([Slope1 Slope2])' | {'min([Slope1 Slope2])'} | 'Slope1*Slope2' | 'Slope1/Slope2' | 'PosRange1' | 'PosRange2' | 'max([PosRange1 PosRange2])' | 'min([PosRange1 PosRange2])' | 'PosRange1*PosRange2' | 'PosRange1/PosRange2'
+SlopeMult@2.1.2. Slope: Multiplicative adjustment@{'1'}
+SlopeAdd@2.1.3. Slope: Additive adjustment@{'0'}
+BiasBase@2.2.1. Bias: Base@{'Bias1'} | 'Bias2' | 'max([Bias1 Bias2])' | 'min([Bias1 Bias2])' | 'Bias1*Bias2' | 'Bias1/Bias2' | 'Bias1+Bias2' | 'Bias1-Bias2'
+BiasMult@2.2.2. Bias: Multiplicative adjustment@{'1'}
+BiasAdd@2.2.3. Bias: Additive adjustment@{'0'}
+Data Type Scaling Strip (Scaling Strip) (masked subsystem)
+IC (InitialCondition)
+Value@Initial value@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Probe (Probe)
+ProbeWidth@Probe width@'off' | {'on'}
+ProbeSampleTime@Probe sample time@'off' | {'on'}
+ProbeComplexSignal@Detect complex signal@'off' | {'on'}
+ProbeSignalDimensions@Probe signal dimensions@'off' | {'on'}
+ProbeFramedSignal@Detect framed signal@'off' | {'on'}
+ProbeWidthDataType@Data type for width@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'
+ProbeSampleTimeDataType@Data type for sample time@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'
+ProbeComplexityDataType@Data type for signal complexity@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'Same as input'
+ProbeDimensionsDataType@Data type for signal dimensions@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'
+ProbeFrameDataType@Data type for signal frames@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'Same as input'
+Rate Transition (RateTransition)
+Integrity@Ensure data integrity during data transfer@'off' | {'on'}
+Deterministic@Ensure deterministic data transfer (maximum delay)@'off' | {'on'}
+InitialCondition@Initial conditions@{'0'}
+OutPortSampleTimeOpt@Output port sample time options@{'Specify'} | 'Inherit' | 'Multiple of input port sample time'
+OutPortSampleTimeMultiple@Sample time multiple (>0)@{'1'}
+OutPortSampleTime@Output port sample time@{'-1'}
+Signal Conversion (SignalConversion)
+ConversionOutput@Output@{'Signal copy'} | 'Virtual bus' | 'Nonvirtual bus'
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'Bus: <object name>'
+OverrideOpt@Exclude this block from 'Block reduction' optimization@{'off'} | 'on'
+Signal Specification (SignalSpecification)
+Dimensions@Dimensions (-1 for inherited)@{'-1'}
+VarSizeSig@Variable-size signal@{'Inherit'} | 'No' | 'Yes'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+BusOutputAsStruct@Require nonvirtual bus@{'off'} | 'on'
+Unit@Specify physical unit of the input signal to the block. For a list of acceptable units, see Allowed Units.@{'inherit'}| '<Enter unit>'
+UnitNoProp@Specify physical unit of the input signal to the block without propagation. For a list of acceptable units, see Allowed Units.@'<Enter unit>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+Weighted Sample Time (SampleTimeMath)
+TsampMathOp@Operation@'+' | '-' | '*' | '/' | {'Ts Only'} | '1/Ts Only'
+weightValue@Weight value@{'1.0'}
+TsampMathImp@Implement using@{'Online Calculations'} | 'Offline Scaling Adjustment'
+OutDataTypeStr@Output data type@{'Inherit via internal rule'} | 'Inherit via back propagation'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+OutputDataTypeScaling Mode@Deprecated in R2009b@
+DoSatur@Deprecated in R2009b@
+Width (Width)
+OutputDataTypeScaling Mode@Output data type mode@{'Choose intrinsic data type'} | 'Inherit via back propagation' | 'All ports same datatype'
+DataType@Output data type@{'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32'
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Bus Assignment (BusAssignment)
+AssignedSignals@Signals that are being assigned@{''}
+InputSignals@Signals in the bus@matrix — {'{}'}
+Bus Creator (BusCreator)
+InheritFromInputs@Override bus signal names from inputs@{'on'} | 'off' If set to 'on', overrides bus signal names from inputs. Otherwise, inherits bus signal names from a bus object.
+Inputs@Number of inputs@{'2'}
+DisplayOption@@'none' | 'signals' | {'bar'}
+NonVirtualBus@Output as nonvirtual bus@{'off'} | 'on'
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+Bus Selector (BusSelector)
+OutputSignals@Selected signals@character vector — in the form 'signal1,signal2'
+OutputAsBus@Output as bus@{'off'} | 'on'
+InputSignals@Signals in bus@matrix — {'{}'}
+Data Store Memory (DataStoreMemory)
+DataStoreName@Data store name@{'A'}
+ReadBeforeWriteMsg@Detect read before write@'none' | {'warning'} | 'error'
+WriteAfterWriteMsg@Detect write after write@'none' | {'warning'} | 'error'
+WriteAfterReadMsg@Detect write after read@'none' | {'warning'} | 'error'
+InitialValue@Initial value@{'0'}
+StateMustResolveTo SignalObject@Data store name must resolve to Simulink signal object@{'off'} | 'on'
+DataLogging@Log Signal Data@'off' | {'on'}
+DataLoggingNameMode@Logging Name@{'SignalName'} | 'Custom'
+DataLoggingName@Logging Name@{''}
+DataLoggingLimit DataPoints@Limit data points to last@'off' | {'on'}
+DataLoggingMaxPoints@Limit data points to last@non-zero integer {5000}
+DataLoggingDecimateData@Decimation@'off' | {'on'}
+DataLoggingLimit DataPoints@Decimation@non-zero integer {2}
+StateStorageClass@Storage class@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+StateSignalObject@Signal object class Storage class@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+RTWStateStorageType Qualifier@Code generation type qualifier@{''}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+ShowAdditionalParam@Show additional parameters@{'off'} | 'on'
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+Data Store Read (DataStoreRead)
+DataStoreElements@Corresponds to the parameters on the Element Selection tab of the block dialog box. See Specification using the command line.@
+DataStoreName@Data store name@{'A'}
+SampleTime@Sample time@{'0'}
+Data Store Write (DataStoreWrite)
+DataStoreElements@Corresponds to the parameters on the Element Assignment tab of the block dialog box. See Specification using the command line.@
+DataStoreName@Data store name@{'A'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Demux (Demux)
+Outputs@Number of outputs@{'2'}
+DisplayOption@Display option@'none' | {'bar'}
+BusSelectionMode@Bus selection mode@{'off'} | 'on'
+Environment Controller (Environment Controller) (masked subsystem)
+From (From)
+GotoTag@Goto tag@{'A'}
+IconDisplay@Icon display@'Signal name' | {'Tag'} | 'Tag and signal name'
+Goto (Goto)
+GotoTag@Tag@{'A'}
+IconDisplay@Icon display@'Signal name' | {'Tag'} | 'Tag and signal name'
+TagVisibility@Tag visibility@{'local'} | 'scoped' | 'global'
+Goto Tag Visibility (GotoTagVisibility)
+GotoTag@Goto tag@{'A'}
+Index Vector (MultiPortSwitch)
+DataPortOrder@Data port order@{'Zero-based contiguous'} | 'One-based contiguous' | 'Specify indices'
+Inputs@Number of data ports@{'1'}
+zeroidx@Deprecated in R2010a@
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all data port inputs to have the same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+AllowDiffInputSizes@Allow different data input sizes (Results in variable-size output signal)@{'off'} | 'on'
+Manual Switch (Manual Switch) (masked subsystem)
+varsize@Allow different input sizes (Results in variable-size output signal)@{'off'} | 'on'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Merge (Merge)
+Inputs@Number of inputs@{'2'}
+InitialOutput@Initial output@{'[]'}
+AllowUnequalInput PortWidths@Allow unequal port widths@{'off'} | 'on'
+InputPortOffsets@Input port offsets@{'[]'}
+Multiport Switch (MultiPortSwitch)
+DataPortOrder@Data port order@'Zero-based contiguous' | {'One-based contiguous'} | 'Specify indices'
+Inputs@Number of data ports@{'3'}
+zeroidx@Deprecated in R2010a@
+DataPortIndices@Data port indices@{'{1,2,3}'}
+DataPortForDefault@Data port for default case@{'Last data port'} | 'Additional data port'
+DiagnosticForDefault@Diagnostic for default case@'None' | 'Warning' | {'Error'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all data port inputs to have the same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+AllowDiffInputSizes@Allow different data input sizes (Results in variable-size output signal)@{'off'} | 'on'
+Mux (Mux)
+Inputs@Number of inputs@{'2'}
+DisplayOption@Display option@'none' | 'signals' | {'bar'}
+UseBusObject@For internal use@
+BusObject@For internal use@
+NonVirtualBus@For internal use@
+Selector (Selector)
+NumberOfDimensions@Number of input dimensions@{'1'}
+IndexMode@Index mode@'Zero-based' | {'One-based'}
+IndexOptionArray@Index Option@'Select all' | {'Index vector (dialog)'} | 'Index vector (port)' | 'Starting index (dialog)' | 'Starting index (port)'
+IndexParamArray@Index@cell array
+OutputSizeArray@Output Size@cell array
+InputPortWidth@Input port size@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+IndexOptions@See the IndexOptionArray parameter for more information.@
+Indices@See the IndexParamArray parameter for more information.@
+OutputSizes@See the IndexParamArray parameter for more information.@
+Switch (Switch)
+Criteria@Criteria for passing first input@{'u2 >= Threshold'} | 'u2 > Threshold' | 'u2 ~= 0'
+Threshold@Threshold@{'0'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+InputSameDT@Require all data port inputs to have the same data type@{'off'} | 'on'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit via internal rule'} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+SaturateOnInteger Overflow@Saturate on integer overflow@{'off'} | 'on'
+AllowDiffInputSizes@Allow different input sizes (Results in variable-size output signal)@{'off'} | 'on'
+Variant Source (tVariantSource)
+VariantControls@Variant control@{'Variant'} | '(default)'
+OverrideUsingVariant@Override variant conditions and use the following variant@{''}
+AllowZeroVariantControls@Allow zero active variant controls@{'off'} | 'on'
+ShowConditionOnBlock@Show variant condition on block@{'off'} | 'on'
+GeneratePreprocessorConditionals@Analyze all choices during update diagram and generate preprocessor conditionals@{'off'} | 'on'
+CompiledActiveVariantControl@@string — {''} The value is a empty string if no variant is active; or the name of the active variant. Compile the model before querying this property.
+CompiledActiveVariantPort@@string — {'-1'} The value is -1 if no variant is active; or the index of the active variant. Compile the model before querying this property.
+Variant Sink (VariantSink)
+VariantControls@Variant control@{'Variant'} | '(default)'
+OverrideUsingVariant@Override variant conditions and use the following variant@{''}
+AllowZeroVariantControls@Allow zero active variant controls@{'off'} | 'on'
+ShowConditionOnBlock@Show variant condition on block@{'off'} | 'on'
+GeneratePreprocessorConditionals@Analyze all choices during update diagram and generate preprocessor conditionals@{'off'} | 'on'
+CompiledActiveVariantControl@@string — {''} The value is a empty string if no variant is active; or the name of the active variant. Compile the model before querying this property.
+CompiledActiveVariantPort@@string — {'-1'} The value is -1 if no variant is active; or the index of the active variant. Compile the model before querying this property.
+Vector Concatenate (Concatenate)
+NumInputs@Number of inputs@{'2'}
+Mode@Mode@{'Vector'} | 'Multidimensional array'
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Display (Display)
+Format@Format@{'short'} | 'long' | 'short_e' | 'long_e' | 'bank' | 'hex (Stored Integer)' | 'binary (Stored Integer)' | 'decimal (Stored Integer)' | 'octal (Stored Integer)'
+Decimation@Decimation@{'1'}
+Floating@Floating display@{'off'} | 'on'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Floating Scope (Scope)
+Floating@@'off' | {'on'}
+Location@@vector — {'[376 294 700 533]'}
+Open@@{'off'} | 'on'
+NumInputPorts@@Do not change this parameter with the command-line. Instead, use the Number of axes parameter in the Scope parameters dialog.
+TickLabels@@'on' | 'off' | {'OneTimeTick'}
+ZoomMode@@{'on'} | 'xonly' | 'yonly'
+AxesTitles@@character vector
+Grid@@'off' | {'on'} | 'xonly' | 'yonly'
+TimeRange@@{'auto'}
+YMin@@{'-5'}
+YMax@@{'5'}
+SaveToWorkspace@@{'off'} | 'on'
+SaveName@@{'ScopeData'}
+DataFormat@@{'StructureWithTime'} | 'Structure' | 'Array'
+LimitDataPoints@@'off' | {'on'}
+MaxDataPoints@@{'5000'}
+Decimation@@{'1'}
+SampleInput@@{'off'} | 'on'
+SampleTime@@{'0'}
+Out1 (Outport)
+Port@Port number@{'1'}
+IconDisplay@Icon display@'Signal name' | {'Port number'} | 'Port number and signal name'
+BusOutputAsStruct@Output as nonvirtual bus in parent model@{'off'} | 'on'
+PortDimensions@Port dimensions (-1 for inherited)@{'-1'}
+VarSizeSig@Variable-size signal@{'Inherit'} | 'No' | 'Yes'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+SignalObject@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See Design Data Interface by Configuring Inport and Outport Blocks (Simulink Coder).@Simulink.Signal object Object of a class that is derived from Simulink.Signal
+StorageClass@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See Design Data Interface by Configuring Inport and Outport Blocks (Simulink Coder).@{'Auto'} | 'Model default' | 'ExportedGlobal' | 'ImportedExtern' | 'ImportedExternPointer' | 'Custom'
+SignalName@Signal name@character vector
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+OutputWhenDisabled@Output when disabled@{'held'} | 'reset'
+InitialOutput@Initial output@{'[]'}
+MustResolveToSignalObject@This parameter does not appear in the block dialog box. Use the Model Data Editor instead. See For Signals.@{'off'} | 'on'
+Scope (Scope)
+Floating@@{'off'} | 'on'
+Location@@vector — {'[188 390 512 629]'}
+Open@@{'off'} | 'on'
+NumInputPorts@@Do not change this parameter with the command-line. Instead, use the Number of axes parameter in the Scope parameters dialog.
+TickLabels@@'on' | 'off' | {'OneTimeTick'}
+ZoomMode@@{'on'} | 'xonly' | 'yonly'
+AxesTitles@@character vector
+Grid@@'off' | {'on'} | 'xonly' | 'yonly'
+TimeRange@@{'auto'}
+YMin@@{'-5'}
+YMax@@{'5'}
+SaveToWorkspace@@{'off'} | 'on'
+SaveName@@{'ScopeData1'}
+DataFormat@@{'StructureWithTime'} | 'Structure' | 'Array'
+LimitDataPoints@@'off' | {'on'}
+MaxDataPoints@@{'5000'}
+Decimation@@{'1'}
+SampleInput@@{'off'} | 'on'
+SampleTime@@{'0'}
+Stop Simulation
+Terminator
+To File (ToFile)
+FileName@File name@{'untitled.mat'}
+MatrixName@Variable name@{'ans'}
+SaveFormat@Save format@{'Timeseries'} | 'Array'
+Decimation@Decimation@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+To Workspace (ToWorkspace)
+VariableName@Variable name@{'simout'}
+MaxDataPoints@Limit data points to last@{'inf'}
+Decimation@Decimation@{'1'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+SaveFormat@Save format@{'Timeseries'} | 'Structure With Time' | 'Structure' | 'Array'
+FixptAsFi@Log fixed-point data as an fi object@{'off'} | 'on'
+XY Graph (XY scope) (masked subsystem)
+xmin@x-min@{'-1'}
+xmax@x-max@{'1'}
+ymin@y-min@{'-1'}
+ymax@y-max@{'1'}
+st@Sample time@{'-1'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Band-Limited White Noise (Band-Limited White Noise) (masked subsystem)
+Cov@Noise power@{'[0.1]'}
+Ts@Sample time@{'0.1'}
+seed@Seed@{'[23341]'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Chirp Signal (chirp) (masked subsystem)
+f1@Initial frequency@{'0.1'}
+T@Target time@{'100'}
+f2@Frequency at target time@{'1'}
+VectorParams1D@Interpret vectors parameters as 1-D@'off' | {'on'}
+Clock (Clock)
+DisplayTime@Display time@{'off'} | 'on'
+Decimation@Decimation@{'10'}
+Constant (Constant)
+Value@Constant value@{'1'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+SampleTime@Sampling time@{'Sample based'} | 'Frame based'
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@{'Inherit: Inherit from 'Constant value''} | 'Inherit: Inherit via back propagation' | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+SampleTime@Sample time@{'inf'}
+FramePeriod@Frame period@{'inf'}
+Counter Free-Running (Counter Free-Running) (masked subsystem)
+NumBits@Number of Bits@{'16'}
+tsamp@Sample time@{'-1'}
+Counter Limited (Counter Limited) (masked subsystem)
+uplimit@Upper limit@{'7'}
+tsamp@Sample time@{'-1'}
+Digital Clock (DigitalClock)
+SampleTime@Sample time@{'1'}
+Enumerated Constant (EnumeratedConstant)
+OutDataTypeStr@Output data type@{'Enum: SlDemoSign'}
+Value@Value@{'SlDemoSign.Positive'} | 'SlDemoSign.Zero' | 'SlDemoSign.Negative'
+SampleTime@Sample time@{'inf'}
+From File (FromFile)
+FileName@File name@{'untitled.mat'}
+ExtrapolationBeforeFirstDataPoint@Data extrapolation before first data point@{'Linear extrapolation'} | 'Hold first value' | 'Ground value'
+InterpolationWithinTimeRange@Data interpolation within time range@{'Linear interpolation'} | 'Zero order hold'
+ExtrapolationAfterLastDataPoint@Data extrapolation after last data point@{'Linear extrapolation'} | 'Hold last value' | 'Ground value'
+SampleTime@Sample time@{'0'}
+From Workspace (FromWorkspace)
+VariableName@Data@{'simin'}
+OutDataTypeStr@Output Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+SampleTime@Sample time@{'0'}
+Interpolate@Interpolate data@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+OutputAfterFinalValue@Form output after final data value by@{'Extrapolation'} | 'Setting to zero' | 'Holding final value' | 'Cyclic repetition'
+Ground
+In1 (Inport)
+Port@Port number@{'1'}
+IconDisplay@Icon display@'Signal name' | {'Port number'} | 'Port number and signal name'
+BusOutputAsStruct@Output as nonvirtual bus@{'off'} | 'on'
+PortDimensions@Port dimensions (-1 for inherited)@{'-1'}
+VarSizeSig@Variable-size signal@{'Inherit'} | 'No' | 'Yes'
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+OutMin@Minimum@{'[]'}
+OutMax@Maximum@{'[]'}
+OutDataTypeStr@Data type@{'Inherit: auto'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>' | 'Bus: <object name>'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Unit@Specify physical unit of the input signal to the block. For a list of acceptable units, see Allowed Units.@{'inherit'}| '<Enter unit>'
+UnitNoProp@Specify physical unit of the input signal to the block without propagation. For a list of acceptable units, see Allowed Units.@'<Enter unit>'
+SignalType@Signal type@{'auto'} | 'real' | 'complex'
+LatchByDelaying OutsideSignal@Latch input by delaying outside signal@{'off'} | 'on'
+LatchInputFor FeedbackSignals@Latch input for feedback signals of function-call subsystem outputs@{'off'} | 'on'
+OutputFunctionCall@Output a function-call trigger signal@{'off'} | 'on'
+Interpolate@Interpolate data@'off' | {'on'}
+Pulse Generator (DiscretePulseGenerator)
+PulseType@Pulse type@{'Time based'} | 'Sample based'
+TimeSource@Time (t)@{'Use simulation time'} | 'Use external signal'
+Amplitude@Amplitude@{'1'}
+Period@Period@{'10'}
+PulseWidth@Pulse width@{'5'}
+PhaseDelay@Phase delay@{'0'}
+SampleTime@Sample time@{'1'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Ramp (Ramp) (masked subsystem)
+slope@Slope@{'1'}
+start@Start time@{'0'}
+InitialOutput@Initial output@{'0'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Random Number (RandomNumber)
+Mean@Mean@{'0'}
+Variance@Variance@{'1'}
+Seed@Seed@{'0'}
+SampleTime@Sample time@{'0.1'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Repeating Sequence (Repeating table) (masked subsystem)
+rep_seq_t@Time values@{'[0 2]'}
+rep_seq_y@Output values@{'[0 2]'}
+Repeating Sequence Interpolated (Repeating Sequence Interpolated) (masked subsystem)
+OutValues@Vector of output values@{'[3 1 4 2 1].''}
+TimeValues@Vector of time values@{'[0 0.1 0.5 0.6 1].''}
+LookUpMeth@Lookup Method@{'Interpolation-Use End Values'} | 'Use Input Nearest' | 'Use Input Below' | 'Use Input Above'
+tsamp@Sample time@{'0.01'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via back propagation' | {'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+OutputDataTypeScaling Mode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Repeating Sequence Stair (Repeating Sequence Stair) (masked subsystem)
+OutValues@Vector of output values@{'[3 1 4 2 1].''}
+tsamp@Sample time@{'-1'}
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via back propagation' | {'double'} | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)' | 'Enum: <class name>'
+OutputDataTypeScaling Mode@Deprecated in R2007b@
+OutDataType@Deprecated in R2007b@
+ConRadixGroup@Deprecated in R2007b@
+OutScaling@Deprecated in R2007b@
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+Signal Builder (Sigbuilder block) (masked subsystem)
+Signal Editor (SignalEditor)
+Filename@File name@{'untitled.mat'}
+ActiveScenario@Active scenario@{'Scenario'}
+ActiveSignal@Signals@{'Signal 1'}
+IsBus@Output a bus signal@'on' | {'off'}
+OutputBusObjectStr@Select bus object@{'Bus: BusObject'}
+SampleTIme@Sample time@{'0'}
+Interpolate@Interpolate data@{'off'} | 'on'
+ZeroCross@Enable zero-crossing detection@{'off'} | 'on'
+OutputAfterFinalValue@Form output after final data value by@{'Setting to zero'} | 'Extrapolation' | 'Holding final value'
+Unit@Unit@{'inherit'}
+Signal Generator (SignalGenerator)
+WaveForm@Wave form@{'sine'} | 'square' | 'sawtooth' | 'random'
+TimeSource@Time (t)@{'Use simulation time'} | 'Use external signal'
+Amplitude@Amplitude@{'1'}
+Frequency@Frequency@{'1'}
+Units@Units@'rad/sec' | {'Hertz'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Sine Wave (Sin)
+SineType@Sine type@{'Time based'} | 'Sample based'
+TimeSource@Time@{'Use simulation time'} | 'Use external signal'
+Amplitude@Amplitude@{'1'}
+Bias@Bias@{'0'}
+Frequency@Frequency@{'1'}
+Phase@Phase@{'0'}
+Samples@Samples per period@{'10'}
+Offset@Number of offset samples@{'0'}
+SampleTime@Sample time@{'0'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Step (Step)
+Time@Step time@{'1'}
+Before@Initial value@{'0'}
+After@Final value@{'1'}
+SampleTime@Sample time@{'0'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+ZeroCross@Enable zero-crossing detection@'off' | {'on'}
+Uniform Random Number (UniformRandomNumber)
+Minimum@Minimum@{'-1'}
+Maximum@Maximum@{'1'}
+Seed@Seed@{'0'}
+SampleTime@Sample time@{'0.1'}
+VectorParams1D@Interpret vector parameters as 1-D@'off' | {'on'}
+Waveform Generator (WaveformGenerator)
+OutMin@Output minimum@{'[]'}
+OutMax@Output maximum@{'[]'}
+OutDataTypeStr@Output data type@'Inherit: Inherit via back propagation' | {'Inherit: Inherit from table data'} | 'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'boolean' | 'fixdt(1,16)' | 'fixdt(1,16,0)' | 'fixdt(1,16,2^0,0)'
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | 'Floor' | {'Nearest'} | 'Round' | 'Simplest' | 'Zero'
+SaturateOnIntegerOverflow@Saturate on integer overflow@{'off'} | 'on'
+SelectedSignal@Output signal@{'1'}
+SampleTime@Sample time@{'0'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Compose String (Compose String)
+Format@Format input data@"scalar{""""%d %f""""}| """"%d"""" | """"%i"""" | """"%o"""" | """"%x"""" | """"%X"""" | """"%f"""" | """"%e"""" | """"%E"""" | """"%g"""" | """"%G"""" | """"%s"""" | optional operators and text"
+OutDataTypeStr@Output data type@"{""stringtype(255)""} | ""stringtype(N)"" | ""string"""
+Scan String (Scan String)
+Format@Format input data@"scalar{""""%d %f""""}| """"%d"""" | """"%i"""" | """"%o"""" | """"%x"""" | """"%X"""" | """"%f"""" | """"%e"""" | """"%E"""" | """"%g"""" | """"%G"""" | """"%s"""" | optional operators and text"
+String Compare (String Compare)
+CaseSensitive@Case sensitivity for string compare@'off' | {'on'}
+CompareOption@Amount of string to compare@"{""Entire string""} | ""First N characters"""
+NumberOfCharacters@Amount of string to compare@{'1'} | scalar
+String Concatenate (String Concatenate)
+Inputs@Number of input strings@"{""2""}"
+OutDataTypeStr@Output data type@"{""stringtype(128)""} | ""stringtype(N)"" | ""string"""
+String Constant (String Constant)
+String@Input string@"{""Hello!""} | scalar"
+OutDataTypeStr@Output data type@"{""stringtype(31)""} | ""stringtype(N)"" | ""string"""
+String to ASCII (String to ASCII)
+MaximumLength@Maximum length of output vector@"{""31""} | scalar"
+String to Double (String to Double)
+Format@Format input data@"scalar{""""%d %f""""}| """"%d"""" | """"%i"""" | """"%o"""" | """"%x"""" | """"%X"""" | """"%f"""" | """"%e"""" | """"%E"""" | """"%g"""" | """"%G"""" | """"%s"""" | optional operators and text"
+String to Enum (String to Enum)
+OutDataTypeStr@Output data type@"{""Enum: SlDemoSign""} | <data type expression>"
+String to Single (String to Single)
+Format@Format input data@"scalar{""""%f""""}| """"%d"""" | """"%i"""" | """"%o"""" | """"%x"""" | """"%X"""" | """"%f"""" | """"%e"""" | """"%E"""" | """"%g"""" | """"%G"""" | """"%s"""" | optional operators and text"
+Substring (Substring)
+InheritMaximumLength@Use same maximum length as input string@'off' | {'on'}
+OutDataTypeStr@Output data type@"{""stringtype(31)""} | ""stringtype(N)"" | ""string"""
+StringFromIdxToEnd@Extract string from idx to end@{'off'} | 'on'
+Block (Type)/Parameter@Dialog Box Prompt@Values
+MATLAB Function (Stateflow) (masked subsystem)
+MATLAB System (MATLABSystem)
+System@System object class name@{''}
+Fcn (Fcn)
+Expr@Expression@{'sin(u(1)*exp(2.3*(-u(2))))'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+Level-2 MATLAB S-Function (M-S-Function)
+FunctionName@S-function name@{'mlfile'}
+Parameters@Arguments@{''}
+Interpreted MATLAB Function (MATLABFcn)
+MATLABFcn@MATLAB function@{'sin'}
+OutputDimensions@Output dimensions@{'-1'}
+OutputSignalType@Output signal type@{'auto'} | 'real' | 'complex'
+Output1D@Collapse 2-D results to 1-D@'off' | {'on'}
+SampleTime@Sample time (-1 for inherited)@{'-1'}
+S-Function (S-Function)
+FunctionName@S-function name@{'system'}
+Parameters@S-function parameters@{''}
+SFunctionModules@S-function modules@{''}
+S-Function Builder (S-Function Builder) (masked subsystem)
+FunctionName@S-function name@{'system'}
+Parameters@S-function parameters@{''}
+SFunctionModules@S-function modules@{''}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Fixed-Point State-Space (Fixed-Point State-Space) (masked subsystem)
+A@State Matrix A@{'[2.6020 -2.2793 0.6708; 1 0 0; 0 1 0]'}
+B@Input Matrix B@{'[ 1; 0; 0]'}
+C@Output Matrix C@{'[0.0184 0.0024 0.0055]'}
+D@Direct Feedthrough Matrix D@{'[0.0033]'}
+InitialCondition@Initial condition for state@{'0.0'}
+InternalDataType@Data type for internal calculations@{'fixdt('double')'}
+StateEqScaling@Scaling for State Equation AX+BU@{'2^0'}
+OutputEqScaling@Scaling for Output Equation CX+DU@{'2^0'}
+LockScale@Lock output data type setting against changes by the fixed-point tools@{'off'} | 'on'
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Transfer Fcn Direct Form II (Transfer Fcn Direct Form II) (masked subsystem)
+NumCoefVec@Numerator coefficients@{'[0.2 0.3 0.2]'}
+DenCoefVec@Denominator coefficients excluding lead (which must be 1.0)@{'[-0.9 0.6]'}
+vinit@Initial condition@{'0.0'}
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Transfer Fcn Direct Form II Time Varying (Transfer Fcn Direct Form II Time Varying) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+RndMeth@Integer rounding mode@'Ceiling' | 'Convergent' | {'Floor'} | 'Nearest' | 'Round' | 'Simplest' | 'Zero'
+DoSatur@Saturate to max or min when overflows occur@{'off'} | 'on'
+Unit Delay Enabled (Unit Delay Enabled) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay Enabled External IC (Unit Delay Enabled External Initial Condition) (masked subsystem)
+tsamp@Sample time@{'-1'}
+Unit Delay Enabled Resettable (Unit Delay Enabled Resettable) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay Enabled Resettable External IC (Unit Delay Enabled Resettable External Initial Condition) (masked subsystem)
+tsamp@Sample time@{'-1'}
+Unit Delay External IC (Unit Delay External Initial Condition) (masked subsystem)
+tsamp@Sample time@{'-1'}
+Unit Delay Resettable (Unit Delay Resettable) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay Resettable External IC (Unit Delay Resettable External Initial Condition) (masked subsystem)
+tsamp@Sample time@{'-1'}
+Unit Delay With Preview Enabled (Unit Delay With Preview Enabled) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay With Preview Enabled Resettable (Unit Delay With Preview Enabled Resettable) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay With Preview Enabled Resettable External RV (Unit Delay With Preview Enabled Resettable External RV) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay With Preview Resettable (Unit Delay With Preview Resettable) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Unit Delay With Preview Resettable External RV (Unit Delay With Preview Resettable External RV) (masked subsystem)
+vinit@Initial condition@{'0.0'}
+tsamp@Sample time@{'-1'}
+Block (Type)/Parameter@Dialog Box Prompt@Values
+Decrement Real World (Real World Value Decrement) (masked subsystem)
+Decrement Stored Integer (Stored Integer Value Decrement) (masked subsystem)
+Decrement Time To Zero (Decrement Time To Zero) (masked subsystem)
+Decrement To Zero (Decrement To Zero) (masked subsystem)
+Increment Real World (Real World Value Increment) (masked subsystem)
+Increment Stored Integer (Stored Integer Value Increment) (masked subsystem)

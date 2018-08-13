@@ -1,0 +1,25 @@
+classdef %s < block
+    properties
+
+    end
+    
+    methods
+        function this = %s(varargin)
+            p = inputParser;
+            p.CaseSensitive = false;
+            p.KeepUnmatched = true;
+%s
+            addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
+            parse(p,varargin{:})
+            
+%s
+            parent = p.Results.parent;
+            args = helpers.unpack(p.Unmatched);
+            
+            this = this@block('model','%s','type','%s','parent',parent,args{:});
+
+%s
+        end
+    end
+end
+

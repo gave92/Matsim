@@ -1,0 +1,28 @@
+classdef %s < binary_operator
+    properties
+        
+    end
+    
+    methods
+        function this = %s(varargin)
+            p = inputParser;
+            p.CaseSensitive = false;
+            p.KeepUnmatched = true;            
+            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'b2',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+%s
+            parse(p,varargin{:})
+            
+            b1 = p.Results.b1;
+            b2 = p.Results.b2;
+%s
+            args = helpers.unpack(p.Unmatched);
+            
+            this = this@binary_operator(b1,b2,'ops','%s','Function','Max','Inputs',mat2str(2),args{:});
+
+%s
+        end
+    end
+    
+end
+
