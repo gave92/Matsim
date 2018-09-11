@@ -119,6 +119,17 @@ classdef block < handle
             end
         end
         
+        function setMaskParam(this,name,value)
+            mname = get(this.simBlock,'MaskNames');
+            mvalue = get(this.simBlock,'MaskValues');
+            if isnumeric(value)
+                mvalue{find(strcmp(mname,name),1)} = mat2str(value);
+            elseif ischar(value)
+                mvalue{find(strcmp(mname,name),1)} = value;
+            end
+            set(this.simBlock,'MaskValues',mvalue)
+        end
+        
         function p = getUserData(this,prop)
             data = get(this.simBlock,'UserData');
             if ~isempty(data) && isfield(data,prop)

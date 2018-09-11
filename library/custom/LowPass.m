@@ -7,13 +7,16 @@ function [out] = LowPass(varargin)
     p.KeepUnmatched = true;
     addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
     addOptional(p,'freq',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
-    addOptional(p,'gain',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+    %addOptional(p,'gain',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+    addParamValue(p,'Ts',0,@(x) ischar(x) || isnumeric(x));
     addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
     parse(p,varargin{:})
 
     inputs = {p.Results.b1};
     freq = p.Results.freq;
-    gain = p.Results.gain;
+    %gain = p.Results.gain;
+    gain = 1;
+    Ts = p.Results.Ts;
     parent = helpers.getValidParent(inputs{:},freq,gain,p.Results.parent);
     args = helpers.unpack(p.Unmatched);
 
@@ -52,6 +55,9 @@ function [out] = LowPass(varargin)
     else
         blk = block('model','Blocks_2011b','type','Adaptive LP Filter','parent',parent,args{:});
     end
+    
+    % Set sampling time
+    blk.setMaskParam('Ts',Ts);
     
     if mask
         blk.setInputs({s.in(1),freq,gain})
