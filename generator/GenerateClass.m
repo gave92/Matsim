@@ -3,7 +3,7 @@ function [fig] = GenerateClass(block,par)
     selected_inputs = handlevar([]);
 
     if isempty(par)
-        params = block.params;
+        params = [];
     else
         params = block.params(par);
     end

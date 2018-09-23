@@ -49,6 +49,7 @@ classdef block_input
             r = b1;
         end
         function r = uminus(b1)
+            % r = binary_operator(b1,-1,'ops','Product');
             r = Gain(b1,'value',-1);
         end
         
