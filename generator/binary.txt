@@ -16,7 +16,7 @@ classdef %s < binary_operator
             b1 = p.Results.b1;
             b2 = p.Results.b2;
 %s
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@binary_operator(b1,b2,'ops','%s','Function','Max','Inputs',mat2str(2),args{:});
 

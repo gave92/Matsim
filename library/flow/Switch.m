@@ -15,34 +15,19 @@ classdef Switch < block
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})
             
-            inputs = {p.Results.b1,p.Results.b2};
-            cond = p.Results.cond;
-            parent = helpers.getValidParent(inputs{:},cond,p.Results.parent);
-            args = helpers.unpack(p.Unmatched);
+            inputs = {p.Results.b1,p.Results.cond,p.Results.b2};
+            parent = helpers.getValidParent(inputs{:},p.Results.parent);
+            args = helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
-            for i=1:length(inputs)
-                if isempty(inputs{i})
-                    continue
-                end
-                if isnumeric(inputs{i})
-                    inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-                end
-                if strcmp(inputs{i}.get('BlockType'),'Goto')
-                    inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-                end
-            end
             
-            if isnumeric(cond)
-                cond = Constant(cond,'parent',parent);
-            end
+            inputs = helpers.validateInputs(inputs,parent);
             
             this = this@block('type','Switch','parent',parent,args{:});
             this.set('Criteria','u2 ~= 0')            
-            this.setInputs({inputs{1},cond(:),inputs{2}});
+            this.setInputs(inputs);
         end
     end
 end

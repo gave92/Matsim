@@ -24,7 +24,7 @@ simlayout(sys.handle)                         % Connect and layout model
 %% Simulate the system
 V_x = [0:0.1:10;linspace(5,20,101)]';         % Define input variables
 W_r = [0:0.1:10;linspace(5,23,101)/0.32]';
-simOut = sys.run('tstop',10).Logs;            % Simulate the system
+simOut = sys.run('StopTime',10).Logs;            % Simulate the system
 
 figure
 hold on

@@ -15,7 +15,7 @@ classdef Demux < unary_operator
             
             b1 = p.Results.b1;
             outputs = p.Results.outputs;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Demux',args{:});
             if ischar(outputs)

@@ -123,18 +123,10 @@ classdef simulation < handle
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addParamValue(p,'tstart',str2double(this.get('StartTime')),@isnumeric);
-            addParamValue(p,'tstop',str2double(this.get('StopTime')),@isnumeric);
-            addParamValue(p,'SrcWorkspace','parent',@ischar);
             parse(p,varargin{:})
             
-            tstart = mat2str(p.Results.tstart);
-            tstop = mat2str(p.Results.tstop);
-            this.set('StartTime',tstart)
-            this.set('StopTime',tstop)
-            
-            srcwrk = p.Results.SrcWorkspace;
-            simOut = simOutput(sim(this.get('name'),'SrcWorkspace',srcwrk));
+            args = helpers.validateArgs(p.Unmatched);
+            simOut = simOutput(sim(this.get('name'),args{:}));
         end
 
         function [] = log(this,varargin)
@@ -163,13 +155,14 @@ classdef simulation < handle
         function p = get(this,prop)
             p = get(this.simDiagram,prop);
         end
-        function varargout = set(this,prop,value)
-            set(this.simDiagram,prop,value);
-            if nargout == 1
-                varargout{1} = this;
+        function [] = set(this,prop,value)
+            if iscell(prop)
+                arrayfun(@(i) this.set(prop{i},prop{i+1}), 1:2:length(prop)-1)
+                return
             end
+            
+            set(this.simDiagram,prop,value);
         end
     end
     
 end
-

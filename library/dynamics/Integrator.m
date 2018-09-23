@@ -17,7 +17,7 @@ classdef Integrator < unary_operator
             b1 = p.Results.b1;
             Ts = p.Results.Ts;
             x0 = p.Results.x0;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             if Ts ~= 0
                 integ = 'Discrete-Time Integrator';

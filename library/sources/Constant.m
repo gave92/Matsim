@@ -15,7 +15,7 @@ classdef Constant < block
             
             value = p.Results.value;
             parent = p.Results.parent;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@block('type','Constant','parent',parent,args{:});
             if ischar(value)

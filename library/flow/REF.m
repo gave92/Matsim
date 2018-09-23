@@ -18,23 +18,11 @@ classdef REF < block
             inputs = {p.Results.b1};
             tag = p.Results.tag;
             parent = helpers.getValidParent(inputs{:},p.Results.parent);
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
-            end
-            for i=1:length(inputs)
-                if isempty(inputs{i})
-                    continue
-                end
-                if isnumeric(inputs{i})
-                    inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-                end
-                if strcmp(inputs{i}.get('BlockType'),'Goto')
-                    inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-                end
-            end
+            end            
             
             if isempty(p.Results.b1)
                 type = 'From';
@@ -42,8 +30,10 @@ classdef REF < block
                 type = 'Goto';
             end
             
+            inputs = helpers.validateInputs(inputs,parent);
+            
             this = this@block('type',type,'parent',parent,args{:});
-            this.set('ShowName','off');            
+            this.set('ShowName','off');
             this.setInputs(inputs);
             
             if isnumeric(tag)

@@ -15,22 +15,11 @@ function [blk] = Sat(varargin)
     minv = p.Results.minv;
     maxv = p.Results.maxv;
     parent = helpers.getValidParent(inputs{:},minv,maxv,p.Results.parent);
-    args = helpers.unpack(p.Unmatched);
+    args = helpers.validateArgs(p.Unmatched);
 
     % validateattributes(parent,{'char'},{'nonempty'},'','parent')
     if isempty(parent)
         parent = gcs;
-    end    
-    for i=1:length(inputs)
-        if isempty(inputs{i})
-            continue
-        end
-        if isnumeric(inputs{i})
-            inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-        end
-        if strcmp(inputs{i}.get('BlockType'),'Goto')
-            inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-        end
     end
     
     if isnumeric(minv)
@@ -45,6 +34,8 @@ function [blk] = Sat(varargin)
     else
         blk = block('model','Blocks_2011b','type','Saturation','parent',parent,args{:});
     end
+    
+    inputs = helpers.validateInputs(inputs,parent);
     blk.setInputs({maxv,minv,inputs{:}})
 
 end

@@ -30,11 +30,8 @@ classdef block_input
         function p = get(this,prop)
             p = get(this.value.handle,prop);
         end
-        function varargout = set(this,prop,value,idx)
+        function [] = set(this,prop,value,idx)
             this.value.set(prop,value,idx);
-            if nargout == 1
-                varargout{1} = this;
-            end
         end
         
         % From https://it.mathworks.com/help/matlab/matlab_oop/implementing-operators-for-your-class.html

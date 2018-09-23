@@ -17,7 +17,7 @@ classdef Selector < unary_operator
             b1 = p.Results.b1;
             indices = p.Results.indices;
             width = p.Results.width;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Selector',args{:});
             this.set({'NumberOfDimensions','1','IndexOptions','Index vector (dialog)','Indices',mat2str(indices),'InputPortWidth',mat2str(width)})

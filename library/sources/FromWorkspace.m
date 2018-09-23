@@ -15,7 +15,7 @@ classdef FromWorkspace < block
             
             varname = p.Results.varname;
             parent = p.Results.parent;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@block('type','From Workspace','parent',parent,args{:});
             

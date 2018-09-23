@@ -18,23 +18,13 @@ function [out] = LowPass(varargin)
     gain = 1;
     Ts = p.Results.Ts;
     parent = helpers.getValidParent(inputs{:},freq,gain,p.Results.parent);
-    args = helpers.unpack(p.Unmatched);
+    args = helpers.validateArgs(p.Unmatched);
 
-    % validateattributes(parent,{'char'},{'nonempty'},'','parent')
     if isempty(parent)
         parent = gcs;
-    end    
-    for i=1:length(inputs)
-        if isempty(inputs{i})
-            continue
-        end
-        if isnumeric(inputs{i})
-            inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-        end
-        if strcmp(inputs{i}.get('BlockType'),'Goto')
-            inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-        end
     end
+    
+    inputs = helpers.validateInputs(inputs,parent);
     
     mask = false;
     if isnumeric(freq) && isnumeric(gain)

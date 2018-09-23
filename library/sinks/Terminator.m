@@ -13,7 +13,7 @@ classdef Terminator < unary_operator
             parse(p,varargin{:})
             
             b1 = p.Results.b1;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Terminator',args{:});
         end

@@ -20,10 +20,8 @@ classdef block < handle
             type = p.Results.type;
             model = p.Results.model;
             strParent = helpers.getBlockPath(p.Results.parent);            
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(type,{'char'},{'nonempty'},'','type')
-            % validateattributes(strParent,{'char'},{'nonempty'},'','parent')
             if isempty(strParent)
                 strParent = gcs;
             end
@@ -67,7 +65,7 @@ classdef block < handle
         function out = outport(this,index)
             out = block_input(this,index);
         end
-        function varargout = setInputs(this,varargin)
+        function [] = setInputs(this,varargin)
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -86,11 +84,8 @@ classdef block < handle
                 end
                 this.simInputs{i} = tmp;
             end
-            if nargout == 1
-                varargout{1} = this;
-            end
         end
-        function varargout = setInput(this,varargin)
+        function [] = setInput(this,varargin)
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -113,9 +108,6 @@ classdef block < handle
             else
                 value.type = type;
                 this.simInputs{index} = value;
-            end            
-            if nargout == 1
-                varargout{1} = this;
             end
         end
         
@@ -150,29 +142,24 @@ classdef block < handle
         function p = get(this,prop)
             p = get(this.simBlock,prop);
         end
-        function varargout = set(this,prop,value,idx)
+        function [] = set(this,prop,value,idx)
             if iscell(prop)
-                for i=1:2:length(prop)-1
-                    this.set(prop{i},prop{i+1})
-                end
-            else
-                try
-                    if nargin == 3
-                        idx = 0;
-                        set(this.simBlock,prop,value);
-                    else
-                        set(this.simBlock,prop,sprintf('%s%d',value,idx));
-                    end
-                catch E
-                    if strcmp(E.identifier, 'Simulink:blocks:DupBlockName')
-                        % Name already exists, add number
-                        this.set(prop,value,idx+1);
-                    end
-                end
+                arrayfun(@(i) this.set(prop{i},prop{i+1}), 1:2:length(prop)-1)
+                return
             end
             
-            if nargout == 1
-                varargout{1} = this;
+            try
+                if nargin == 3
+                    idx = 0;
+                    set(this.simBlock,prop,helpers.validateArgs(value));
+                else
+                    set(this.simBlock,prop,sprintf('%s%d',helpers.validateArgs(value),idx));
+                end
+            catch E
+                if strcmp(E.identifier, 'Simulink:blocks:DupBlockName')
+                    % Name already exists, add number
+                    this.set(prop,value,idx+1);
+                end
             end
         end
         

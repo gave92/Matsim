@@ -15,14 +15,10 @@ classdef Gain < unary_operator
             
             b1 = p.Results.b1;
             value = p.Results.value;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Gain',args{:});
-            if ischar(value)
-                this.set('Gain',value)
-            elseif isnumeric(value)
-                this.set('Gain',mat2str(value))
-            end
+            this.set('Gain',value)
         end
     end
     

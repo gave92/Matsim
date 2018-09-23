@@ -15,7 +15,7 @@ classdef ToWorkspace < unary_operator
             
             b1 = p.Results.b1;
             varname = p.Results.varname;            
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','To Workspace',args{:});
             

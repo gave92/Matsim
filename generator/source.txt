@@ -14,7 +14,7 @@ classdef %s < block
             
 %s
             parent = p.Results.parent;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@block('model','%s','type','%s','parent',parent,args{:});
 

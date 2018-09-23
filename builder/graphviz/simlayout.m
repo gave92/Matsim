@@ -13,7 +13,7 @@ function [] = simlayout(varargin)
     connect_only = p.Results.ConnectOnly;
 
     [adjMatrix, blocks] = sim2adj(sys);
-    if isempty(blocks) return; end
+    if isempty(blocks), return, end
     
     if ~connect_only
         layout = genLayout(adjMatrix,blocks);

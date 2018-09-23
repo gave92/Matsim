@@ -85,11 +85,8 @@ function [] = generate(~,~,block,params,hclass,selected_inputs)
     for i = 1:length(params)
         parname = regexprep(params(i).name,'[^a-zA-z]','');
         paradd = [paradd, repmat(' ',1,12), sprintf('addParamValue(p,''%s'',%s,@(x) ischar(x) || isnumeric(x));\n',parname,'{}')];
-        parres = [parres, repmat(' ',1,12), sprintf('%s = p.Results.%s;\n',parname,parname)];
-        
-        prmset = sprintf(fileread('param.txt'),parname,params(i).name,parname,parname,params(i).name,parname);
-        prmset = regexp(prmset,'\r?\n','split');
-        parset = [parset, strjoin(cellfun(@(l) [repmat(' ',1,12),l],prmset,'Uni',0),sprintf('\n')), sprintf('\n')];
+        parres = [parres, repmat(' ',1,12), sprintf('%s = p.Results.%s;\n',parname,parname)];        
+        parset = [parset, repmat(' ',1,12), sprintf('this.set(''%s'',%s);\n',params(i).name,parname)];
     end
     
     switch num_inputs

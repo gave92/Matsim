@@ -1,5 +1,0 @@
-if ischar(%s)
-    this.set('%s',%s)
-elseif isnumeric(%s)
-    this.set('%s',mat2str(%s))
-end

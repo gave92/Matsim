@@ -14,7 +14,7 @@ classdef %s < unary_operator
 
             b1 = p.Results.b1;
 %s
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','%s',args{:});
 

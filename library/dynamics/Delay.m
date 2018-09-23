@@ -19,7 +19,7 @@ classdef Delay < unary_operator
             DelayLength = p.Results.DelayLength;
             Ts = p.Results.Ts;
             x0 = p.Results.x0;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             if DelayLength ~= 1
                 dl = 'Delay';

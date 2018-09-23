@@ -19,7 +19,7 @@ classdef IF < Switch
             b1 = p.Results.b1;
             b2 = p.Results.b2;
             cond = p.Results.cond;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@Switch(b1,b2,cond,args{:});
         end

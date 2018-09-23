@@ -20,26 +20,16 @@ classdef %s < block
             
 %s
             parent = helpers.getValidParent(inputs{:},p.Results.parent);
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             if isempty(parent)
                 parent = gcs;
             end
-            for i=1:length(inputs)
-                if isempty(inputs{i})
-                    continue
-                end
-                if isnumeric(inputs{i})
-                    inputs{i} = Constant(inputs{i},'parent',parent);
-                end
-                if strcmp(inputs{i}.get('BlockType'),'Goto')
-                    inputs{i} = REF(inputs{i}.get('GotoTag'));
-                end
-            end
             
             this = this@block('model','%s','type','%s','parent',parent,args{:});
-            this.set('Inputs',mat2str(length(inputs)));
-            this.setInputs(inputs);                       
+
+            inputs = helpers.validateInputs(inputs,parent);
+            this.setInputs(inputs);
 
 %s
         end

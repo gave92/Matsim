@@ -21,27 +21,15 @@ classdef Lookup2D < binary_operator
             table = p.Results.table;
             breakpoints1 = p.Results.breakpoints1;
             breakpoints2 = p.Results.breakpoints2;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@binary_operator(b1,b2,'ops','2-D Lookup Table',args{:});
             this.set('ExtrapMethod','Clip')
             this.set('UseLastTableValue','on')
 
-            if ischar(table)
-                this.set('Table',table)
-            elseif isnumeric(table)
-                this.set('Table',mat2str(table))
-            end
-            if ischar(breakpoints1)
-                this.set('BreakpointsForDimension1',breakpoints1)
-            elseif isnumeric(breakpoints1)
-                this.set('BreakpointsForDimension1',mat2str(breakpoints1))
-            end
-            if ischar(breakpoints2)
-                this.set('BreakpointsForDimension2',breakpoints2)
-            elseif isnumeric(breakpoints2)
-                this.set('BreakpointsForDimension2',mat2str(breakpoints2))
-            end
+            this.set('Table',table)
+            this.set('BreakpointsForDimension1',breakpoints1)
+            this.set('BreakpointsForDimension2',breakpoints2)
         end
     end
     

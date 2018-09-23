@@ -17,7 +17,7 @@ classdef unary_operator < block
             inputs = {p.Results.b1};
             ops = p.Results.ops;
             parent = helpers.getValidParent(inputs{:},p.Results.parent);
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
@@ -26,20 +26,10 @@ classdef unary_operator < block
             if isempty(ops)
                 error('Invalid operator.')
             end
-            for i=1:length(inputs)
-                if isempty(inputs{i})
-                    continue
-                end
-                if isnumeric(inputs{i})
-                    inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-                end
-                if strcmp(inputs{i}.get('BlockType'),'Goto')
-                    inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-                end
-            end
             
             this = this@block('type',ops,'parent',parent,args{:});
 
+            inputs = helpers.validateInputs(inputs,parent);
             this.setInputs(inputs);
         end
     end

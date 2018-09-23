@@ -15,7 +15,7 @@ classdef Max < binary_operator
             
             b1 = p.Results.b1;
             b2 = p.Results.b2;
-            args = helpers.unpack(p.Unmatched);
+            args = helpers.validateArgs(p.Unmatched);
             
             this = this@binary_operator(b1,b2,'ops','MinMax','Function','Max','Inputs',mat2str(2),args{:});
         end
