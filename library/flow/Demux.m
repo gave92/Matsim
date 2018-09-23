@@ -18,11 +18,7 @@ classdef Demux < unary_operator
             args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Demux',args{:});
-            if ischar(outputs)
-                this.set('Outputs',outputs)
-            elseif isnumeric(outputs)
-                this.set('Outputs',mat2str(outputs))
-            end
+            this.set('Outputs',outputs)
         end
     end
     

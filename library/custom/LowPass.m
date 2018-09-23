@@ -7,15 +7,14 @@ function [out] = LowPass(varargin)
     p.KeepUnmatched = true;
     addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
     addOptional(p,'freq',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
-    %addOptional(p,'gain',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+    addParamValue(p,'gain',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
     addParamValue(p,'Ts',0,@(x) ischar(x) || isnumeric(x));
     addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
     parse(p,varargin{:})
 
     inputs = {p.Results.b1};
     freq = p.Results.freq;
-    %gain = p.Results.gain;
-    gain = 1;
+    gain = p.Results.gain;    
     Ts = p.Results.Ts;
     parent = helpers.getValidParent(inputs{:},freq,gain,p.Results.parent);
     args = helpers.validateArgs(p.Unmatched);

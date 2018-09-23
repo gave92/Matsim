@@ -5,7 +5,7 @@ function [] = test_custom(sys)
     
     LowPass({},in);
     LowPass(in);
-    LowPass(0,5,1.5);
+    LowPass(0,5,'gain',2);
     
     Sat();
     Sat(in,{},1.5);
