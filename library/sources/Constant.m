@@ -18,11 +18,7 @@ classdef Constant < block
             args = helpers.validateArgs(p.Unmatched);
             
             this = this@block('type','Constant','parent',parent,args{:});
-            if ischar(value)
-                this.set('Value',value).set('VectorParams1D','off')
-            elseif isnumeric(value)
-                this.set('Value',mat2str(value)).set('VectorParams1D','off')
-            end
+            this.set({'Value',value,'VectorParams1D','off'})
         end
     end
 end
