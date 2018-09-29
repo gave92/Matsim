@@ -5,7 +5,7 @@ function [] = test_base(sys)
     
     s = Scope({[{},in],0});
     t = Terminator();
-    w = ToWorkspace(in,'varname','TEST NAME');
+    w = ToWorkspace(in,'varname','TEST_NAME');
     
 end
 

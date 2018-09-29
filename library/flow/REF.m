@@ -30,8 +30,6 @@ classdef REF < block
                 type = 'Goto';
             end
             
-            inputs = helpers.validateInputs(inputs,parent);
-            
             this = this@block('type',type,'parent',parent,args{:});
             this.set('ShowName','off');
             this.setInputs(inputs);

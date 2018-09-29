@@ -27,7 +27,6 @@ classdef Scope < block
                 parent = gcs;
             end
             
-            inputs = helpers.validateInputs(inputs,parent);            
             this = this@block('type','Scope','parent',parent,args{:});
             
             if getversion() >= 2015

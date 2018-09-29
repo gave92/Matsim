@@ -4,9 +4,11 @@ classdef block < handle
         simBlock
         % Handles to input blocks
         simInputs
+        % Handle to output port
+        simSelectedOutport
     end
     
-    methods
+    methods (Access = public)
         function this = block(varargin)
             p = inputParser;
             p.CaseSensitive = false;
@@ -14,11 +16,13 @@ classdef block < handle
             p.KeepUnmatched = true;
             addParamValue(p,'type','',@ischar);
             addParamValue(p,'model','simulink',@ischar);
+            addParamValue(p,'copy',false,@islogical);
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})
             
             type = p.Results.type;
             model = p.Results.model;
+            copy = p.Results.copy;
             strParent = helpers.getBlockPath(p.Results.parent);            
             args = helpers.validateArgs(p.Unmatched);
             
@@ -31,16 +35,22 @@ classdef block < handle
                 name = p.Unmatched.name;
                 match = helpers.findBlock(strParent,'BlockName',name,'SearchDepth',1);
                 if ~isempty(match)
-                    this.simBlock = getSimulinkBlockHandle(match);
+                    this.simBlock = get_param(match{1},'handle');
                     blk = this.getUserData('block');
                     if ~isempty(blk)
                         % Block was a MATSIM block, reuse
-                        this = blk;
+                        if copy
+                            this.simBlock = blk.handle;
+                            this.simInputs = blk.inputs;
+                        else
+                            this = blk;
+                        end
                     else
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
                     end
                     this.setUserData('created',false)
+                    this.simSelectedOutport = 1;
                     return;
                 end
             end
@@ -51,6 +61,7 @@ classdef block < handle
                 this.simBlock = add_block(match{1},strjoin({strParent,type},'/'),'MakeNameUnique','on',args{:});
                 this.setUserData('block',this)
                 this.setUserData('created',true)
+                this.simSelectedOutport = 1;
                 % Set position to far right
                 blockSizeRef = this.get('position');
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
@@ -59,56 +70,89 @@ classdef block < handle
             end
         end
     
-        function in = getInputs(this)
+        function in = inputs(this)
             in = this.simInputs;
         end
-        function out = outport(this,index)
-            out = block_input(this,index);
+        function out = outport(this,varargin)
+            p = inputParser;
+            p.CaseSensitive = false;
+            % p.PartialMatching = false;
+            p.KeepUnmatched = true;
+            addOptional(p,'index',[],@isnumeric);
+            parse(p,varargin{:})
+            
+            index = p.Results.index;
+            if ~isempty(index)
+                out = block('copy',true,'parent',helpers.getValidParent(this),'name',this.get('name'));
+                out.simSelectedOutport = index;
+            else
+                out = this.simSelectedOutport;
+            end
         end
+        
+        function h = handle(this)
+            h = this.simBlock;
+        end
+        function p = get(this,prop)
+            p = get(this.simBlock,prop);
+        end
+        function [] = set(this,prop,value)
+            if iscell(prop)
+                arrayfun(@(i) this.set(prop{i},prop{i+1}), 1:2:length(prop)-1)
+                return
+            end
+            
+            if strcmpi(prop,'name')
+                parent = helpers.getValidParent(this);
+                match = helpers.findBlock(parent,'BlockName',value,'SearchDepth',1);
+                if isempty(match)
+                    this.safe_set(prop,helpers.validateArgs(value));
+                else
+                    idx = 1+length(match);
+                    this.safe_set(prop,sprintf('%s%d',helpers.validateArgs(value),idx));
+                end                
+            else
+                this.safe_set(prop,helpers.validateArgs(value));
+            end
+        end
+    end
+    
+    methods (Access = private)
+        function [] = safe_set(this,prop,value)
+            try
+                set(this.simBlock,prop,value);
+            catch ex
+                warning(ex.message)
+            end
+        end
+    end
+    
+    methods (Access = protected)
         function [] = setInputs(this,varargin)
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addRequired(p,'value',@(x) iscell(x) && all(cellfun(@(c) isempty(c) || isa(c,'block') || isa(c,'block_input'),x)));
+            addRequired(p,'value');
             parse(p,varargin{:})
             
             value = p.Results.value;
-            for i=1:length(value)
-                if isempty(value{i})
-                    tmp = block_input({});
-                elseif ~isa(value{i},'block_input')
-                    tmp = block_input(value{i});
-                else
-                    tmp = value{i};
-                end
-                this.simInputs{i} = tmp;
-            end
+            parent = helpers.getValidParent(this);
+            this.simInputs = helpers.validateInputs(value,parent);
         end
         function [] = setInput(this,varargin)
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addRequired(p,'value',@(x) isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addRequired(p,'value');
             addRequired(p,'index',@isnumeric);
-            addParamValue(p,'srcport',1,@isnumeric);
-            addParamValue(p,'type','input',@ischar);
             parse(p,varargin{:})
             
             value = p.Results.value;
-            type = p.Results.type;
             index = p.Results.index;
-            srcport = p.Results.srcport;
-            
-            if isempty(value)
-                this.simInputs{index} = block_input({},srcport,type);
-            elseif ~isa(value,'block_input')
-                this.simInputs{index} = block_input(value,srcport,type);
-            else
-                value.type = type;
-                this.simInputs{index} = value;
-            end
+            parent = helpers.getValidParent(this);
+            this.simInputs{index} = helpers.validateInputs(value,parent);
         end
         
         function setMaskParam(this,name,value)
@@ -135,34 +179,9 @@ classdef block < handle
             data.(prop) = value;
             set(this.simBlock,'UserData',data);
         end
-        
-        function h = handle(this)
-            h = this.simBlock;
-        end
-        function p = get(this,prop)
-            p = get(this.simBlock,prop);
-        end
-        function [] = set(this,prop,value,idx)
-            if iscell(prop)
-                arrayfun(@(i) this.set(prop{i},prop{i+1}), 1:2:length(prop)-1)
-                return
-            end
-            
-            try
-                if nargin == 3
-                    idx = 0;
-                    set(this.simBlock,prop,helpers.validateArgs(value));
-                else
-                    set(this.simBlock,prop,sprintf('%s%d',helpers.validateArgs(value),idx));
-                end
-            catch E
-                if strcmp(E.identifier, 'Simulink:blocks:DupBlockName')
-                    % Name already exists, add number
-                    this.set(prop,value,idx+1);
-                end
-            end
-        end
-        
+    end
+    
+    methods (Access = public)
         % From https://it.mathworks.com/help/matlab/matlab_oop/implementing-operators-for-your-class.html
         %% Add
         function r = plus(b1,b2)

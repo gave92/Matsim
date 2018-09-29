@@ -23,8 +23,6 @@ classdef Switch < block
                 parent = gcs;
             end
             
-            inputs = helpers.validateInputs(inputs,parent);
-            
             this = this@block('type','Switch','parent',parent,args{:});
             this.set('Criteria','u2 ~= 0')            
             this.setInputs(inputs);

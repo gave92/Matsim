@@ -28,8 +28,6 @@ classdef unary_operator < block
             end
             
             this = this@block('type',ops,'parent',parent,args{:});
-
-            inputs = helpers.validateInputs(inputs,parent);
             this.setInputs(inputs);
         end
     end

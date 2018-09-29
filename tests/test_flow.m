@@ -5,7 +5,7 @@ function [] = test_flow(sys)
     
     r = REF('in',in);
     d = Demux(r,'outputs',[1,3]);
-    m = Mux({d.outport(2),-1});
+    m = Mux({d.outport(2)+1,-1});
     f = IF(m>0,in,in(-1));
     s = Selector(f,'indices',[1,4],'width',4);
     w = Switch(s,0);

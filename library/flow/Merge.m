@@ -28,7 +28,6 @@ classdef Merge < block
             
             this = this@block('type','Merge','parent',parent,args{:});
             
-            inputs = helpers.validateInputs(inputs,parent);
             this.set('Inputs',mat2str(length(inputs)));
             this.setInputs(inputs);                       
         end

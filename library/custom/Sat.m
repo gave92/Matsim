@@ -35,7 +35,6 @@ function [blk] = Sat(varargin)
         blk = block('model','Blocks_2011b','type','Saturation','parent',parent,args{:});
     end
     
-    inputs = helpers.validateInputs(inputs,parent);
     blk.setInputs({maxv,minv,inputs{:}})
 
 end

@@ -28,7 +28,6 @@ classdef Mux < block
             
             this = this@block('type','Mux','parent',parent,args{:});
             
-            inputs = helpers.validateInputs(inputs,parent);
             this.set('Inputs',mat2str(length(inputs)))            
             this.setInputs(inputs);
         end

@@ -20,7 +20,7 @@ classdef Selector < unary_operator
             args = helpers.validateArgs(p.Unmatched);
             
             this = this@unary_operator(b1,'ops','Selector',args{:});
-            this.set({'NumberOfDimensions','1','IndexOptions','Index vector (dialog)','Indices',mat2str(indices),'InputPortWidth',mat2str(width)})
+            this.set({'NumberOfDimensions','1','IndexOptions','Index vector (dialog)','InputPortWidth',mat2str(width),'Indices',mat2str(indices)})
         end
     end
     

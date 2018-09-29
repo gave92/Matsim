@@ -23,8 +23,6 @@ function [out] = LowPass(varargin)
         parent = gcs;
     end
     
-    inputs = helpers.validateInputs(inputs,parent);
-    
     mask = false;
     if isnumeric(freq) && isnumeric(gain)
         s = Subsystem(inputs);
