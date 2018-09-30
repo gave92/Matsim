@@ -155,10 +155,10 @@ classdef block < handle
             parent = helpers.getValidParent(this);            
             value = helpers.validateInputs(p.Results.value,parent);
             
-            if any(strcmp(p.UsingDefaults,'srcport'))
+            if ~any(strcmp(p.UsingDefaults,'srcport'))
                 value.srcport = p.Results.srcport;
             end
-            if any(strcmp(p.UsingDefaults,'type'))
+            if ~any(strcmp(p.UsingDefaults,'type'))
                 value.type = p.Results.type;
             end
 
