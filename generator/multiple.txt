@@ -27,8 +27,6 @@ classdef %s < block
             end
             
             this = this@block('model','%s','type','%s','parent',parent,args{:});
-
-            inputs = helpers.validateInputs(inputs,parent);
             this.setInputs(inputs);
 
 %s
