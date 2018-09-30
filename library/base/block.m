@@ -144,25 +144,34 @@ classdef block < handle
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
-            p.KeepUnmatched = true;
-            addRequired(p,'value');
-            addRequired(p,'index',@isnumeric);            
+            p.KeepUnmatched = true;            
+            addRequired(p,'index',@isnumeric);
+            addParamValue(p,'value',{});
             addParamValue(p,'srcport',1,@isnumeric);
             addParamValue(p,'type','input',@ischar);
             parse(p,varargin{:})
             
             index = p.Results.index;
-            parent = helpers.getValidParent(this);            
-            value = helpers.validateInputs(p.Results.value,parent);
+            if index <= length(this.simInputs)
+                current = this.simInputs{index};
+            else
+                current = block_input({});
+            end
             
+            % Only update specified fields
+            if ~any(strcmp(p.UsingDefaults,'value'))
+                parent = helpers.getValidParent(this);
+                new_input = helpers.validateInputs(p.Results.value,parent);
+                current.value = new_input.value;
+            end
             if ~any(strcmp(p.UsingDefaults,'srcport'))
-                value.srcport = p.Results.srcport;
+                current.srcport = p.Results.srcport;
             end
             if ~any(strcmp(p.UsingDefaults,'type'))
-                value.type = p.Results.type;
+                current.type = p.Results.type;
             end
 
-            this.simInputs{index} = value;
+            this.simInputs{index} = current;
         end
         
         function setMaskParam(this,name,value)

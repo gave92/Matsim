@@ -69,7 +69,7 @@ classdef Subsystem < block
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
             enable = block('type','Enable','parent',this,args{:});
-            this.setInput(input,this.inlen+1,'type','enable');
+            this.setInput(this.inlen+1,'value',input,'type','enable');
             this.simInport = concat(this.simInport,enable);
         end
         
@@ -84,7 +84,7 @@ classdef Subsystem < block
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
             trigger = block('type','Trigger','parent',this,args{:});
-            this.setInput(input,this.inlen+1,'type','trigger');
+            this.setInput(this.inlen+1,'value',input,'type','trigger');
             this.simInport = concat(this.simInport,trigger);
         end
         
@@ -106,14 +106,14 @@ classdef Subsystem < block
                 in = this.simInport(index);
                 set(in.handle,args{:});
                 if ~any(strcmp(p.UsingDefaults,'input'))
-                    this.setInput(input,index);
+                    this.setInput(index,'value',input);
                 end
             else
                 % Create new inport
                 in = block('type','In1','parent',this,args{:});
                 set(in,'backgroundcolor','lightblue');
                 this.simInport = concat(this.simInport,in);
-                this.setInput(input,index);
+                this.setInput(index,'value',input);
                 this.setHeight();
             end
         end
