@@ -12,6 +12,7 @@ function [adjMatrix, blocks] = sim2adj(sys)
     for i=1:length(blocks)  
         neighbours = getNeighbours(blocks(i));
         for j=1:size(neighbours,1)
+            if neighbours(j,1) == -1, continue, end;
             col = str2double(get(neighbours(j,1),'Tag'));
             adjMatrix(i,col) = j; 
         end

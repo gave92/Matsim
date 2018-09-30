@@ -48,8 +48,7 @@ function [] = simlayout(varargin)
         ports = [h.Inport, h.Enable, h.Trigger];
         parents = getNeighbours(blocks(i));
         
-        for p = 1:size(parents,1)
-            h1 = get(parents(p,1),'PortHandles');
+        for p = 1:size(parents,1)            
             onum = parents(p,2);
             inum = parents(p,3);
 
@@ -62,8 +61,11 @@ function [] = simlayout(varargin)
                 % Line exists
                 delete_line(line)
             end
-            
-            add_line(get(blocks(i),'parent'),h1.Outport(onum),ports(port_num==inum),'autorouting','on');
+
+            if parents(p,1) ~= -1
+                h1 = get(parents(p,1),'PortHandles');
+                add_line(get(blocks(i),'parent'),h1.Outport(onum),ports(port_num==inum),'autorouting','on');
+            end
         end
     end
 end

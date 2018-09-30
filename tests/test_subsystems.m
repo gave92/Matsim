@@ -1,7 +1,7 @@
 function [] = test_subsystems(sys)
 %TEST_SUBSYSTEM
 
-    v1 = 0;
+    v1 = REF('IN',0);
     s = Subsystem({{},v1},'name','TEST');
     s.enable(1);
     s.in(4,1.5);
@@ -10,6 +10,7 @@ function [] = test_subsystems(sys)
     s.out(2,{});
     s.out(2,'name','OUTPUT');
     s.trigger(Constant(-1));
+    Scope(s.outport(2))
     
 end
 

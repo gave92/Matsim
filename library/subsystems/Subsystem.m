@@ -105,7 +105,7 @@ classdef Subsystem < block
                 % Return inport block
                 in = this.simInport(index);
                 set(in.handle,args{:});
-                if ~isempty(input)
+                if ~any(strcmp(p.UsingDefaults,'input'))
                     this.setInput(input,index);
                 end
             else
@@ -138,7 +138,7 @@ classdef Subsystem < block
                 % Return outport block
                 out = this.simOutport(index);
                 set(out.handle,args{:});
-                if ~isempty(input)
+                if ~any(strcmp(p.UsingDefaults,'input'))
                     out.setInputs({input});
                 end
             else

@@ -17,6 +17,9 @@ function neighbours = getNeighbours(root)
                 if ~isempty(inputs{i}.value)
                     in = [inputs{i}.value.get('handle'), inputs{i}.srcport, i];
                     neighbours = [neighbours; in];
+                else
+                    in = [-1, inputs{i}.srcport, i];
+                    neighbours = [neighbours; in];
                 end
             end
         end
