@@ -146,13 +146,23 @@ classdef block < handle
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'value');
-            addRequired(p,'index',@isnumeric);
+            addRequired(p,'index',@isnumeric);            
+            addParamValue(p,'srcport',1,@isnumeric);
+            addParamValue(p,'type','input',@ischar);
             parse(p,varargin{:})
             
-            value = p.Results.value;
             index = p.Results.index;
-            parent = helpers.getValidParent(this);
-            this.simInputs{index} = helpers.validateInputs(value,parent);
+            parent = helpers.getValidParent(this);            
+            value = helpers.validateInputs(p.Results.value,parent);
+            
+            if any(strcmp(p.UsingDefaults,'srcport'))
+                value.srcport = p.Results.srcport;
+            end
+            if any(strcmp(p.UsingDefaults,'type'))
+                value.type = p.Results.type;
+            end
+
+            this.simInputs{index} = value;
         end
         
         function setMaskParam(this,name,value)

@@ -28,17 +28,6 @@ classdef Subsystem < block
             if isempty(parent)
                 parent = gcs;
             end
-            for i=1:length(inputs)
-                if isempty(inputs{i})
-                    continue
-                end
-                if isnumeric(inputs{i})
-                    inputs{i} = block_input(Constant(inputs{i},'parent',parent));
-                end
-                if strcmp(inputs{i}.get('BlockType'),'Goto')
-                    inputs{i} = block_input(REF(inputs{i}.get('GotoTag')));
-                end
-            end
             
             this = this@block('type','SubSystem','parent',parent,args{:});
             
@@ -80,15 +69,7 @@ classdef Subsystem < block
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
             enable = block('type','Enable','parent',this,args{:});
-            if ~isempty(input)
-                if isnumeric(input)
-                    input = block_input(Constant(input,'parent',this.get('Path')));
-                end
-                if strcmp(input.get('BlockType'),'Goto')
-                    input = block_input(REF(input.get('GotoTag')));
-                end
-                this.setInput(input,this.inlen+1,'type','enable');
-            end
+            this.setInput(input,this.inlen+1,'type','enable');
             this.simInport = concat(this.simInport,enable);
         end
         
@@ -103,15 +84,7 @@ classdef Subsystem < block
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
             trigger = block('type','Trigger','parent',this,args{:});
-            if ~isempty(input)
-                if isnumeric(input)
-                    input = block_input(Constant(input,'parent',this.get('Path')));
-                end
-                if strcmp(input.get('BlockType'),'Goto')
-                    input = block_input(REF(input.get('GotoTag')));
-                end
-                this.setInput(input,this.inlen+1,'type','trigger');
-            end
+            this.setInput(input,this.inlen+1,'type','trigger');
             this.simInport = concat(this.simInport,trigger);
         end
         
@@ -127,15 +100,6 @@ classdef Subsystem < block
             index = p.Results.index;
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
-            
-            if ~isempty(input)
-                if isnumeric(input)
-                    input = block_input(Constant(input,'parent',this.get('Path')));
-                end
-                if strcmp(input.get('BlockType'),'Goto')
-                    input = block_input(REF(input.get('GotoTag')));
-                end
-            end
             
             if index <= this.inlen
                 % Return inport block
@@ -170,15 +134,6 @@ classdef Subsystem < block
             input = p.Results.input;
             args = helpers.unpack(p.Unmatched);
 
-            if ~isempty(input)
-                if isnumeric(input)
-                    input = block_input(Constant(input,'parent',this.get('Path')));
-                end
-                if strcmp(input.get('BlockType'),'Goto')
-                    input = block_input(REF(input.get('GotoTag')));
-                end
-            end
-            
             if index <= this.outlen
                 % Return outport block
                 out = this.simOutport(index);
