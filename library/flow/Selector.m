@@ -9,7 +9,7 @@ classdef Selector < unary_operator
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             addParamValue(p,'indices',[1,3],@(x) isnumeric(x));
             addParamValue(p,'width',3,@(x) isnumeric(x));
             parse(p,varargin{:})

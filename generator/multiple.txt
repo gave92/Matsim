@@ -8,7 +8,7 @@ classdef %s < block
             p = inputParser;
             p.CaseSensitive = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'block'));
 %s
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})

@@ -12,7 +12,7 @@ classdef Subsystem < block
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})
             
@@ -74,7 +74,7 @@ classdef Subsystem < block
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             parse(p,varargin{:})
             
             input = p.Results.input;
@@ -97,7 +97,7 @@ classdef Subsystem < block
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             parse(p,varargin{:})
             
             input = p.Results.input;
@@ -121,7 +121,7 @@ classdef Subsystem < block
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'index',@isnumeric)
-            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             parse(p,index,varargin{:})
             
             index = p.Results.index;
@@ -163,7 +163,7 @@ classdef Subsystem < block
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'index',@isnumeric)
-            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             parse(p,index,varargin{:})
             
             index = p.Results.index;

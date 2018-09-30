@@ -9,7 +9,7 @@ classdef Lookup1D < unary_operator
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             addParamValue(p,'table','',@(x) isnumeric(x) || ischar(x));
             addParamValue(p,'breakpoints','',@(x) isnumeric(x) || ischar(x));
             parse(p,varargin{:})

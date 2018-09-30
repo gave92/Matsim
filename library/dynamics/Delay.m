@@ -9,7 +9,7 @@ classdef Delay < unary_operator
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             addOptional(p,'DelayLength',1,@isnumeric);
             addParamValue(p,'Ts',-1,@isnumeric);
             addParamValue(p,'x0',0,@isnumeric);

@@ -5,9 +5,9 @@ function [blk] = Sat(varargin)
     p.CaseSensitive = false;
     % p.PartialMatching = false;
     p.KeepUnmatched = true;
-    addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
-    addOptional(p,'minv',0,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
-    addOptional(p,'maxv',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+    addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
+    addOptional(p,'minv',0,@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
+    addOptional(p,'maxv',1,@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
     addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
     parse(p,varargin{:})
 

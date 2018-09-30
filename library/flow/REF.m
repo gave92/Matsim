@@ -11,7 +11,7 @@ classdef REF < block
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'tag',@(x) isnumeric(x) || ischar(x));
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block') || isa(x,'block_input'));
+            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})
 
