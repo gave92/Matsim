@@ -7,6 +7,8 @@ function neighbours = getNeighbours(root)
     if ~isempty(data) && isfield(data,'block') && ~isempty(data.block)
         inputs = data.block.inputs;
         if ~isempty(inputs)
+            if ~iscell(inputs), inputs = {inputs}; end
+            
             % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers]
             in = inputs(cellfun(@(x) strcmp(x.type,'input'),inputs));
             en = inputs(cellfun(@(x) strcmp(x.type,'enable'),inputs));

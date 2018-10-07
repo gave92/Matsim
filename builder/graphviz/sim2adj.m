@@ -9,7 +9,7 @@ function [adjMatrix, blocks] = sim2adj(sys)
         set(blocks(i),'Tag',mat2str(i));
     end
     
-    for i=1:length(blocks)  
+    for i=1:length(blocks)
         neighbours = getNeighbours(blocks(i));
         for j=1:size(neighbours,1)
             if neighbours(j,1) == -1, continue, end;
