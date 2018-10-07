@@ -41,9 +41,7 @@ classdef REF < block
             
             location = this.get('Position');
             location(3) = location(1)+max(40,10*length(tag));
-            this.set('Position',location);
-            
-            this.set('backgroundcolor','yellow');
+            this.set('Position',location);           
         end       
     end   
 end

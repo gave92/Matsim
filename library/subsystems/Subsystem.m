@@ -38,7 +38,6 @@ classdef Subsystem < block
                 for i = 1:length(inputs)
                     % obj.simInport = builtin('horzcat',obj.simInport,block('In1',obj));
                     this.simInport = concat(this.simInport,block('type','In1','parent',this));
-                    set(this.simInport(end),'backgroundcolor','lightblue');
                 end
                 
                 this.setInputs(inputs);
@@ -111,7 +110,6 @@ classdef Subsystem < block
             else
                 % Create new inport
                 in = block('type','In1','parent',this,args{:});
-                set(in,'backgroundcolor','lightblue');
                 this.simInport = concat(this.simInport,in);
                 this.setInput(index,'value',input);
                 this.setHeight();
@@ -144,7 +142,6 @@ classdef Subsystem < block
             else
                 % Create new outport
                 out = block('type','Out1','parent',this,args{:});
-                set(out,'backgroundcolor','lightblue');
                 out.setInputs({input});
                 this.simOutport = concat(this.simOutport,out);
                 this.setHeight();
