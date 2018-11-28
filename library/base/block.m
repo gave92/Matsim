@@ -138,7 +138,12 @@ classdef block < handle
             
             value = p.Results.value;
             parent = helpers.getValidParent(this);
-            this.simInputs = helpers.validateInputs(value,parent);
+            if ~isempty(value)
+                this.simInputs = helpers.validateInputs(value,parent);
+                if ~iscell(this.simInputs)
+                    this.simInputs = {this.simInputs};
+                end
+            end
         end
         function [] = setInput(this,varargin)
             p = inputParser;
