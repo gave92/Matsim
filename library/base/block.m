@@ -168,6 +168,7 @@ classdef block < handle
                 parent = helpers.getValidParent(this);
                 new_input = helpers.validateInputs(p.Results.value,parent);
                 current.value = new_input.value;
+                current.srcport = new_input.srcport;
             end
             if ~any(strcmp(p.UsingDefaults,'srcport'))
                 current.srcport = p.Results.srcport;
