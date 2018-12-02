@@ -64,7 +64,7 @@ classdef simulation < handle
         function [] = show(this)
             if strcmp(this.get('Shown'),'off') ...
                     || ~strcmp(bdroot, this.get('name'))
-                open_system(this.handle,'tab')
+                open_system(this.handle)
             end
         end
         
@@ -89,17 +89,30 @@ classdef simulation < handle
         function [] = clear(this)
             if strcmp(this.get('Shown'),'on') ...
                     && ~strcmp(gcs, this.get('name'))
-                open_system(this.handle,'tab')
+                open_system(this.handle)
             end
             Simulink.BlockDiagram.deleteContents(this.handle)
         end
         
+        function [] = layout(this)
+            simlayout(this.handle) % Connect and layout model            
+        end
+        
+        function [] = export(this)
+            blocks = find_system(this.handle,'type','block');
+            for i=1:length(blocks)
+                data = get(blocks(i),'UserData');
+                data.block = [];
+                set(blocks(i),'UserData',data);
+            end
+        end
+
         function [] = open(this,varargin)
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'subsystem',[],@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
+            addOptional(p,'subsystem',{},@(x) isempty(x) || ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             addParamValue(p,'show',false,@islogical)
             parse(p,varargin{:})
             
