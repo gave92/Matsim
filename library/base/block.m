@@ -104,7 +104,7 @@ classdef block < handle
             
             if strcmpi(prop,'name')
                 parent = helpers.getValidParent(this);
-                match = helpers.findBlock(parent,'BlockName',value,'SearchDepth',1);
+                match = helpers.findBlock(parent,'BlockName',value,'SearchDepth',1,'Exact',false);
                 if isempty(match)
                     this.safe_set(prop,helpers.validateArgs(value));
                 else

@@ -12,6 +12,7 @@ function match = findBlock(sys,varargin)
     % p.PartialMatching = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@(x) isnumeric(x) && ishandle(x) || ischar(x));
+    addParamValue(p,'Exact',true,@islogical);
     addParamValue(p,'BlockName','',@ischar);
     addParamValue(p,'BlockType','',@ischar);
     addParamValue(p,'SearchDepth',-1,@isnumeric);
@@ -21,6 +22,7 @@ function match = findBlock(sys,varargin)
     search_depth = p.Results.SearchDepth;
     block_name = p.Results.BlockName;
     block_type = p.Results.BlockType;
+    exact = p.Results.Exact;
     other = helpers.unpack(p.Unmatched);
         
     try
@@ -41,7 +43,11 @@ function match = findBlock(sys,varargin)
         args = [args,'BlockType',['^',escape(block_type),'$']];
     end
     if ~isempty(block_name)
-        args = [args,'name',['^',escape(block_name),'$']];
+        if exact
+            args = [args,'name',['^',escape(block_name),'$']];
+        else
+            args = [args,'name',escape(block_name)];
+        end        
     end
     args = [other, args];
     
