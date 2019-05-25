@@ -10,9 +10,9 @@ function neighbours = getNeighbours(root)
             if ~iscell(inputs), inputs = {inputs}; end
             
             % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers]
-            in = inputs(cellfun(@(x) strcmp(x.type,'input'),inputs));
-            en = inputs(cellfun(@(x) strcmp(x.type,'enable'),inputs));
-            tr = inputs(cellfun(@(x) strcmp(x.type,'trigger'),inputs));
+            in = inputs(cellfun(@(x) isa(x,'block_input') && strcmp(x.type,'input'),inputs));
+            en = inputs(cellfun(@(x) isa(x,'block_input') && strcmp(x.type,'enable'),inputs));
+            tr = inputs(cellfun(@(x) isa(x,'block_input') && strcmp(x.type,'trigger'),inputs));
             inputs = [in,en,tr];
             
             for i=1:length(inputs)
