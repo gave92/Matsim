@@ -22,7 +22,7 @@ function [out] = fun2model(varargin)
     end
     
     funstr = func2str(fun);
-    [~,tok] = regexp(funstr,'@\((.*)\)','match','tokens');
+    [~,tok] = regexp(funstr,'@\(([\w|,]*)\)','match','tokens');
     symb_names = strsplit(tok{1}{1},',');
     
     subsystem = Subsystem('parent',model,args{:});
@@ -34,8 +34,10 @@ function [out] = fun2model(varargin)
         end
     end
     
-    [~,tok] = regexp(funstr,'(@\(.*\))','match','tokens');
+    [~,tok] = regexp(funstr,'(@\([\w|,]*\))','match','tokens');
     exprstr = strrep(funstr,tok{1}{1},'');
+    [~,~,pos] = regexp(exprstr,'(\w+\([\w|,]*)','match','tokens'); % try use matsim functions
+    exprstr(pos) = upper(exprstr(pos));
     res = eval(exprstr);
     subsystem.out(1,res,'name','res')
     
