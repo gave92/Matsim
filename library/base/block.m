@@ -16,13 +16,11 @@ classdef block < handle
             p.KeepUnmatched = true;
             addParamValue(p,'type','',@ischar);
             addParamValue(p,'model','simulink',@ischar);
-            addParamValue(p,'copy',false,@islogical);
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
             parse(p,varargin{:})
             
             type = p.Results.type;
             model = p.Results.model;
-            copy = p.Results.copy;
             strParent = helpers.getBlockPath(p.Results.parent);            
             args = helpers.validateArgs(p.Unmatched);
             
@@ -39,12 +37,9 @@ classdef block < handle
                     blk = this.getUserData('block');
                     if ~isempty(blk)
                         % Block was a MATSIM block, reuse
-                        if copy
-                            this.simBlock = blk.handle;
-                            this.simInputs = blk.inputs;
-                        else
-                            this = blk;
-                        end
+                        this.simBlock = blk.handle;
+                        this.simInputs = blk.inputs;
+                        this.simSelectedOutport = blk.simSelectedOutport;
                     else
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
@@ -83,7 +78,7 @@ classdef block < handle
             
             index = p.Results.index;
             if ~isempty(index)
-                out = block('copy',true,'parent',helpers.getValidParent(this),'name',this.get('name'));
+                out = block('parent',helpers.getValidParent(this),'name',this.get('name'));
                 out.simSelectedOutport = index;
             else
                 out = this.simSelectedOutport;
