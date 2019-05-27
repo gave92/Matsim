@@ -148,7 +148,7 @@ classdef simulation < handle
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'block',@(x) isa(x,'block'))
-            addRequired(p,'name',@ischar)
+            addParamValue(p,'name','',@ischar)
             addParamValue(p,'port',1,@isnumeric);
             parse(p,varargin{:})
             
@@ -157,9 +157,22 @@ classdef simulation < handle
             port = p.Results.port;
             
             ph = get(block,'porthandles');
-            set(ph.Outport(port),'DataLogging','on');
-            set(ph.Outport(port),'DataLoggingNameMode','Custom');
-            set(ph.Outport(port),'DataLoggingName',name);
+            if ~isempty(name)
+                set(ph.Outport(port),'DataLogging','on');
+                set(ph.Outport(port),'DataLoggingNameMode','Custom');
+                set(ph.Outport(port),'DataLoggingName',name);
+            elseif ~isempty(get(get(ph.Outport(port),'line'),'name'))
+                set(ph.Outport(port),'DataLogging','on');
+                set(ph.Outport(port),'DataLoggingNameMode','SignalName');
+                set(ph.Outport(port),'DataLoggingName',get(get(ph.Outport(port),'line'),'name'));
+            elseif ~isempty(get(ph.Outport(port),'PropagatedSignals'))
+                set(ph.Outport(port),'DataLogging','on');
+                set(ph.Outport(port),'DataLoggingNameMode','Custom');
+                set(ph.Outport(port),'DataLoggingName',get(ph.Outport(port),'PropagatedSignals'));
+            else
+                set(ph.Outport(port),'DataLogging','off');
+                warning('Cannot log this line. Specify the ''name'' parameter.')
+            end
         end
         
         function h = handle(this)

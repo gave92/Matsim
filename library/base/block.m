@@ -74,14 +74,21 @@ classdef block < handle
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'index',[],@isnumeric);
+            addParamValue(p,'name',[],@ischar);
             parse(p,varargin{:})
             
             index = p.Results.index;
+            name = p.Results.name;
             if ~isempty(index)
                 out = block('parent',helpers.getValidParent(this),'name',this.get('name'));
                 out.simSelectedOutport = index;
             else
-                out = this.simSelectedOutport;
+                index = this.simSelectedOutport;
+                out = index;
+            end
+            if ~any(strcmp(p.UsingDefaults,'name'))
+                ph = get(this,'porthandles');
+                set(get(ph.Outport(index),'line'),'name',name);
             end
         end
         
