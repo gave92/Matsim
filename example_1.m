@@ -13,7 +13,7 @@ Wr = FromWorkspace('W_r');
 Rr = Constant(0.32);
 
 slip = 1 - Vx./(Wr.*Rr);                      % Evaluate complex mathematical expression
-sys.log(slip,'slip')                          % Log the output of the "slip" block
+sys.log(slip,'name','slip')                   % Log the output of the "slip" block
 
 s = Scope(slip);                              % Create and open scope block
 % s.open()
