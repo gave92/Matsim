@@ -49,7 +49,7 @@ res <span class="token operator">=</span> Vx<span class="token operator">+</span
 <tr>
 <th>Layout and connect</th>
 <td valign="top">
-<pre class="language-matlab"><code class="language-matlab"><span class="token function">simlayout</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>handle<span class="token punctuation">)</span></code></pre>
+<pre class="language-matlab"><code class="language-matlab">sys<span class="token punctuation">.</span><span class="token function">layout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </td>
 <td>
 <pre class="language-matlab"><code class="language-matlab"><span class="token function">set_param</span><span class="token punctuation">(</span><span class="token string">'my_model/From Workspace'</span><span class="token punctuation">,</span><span class="token string">'Position'</span><span class="token punctuation">,</span><span class="token string">'[30, 13, 95, 37]'</span><span class="token punctuation">)</span>
