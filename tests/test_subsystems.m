@@ -1,6 +1,8 @@
 function [] = test_subsystems(sys)
 %TEST_SUBSYSTEM
 
+    import matsim.library.*
+
     v1 = REF('IN',0);
     s = Subsystem({{},v1},'name','TEST');
     s.enable(1);

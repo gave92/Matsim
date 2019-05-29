@@ -1,19 +1,21 @@
 function [out] = fun2model(varargin)
 %FUN2MODEL Function handle to simulink model
 
+    import matsim.library.*
+
     p = inputParser;
     p.CaseSensitive = true;
     % p.PartialMatching = false;
     p.KeepUnmatched = true;
     addRequired(p,'fun',@(x) isa(x,'function_handle'));
-    addParamValue(p,'model','',@(x) ischar(x) || ishandle(x) || isa(x,'block') || isa(x,'simulation'));
+    addParamValue(p,'model','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
     addParamValue(p,'goto',false,@islogical);
     parse(p,varargin{:})
 
     fun = p.Results.fun;
     goto = p.Results.goto;
-    model = helpers.getBlockPath(p.Results.model);
-    args = helpers.unpack(p.Unmatched);
+    model = matsim.helpers.getBlockPath(p.Results.model);
+    args = matsim.helpers.unpack(p.Unmatched);
 
     if isempty(model)
         model = simulation.load('untitled');
@@ -36,12 +38,12 @@ function [out] = fun2model(varargin)
     
     [~,tok] = regexp(funstr,'(@\([\w|,]*\))','match','tokens');
     exprstr = strrep(funstr,tok{1}{1},'');
-    [~,~,pos] = regexp(exprstr,'(\w+\([\w|,]*)','match','tokens'); % try use matsim functions
+    [~,~,pos] = regexp(exprstr,'(\w+\()','match','tokens'); % try use matsim functions
     exprstr(pos) = upper(exprstr(pos));
     res = eval(exprstr);
     subsystem.out(1,res,'name','res')
     
-    simlayout(subsystem.handle)
+    matsim.builder.graphviz.simlayout(subsystem.handle)
     out = subsystem;
 end
 

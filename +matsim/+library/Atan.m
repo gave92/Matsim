@@ -1,24 +1,21 @@
-classdef %s < matsim.library.unary_operator
+classdef Atan < matsim.library.unary_operator
     properties
         
     end
     
     methods
-        function this = %s(varargin)
+        function this = Atan(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            p.KeepUnmatched = true;            
+            % p.PartialMatching = false;
+            p.KeepUnmatched = true;
             addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-%s            
             parse(p,varargin{:})
-
+          
             b1 = p.Results.b1;
-%s
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','%s',args{:});
-
-%s
+            this = this@matsim.library.unary_operator(b1,'ops','Trigonometric Function','Operator','Atan',args{:});
         end
     end
     

@@ -1,9 +1,7 @@
 % function [] = example_1()
 
 % Init
-addpath(genpath('builder'))
-addpath(genpath('library'))
-addpath(genpath('simulation'))
+import matsim.library.*
 
 % Create or load model
 sys = simulation.load('matsim_model');

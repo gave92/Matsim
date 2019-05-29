@@ -1,6 +1,8 @@
 function [] = test_flow(sys)
 %TEST_FLOW
 
+    import matsim.library.*
+
     in = Constant([0, 1, 2, 3]);
     
     r = REF('in',in);

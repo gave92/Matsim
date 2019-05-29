@@ -73,7 +73,7 @@ s.open()
 #### 3. Connect and layout the model
 
 ```matlab
-simlayout(sys.handle)                         % Connect and layout the model
+sys.layout()                         % Connect and layout the model
 ```
 
 #### 4. Simulate the system

@@ -1,24 +1,24 @@
-classdef %s < matsim.library.block
+classdef Constant < matsim.library.block
     properties
 
     end
     
     methods
-        function this = %s(varargin)
+        function this = Constant(varargin)
             p = inputParser;
             p.CaseSensitive = false;
+            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-%s
+            addRequired(p,'value',@(x) ischar(x) || isnumeric(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
-%s
+            value = p.Results.value;
             parent = p.Results.parent;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
-
-%s
+            this = this@matsim.library.block('type','Constant','parent',parent,args{:});
+            this.set({'Value',value,'VectorParams1D','off'})
         end
     end
 end

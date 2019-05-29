@@ -1,6 +1,8 @@
 function [] = test_custom(sys)
 %TEST_CUSTOM
 
+    import matsim.library.*
+
     in = Constant(0);
     
     LowPass({},in);

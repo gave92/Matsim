@@ -1,6 +1,8 @@
 function [] = test_dynamics(sys)
 %TEST_DYNAMICS
 
+    import matsim.library.*
+
     in = Constant(0);
     
     Delay({},'Ts',0.1);

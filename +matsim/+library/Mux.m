@@ -1,15 +1,15 @@
-classdef %s < matsim.library.block
+classdef Mux < matsim.library.block
     properties
 
     end
     
     methods
-        function this = %s(varargin)
+        function this = Mux(varargin)
             p = inputParser;
             p.CaseSensitive = false;
+            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
-%s
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
@@ -18,18 +18,18 @@ classdef %s < matsim.library.block
                 inputs = {inputs};
             end
             
-%s
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
+            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
+            this = this@matsim.library.block('type','Mux','parent',parent,args{:});
+            
+            this.set('Inputs',mat2str(length(inputs)))            
             this.setInputs(inputs);
-
-%s
         end
     end
 end

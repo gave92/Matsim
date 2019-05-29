@@ -1,6 +1,8 @@
 function [] = test_operations(sys)
 %TEST_OPS
 
+    import matsim.library.*
+
     in = Constant(1);
     
     r = Abs(Cos().^2+Sign(in).*Sin(Constant('pi')).^2);

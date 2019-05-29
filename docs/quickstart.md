@@ -7,6 +7,7 @@ The automatic layout feature relies on [GraphViz](https://www.graphviz.org/), wh
 1. Install [GraphViz](https://www.graphviz.org/download/) and add it to the system PATH
 2. Download and extract the Matsim package (from [File Exhange](https://it.mathworks.com/matlabcentral/fileexchange/68436-matsim) or from [Github](https://github.com/gave92/Matsim/archive/master.zip))
 3. Add Matsim folder (and subfolders) to the Matlab path
+4. Import Matsim package with 'import matsim.library.*'
 
 ## Concepts
 
@@ -108,7 +109,7 @@ sys = load_system('my_model');
 % Create blocks
 ...
 % Connect and layout the model
-simlayout(sys)
+sys.layout()
 ```
 
 ## Examples
@@ -118,6 +119,8 @@ Quick example to get started. For more check the [tests](https://github.com/gave
 #### 1. Create or load a simulink model
 
 ```matlab
+import matsim.library.*                       % Import Matsim package
+
 sys = simulation.load('my_model');            % Create or load a model named 'my_model'
 sys.setSolver('Ts',0.01,'DiscreteOnly',true)  % Set solver for the model
 sys.clear()                                   % Delete all blocks
@@ -141,5 +144,5 @@ s.open()
 #### 3. Connect and layout the model
 
 ```matlab
-simlayout(sys.handle)                         % Connect and layout the model
+sys.layout()                         % Connect and layout the model
 ```

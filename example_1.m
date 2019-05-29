@@ -1,6 +1,8 @@
 %% Init
 close all
 
+import matsim.library.*
+
 % Create or load model
 sys = simulation.load('matsim_model');
 sys.setSolver('Ts',0.01,'DiscreteOnly',true)
@@ -19,12 +21,12 @@ s = Scope(slip);                              % Create and open scope block
 % s.open()
 
 %% Layout & connect
-simlayout(sys.handle)                         % Connect and layout model
+sys.layout()                                  % Connect and layout model
 
 %% Simulate the system
 V_x = [0:0.1:10;linspace(5,20,101)]';         % Define input variables
 W_r = [0:0.1:10;linspace(5,23,101)/0.32]';
-simOut = sys.run('StopTime',10).Logs;            % Simulate the system
+simOut = sys.run('StopTime',10).Logs;         % Simulate the system
 
 figure
 hold on

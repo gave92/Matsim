@@ -1,15 +1,15 @@
-classdef %s < matsim.library.block
+classdef Merge < matsim.library.block
     properties
 
     end
     
     methods
-        function this = %s(varargin)
+        function this = Merge(varargin)
             p = inputParser;
             p.CaseSensitive = false;
+            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
-%s
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
@@ -18,18 +18,18 @@ classdef %s < matsim.library.block
                 inputs = {inputs};
             end
             
-%s
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
+            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
-            end
+            end            
             
-            this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
-            this.setInputs(inputs);
-
-%s
+            this = this@matsim.library.block('type','Merge','parent',parent,args{:});
+            
+            this.set('Inputs',mat2str(length(inputs)));
+            this.setInputs(inputs);                       
         end
     end
 end

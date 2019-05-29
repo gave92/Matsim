@@ -1,6 +1,8 @@
 function [] = test_base(sys)
 %TEST_BASE
 
+    import matsim.library.*
+
     in = Constant(0);
     
     binary_operator({},in,'ops','MinMax','Inputs','2');
