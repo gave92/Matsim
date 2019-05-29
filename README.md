@@ -50,6 +50,8 @@ Quick example to get started. For more check the [tests](https://github.com/gave
 #### 1. Create or load a simulink model
 
 ```matlab
+import matsim.library.*                       % Import Matsim package
+
 sys = simulation.load('my_model');            % Create or load a model named 'my_model'
 sys.setSolver('Ts',0.01,'DiscreteOnly',true)  % Set solver for the model
 sys.clear()                                   % Delete all blocks
@@ -73,7 +75,7 @@ s.open()
 #### 3. Connect and layout the model
 
 ```matlab
-sys.layout()                         % Connect and layout the model
+sys.layout()                                  % Connect and layout the model
 ```
 
 #### 4. Simulate the system

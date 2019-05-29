@@ -7,7 +7,6 @@ The automatic layout feature relies on [GraphViz](https://www.graphviz.org/), wh
 1. Install [GraphViz](https://www.graphviz.org/download/) and add it to the system PATH
 2. Download and extract the Matsim package (from [File Exhange](https://it.mathworks.com/matlabcentral/fileexchange/68436-matsim) or from [Github](https://github.com/gave92/Matsim/archive/master.zip))
 3. Add Matsim folder (and subfolders) to the Matlab path
-4. Import Matsim package with 'import matsim.library.*'
 
 ## Concepts
 
@@ -101,9 +100,11 @@ res <span class="token operator">=</span> <span class="token number">1</span> <s
 </table>
 
 ### Model layout
-With Matsim there's no need to specify the blocks positions on the simulink model! Matsim uses GraphViz to automatically generate a block layout. To position and connect the blocks already in the model, call `simlayout()`:
+With Matsim there's no need to specify the blocks positions on the simulink model! Matsim uses GraphViz to automatically generate a block layout. To position and connect the blocks already in the model, call `sys.layout()`:
 
 ```matlab
+import matsim.library.*
+
 sys = load_system('my_model');
 ...
 % Create blocks
@@ -144,5 +145,5 @@ s.open()
 #### 3. Connect and layout the model
 
 ```matlab
-sys.layout()                         % Connect and layout the model
+sys.layout()                                  % Connect and layout the model
 ```
