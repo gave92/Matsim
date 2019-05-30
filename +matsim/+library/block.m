@@ -40,6 +40,7 @@ classdef block < handle
                         this.simBlock = blk.handle;
                         this.simInputs = blk.inputs;
                         this.simSelectedOutport = blk.simSelectedOutport;
+                        this.setUserData('block',this);
                     else
                         % Block was a SIMULINK block
                         this.setUserData('block',this);

@@ -44,16 +44,25 @@ classdef Subsystem < matsim.library.block
                 this.setHeight();
             else
                 % Subsystem already exists, fill input and output ports
-                % inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport','LookUnderMasks','on','FollowLinks','on');
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
                 for i = 1:length(inports)
                     this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(i),'name'),'parent',this));
-                end 
-                % outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport','LookUnderMasks','on','FollowLinks','on');
+                    this.setInput(i,'value',{},'type','input');
+                end
+                enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
+                for i = 1:length(enables)
+                    this.simInport = concat(this.simInport,matsim.library.block('name',get(enables(i),'name'),'parent',this));
+                    this.setInput(i+length(inports),'value',{},'type','enable');
+                end
+                triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
+                for i = 1:length(triggers)
+                    this.simInport = concat(this.simInport,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
+                    this.setInput(i+length(inports)+length(enables),'value',{},'type','trigger');
+                end
                 outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
                 for i = 1:length(outports)
                     this.simOutport = concat(this.simOutport,matsim.library.block('name',get(outports(i),'name'),'parent',this));
-                end 
+                end
             end
         end
         
