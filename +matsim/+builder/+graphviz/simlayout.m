@@ -48,7 +48,7 @@ function [] = simlayout(varargin)
         ports = [h.Inport, h.Enable, h.Trigger];
         parents = matsim.builder.graphviz.getNeighbours(blocks(i));
         
-        for p = 1:size(parents,1)            
+        for p = 1:size(parents,1)
             onum = parents(p,2);
             inum = parents(p,3);
 

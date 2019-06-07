@@ -81,8 +81,11 @@ function writeDOTfile(obj)
             end
         end
         if isempty(conn), continue; end;
-        [~,s] = sort(conn(:,3));
+        ports = get(obj.blocks(i),'porthandles');
+        ports = [ports.Inport, ports.Enable, ports.Trigger];
+        s = matsim.utils.quicksort(conn,@(m,x,y) order_ports(m,x,y,ports));
         conn = conn(s,:);
+        conn(:,5) = 1:size(conn,1);
         for j=1:size(conn,1)
             fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
         end
@@ -90,6 +93,17 @@ function writeDOTfile(obj)
     
     fprintf(fid,'}');
     fclose(fid);
+end
+
+function comp = order_ports(m,x,y,ports)
+    ports_order = {'trigger','enable','inport'};
+    pt1 = ports(m(x,5));
+    pt2 = ports(m(y,5));
+    if strcmp(get(pt1,'porttype'),get(pt2,'porttype'))
+        comp = sign(get(pt1,'portnumber') - get(pt2,'portnumber'));
+    else
+        comp = sign(find(strcmp(ports_order,get(pt1,'porttype')),1) - find(strcmp(ports_order,get(pt2,'porttype')),1));
+    end
 end
 
 function callGraphViz(obj)
