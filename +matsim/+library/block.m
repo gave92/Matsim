@@ -25,7 +25,7 @@ classdef block < handle
             copy = p.Results.copy;
             strParent = matsim.helpers.getBlockPath(p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
-            
+
             if isempty(strParent)
                 strParent = gcs;
             end
@@ -68,7 +68,7 @@ classdef block < handle
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
             else
                 error('Invalid block name')
-            end
+            end            
         end
     
         function in = inputs(this)
