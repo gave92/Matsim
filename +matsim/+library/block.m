@@ -16,11 +16,13 @@ classdef block < handle
             p.KeepUnmatched = true;
             addParamValue(p,'type','',@ischar);
             addParamValue(p,'model','simulink',@ischar);
+            addParamValue(p,'copy',false,@islogical);
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
             type = p.Results.type;
             model = p.Results.model;
+            copy = p.Results.copy;
             strParent = matsim.helpers.getBlockPath(p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
@@ -40,12 +42,15 @@ classdef block < handle
                         this.simBlock = blk.handle;
                         this.simInputs = blk.inputs;
                         this.simSelectedOutport = blk.simSelectedOutport;
-                        this.setUserData('block',this);
+                        if ~copy
+                            this.setUserData('block',this);
+                        end
+                        this.setUserData('created',2)
                     else
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
-                    end
-                    this.setUserData('created',false)
+                        this.setUserData('created',1)
+                    end                    
                     this.simSelectedOutport = 1;
                     return;
                 end
@@ -56,14 +61,14 @@ classdef block < handle
             if ~isempty(match)
                 this.simBlock = add_block(match{1},strjoin({strParent,type},'/'),'MakeNameUnique','on',args{:});
                 this.setUserData('block',this)
-                this.setUserData('created',true)
+                this.setUserData('created',0)
                 this.simSelectedOutport = 1;
                 % Set position to far right
                 blockSizeRef = this.get('position');
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
             else
                 error('Invalid block name')
-            end            
+            end
         end
     
         function in = inputs(this)
@@ -81,7 +86,7 @@ classdef block < handle
             index = p.Results.index;
             name = p.Results.name;
             if ~isempty(index)
-                out = matsim.library.block('parent',matsim.helpers.getValidParent(this),'name',this.get('name'));
+                out = matsim.library.block('copy',true,'parent',matsim.helpers.getValidParent(this),'name',this.get('name'));
                 out.simSelectedOutport = index;
             else
                 index = this.simSelectedOutport;
@@ -163,7 +168,7 @@ classdef block < handle
             if index <= length(this.simInputs)
                 current = this.simInputs{index};
             else
-                current  = matsim.library.block_input({});
+                current = matsim.library.block_input({});
             end
             
             % Only update specified fields

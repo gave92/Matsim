@@ -31,7 +31,7 @@ classdef Subsystem < matsim.library.block
             
             this = this@matsim.library.block('type','SubSystem','parent',parent,args{:});
             
-            if this.getUserData('created')
+            if this.getUserData('created') == 0
                 % Subsystem was created, delete default content
                 Simulink.SubSystem.deleteContents(this.handle);
 
@@ -41,8 +41,8 @@ classdef Subsystem < matsim.library.block
                 end
                 
                 this.setInputs(inputs);
-                this.setHeight();
-            else
+                this.setHeight();            
+            elseif this.getUserData('created') == 1
                 % Subsystem already exists, fill input and output ports
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
                 for i = 1:length(inports)
@@ -58,6 +58,27 @@ classdef Subsystem < matsim.library.block
                 for i = 1:length(triggers)
                     this.simInport = concat(this.simInport,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
                     this.setInput(i+length(inports)+length(enables),'value',{},'type','trigger');
+                end
+                outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
+                for i = 1:length(outports)
+                    this.simOutport = concat(this.simOutport,matsim.library.block('name',get(outports(i),'name'),'parent',this));
+                end
+            elseif this.getUserData('created') == 2
+                inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
+                enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
+                triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
+                inport_idx = 1; enable_idx = 1; trigger_idx = 1;
+                for i = 1:length(this.inputs)
+                    if strcmp(this.inputs{i}.type,'input')
+                        this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(inport_idx),'name'),'parent',this));
+                        inport_idx = inport_idx+1;
+                    elseif strcmp(this.inputs{i}.type,'enable')
+                        this.simInport = concat(this.simInport,matsim.library.block('name',get(enables(enable_idx),'name'),'parent',this));
+                        enable_idx = enable_idx+1;
+                    elseif strcmp(this.inputs{i}.type,'trigger')
+                        this.simInport = concat(this.simInport,matsim.library.block('name',get(triggers(trigger_idx),'name'),'parent',this));
+                        trigger_idx = trigger_idx+1;
+                    end                    
                 end
                 outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
                 for i = 1:length(outports)
