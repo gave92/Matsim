@@ -52,7 +52,7 @@ function match = findBlock(sys,varargin)
             args = [args,'name',escape(block_name)];
         end        
     end
-    args = [other, args];
+    args = [args,other];
     
     % Find match in system    
     match = find_system(sys,args{:});

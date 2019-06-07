@@ -10,7 +10,7 @@ function [adjMatrix, blocks] = sim2adj(sys)
     end
     
     for i=1:length(blocks)
-        neighbours = matsim.builder.graphviz.getNeighbours(blocks(i));
+        neighbours = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
         for j=1:size(neighbours,1)
             if neighbours(j,1) == -1, continue, end;
             col = str2double(get(neighbours(j,1),'Tag'));

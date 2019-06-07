@@ -46,7 +46,7 @@ function [] = simlayout(varargin)
         % Create lines
         h = get(blocks(i),'PortHandles');
         ports = [h.Inport, h.Enable, h.Trigger];
-        parents = matsim.builder.graphviz.getNeighbours(blocks(i));
+        parents = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
         
         for p = 1:size(parents,1)
             onum = parents(p,2);
@@ -62,7 +62,7 @@ function [] = simlayout(varargin)
                 delete_line(line)
             end
 
-            if parents(p,1) ~= -1
+            if parents(p,1) ~= -1 && onum ~= -1 % onum = -1 is implicit connection (goto->from)
                 h1 = get(parents(p,1),'PortHandles');
                 add_line(get(blocks(i),'parent'),h1.Outport(onum),ports(port_num==inum),'autorouting','on');
             end

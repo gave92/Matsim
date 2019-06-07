@@ -1,4 +1,4 @@
-function neighbours = getNeighbours(root)
+function neighbours = getNeighbours(sys,root)
 %GETNEIGHBOURS Find ancestors of block
 
     neighbours = [];
@@ -34,6 +34,17 @@ function neighbours = getNeighbours(root)
             neighbours = [neighbours; [get(line,'SrcBlockHandle'), get(get(line,'SrcPortHandle'),'PortNumber'), get(ports(i),'PortNumber')]];
         end
     end    
+    
+    % Create edges between gotos and froms so the final graph will place
+    % them closer to each other
+    if strcmp(get(root,'blocktype'),'From')
+        GotoTag = get(root, 'Gototag');
+        Gotos = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','Goto','Gototag',GotoTag);
+        for h = 1:length(Gotos)
+            in = [get(Gotos(i),'handle'), -1, 1]; % -1 is implicit connection
+            neighbours = [neighbours; in];
+        end
+    end
     
     if ~isempty(neighbours)
         % [~,u] = unique(neighbours(:,1),'stable');

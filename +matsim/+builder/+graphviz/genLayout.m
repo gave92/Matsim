@@ -87,7 +87,11 @@ function writeDOTfile(obj)
         conn = conn(s,:);
         conn(:,5) = 1:size(conn,1);
         for j=1:size(conn,1)
-            fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
+            if conn(j,4) == -1 % conn(j,4) = -1 is implicit connection (goto->from)
+                fprintf(fid,'%d%s%d;\n',conn(j,2),edgetxt,i);
+            else
+                fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
+            end            
         end
     end       
     
