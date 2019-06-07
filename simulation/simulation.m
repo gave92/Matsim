@@ -8,12 +8,14 @@ classdef simulation < handle
         function sim = new(name)
             sys = new_system(name,'ErrorIfShadowed');
             sim = simulation(sys);
+            set_param(0,'CurrentSystem',sys)
         end
         
         function sim = load(name)
             try
                 sys = load_system(name);
                 sim = simulation(sys);
+                set_param(0,'CurrentSystem',sys)
             catch
                 sim = simulation.new(name);
             end

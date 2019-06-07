@@ -7,6 +7,9 @@ function match = findBlock(sys,varargin)
 %       (optional) BlockType, name of block
 %       (optional) SearchDepth
 
+    % Backup current system
+    current_system = gcs;
+
     p = inputParser;
     p.CaseSensitive = false;
     % p.PartialMatching = false;
@@ -53,6 +56,9 @@ function match = findBlock(sys,varargin)
     
     % Find match in system    
     match = find_system(sys,args{:});
+    
+    % Restore current system
+    set_param(0,'CurrentSystem',current_system)
 end
 
 function esc = escape(query)
