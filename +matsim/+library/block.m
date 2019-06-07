@@ -21,7 +21,7 @@ classdef block < handle
             
             type = p.Results.type;
             model = p.Results.model;
-            strParent = matsim.helpers.getBlockPath(p.Results.parent);            
+            strParent = matsim.helpers.getBlockPath(p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
             if isempty(strParent)
@@ -32,7 +32,7 @@ classdef block < handle
                 % Find existing block
                 name = p.Unmatched.name;
                 match = matsim.helpers.findBlock(strParent,'BlockName',name,'SearchDepth',1);
-                if ~isempty(match)
+                if ~isempty(match)                    
                     this.simBlock = get_param(match{1},'handle');
                     blk = this.getUserData('block');
                     if ~isempty(blk)
@@ -63,7 +63,7 @@ classdef block < handle
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
             else
                 error('Invalid block name')
-            end
+            end            
         end
     
         function in = inputs(this)
