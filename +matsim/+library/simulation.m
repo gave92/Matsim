@@ -163,10 +163,10 @@ classdef simulation < handle
                 set(ph.Outport(port),'DataLogging','on');
                 set(ph.Outport(port),'DataLoggingNameMode','Custom');
                 set(ph.Outport(port),'DataLoggingName',name);
-            elseif ~isempty(get(get(ph.Outport(port),'line'),'name'))
+            elseif ~isempty(get(ph.Outport(port),'SignalNameFromLabel'))
                 set(ph.Outport(port),'DataLogging','on');
                 set(ph.Outport(port),'DataLoggingNameMode','SignalName');
-                set(ph.Outport(port),'DataLoggingName',get(get(ph.Outport(port),'line'),'name'));
+                set(ph.Outport(port),'DataLoggingName',get(ph.Outport(port),'SignalNameFromLabel'));
             elseif ~isempty(get(ph.Outport(port),'PropagatedSignals'))
                 set(ph.Outport(port),'DataLogging','on');
                 set(ph.Outport(port),'DataLoggingNameMode','Custom');

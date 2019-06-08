@@ -15,10 +15,11 @@ Wr = FromWorkspace('W_r');
 Rr = Constant(0.32);
 
 slip = 1 - Vx./(Wr.*Rr);                      % Evaluate complex mathematical expression
-sys.log(slip,'name','slip')                   % Log the output of the "slip" block
+slip.outport(1,'name','slip');                % Set signal name and line label
+sys.log(slip)                                 % Log the output of the "slip" block
 
 s = Scope(slip);                              % Create and open scope block
-% s.open()
+s.open()
 
 %% Layout & connect
 sys.layout()                                  % Connect and layout model

@@ -94,7 +94,7 @@ classdef block < handle
             end
             if ~any(strcmp(p.UsingDefaults,'name'))
                 ph = get(this,'porthandles');
-                set(get(ph.Outport(index),'line'),'name',name);
+                set(ph.Outport(index),'SignalNameFromLabel',name);
             end
         end
         
