@@ -10,12 +10,12 @@ classdef Lookup1D < matsim.library.unary_operator
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
             addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addParamValue(p,'table','',@(x) isnumeric(x) || ischar(x));
+            addParamValue(p,'Table','',@(x) isnumeric(x) || ischar(x));
             addParamValue(p,'breakpoints','',@(x) isnumeric(x) || ischar(x));
             parse(p,varargin{:})
             
             b1 = p.Results.b1;
-            table = p.Results.table;
+            Table = p.Results.Table;
             breakpoints = p.Results.breakpoints;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
@@ -23,7 +23,7 @@ classdef Lookup1D < matsim.library.unary_operator
             this.set('ExtrapMethod','Clip')
             this.set('UseLastTableValue','on')
 
-            this.set('Table',table)
+            this.set('Table',Table)
             this.set('BreakpointsForDimension1',breakpoints)
         end
     end

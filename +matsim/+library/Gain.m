@@ -10,15 +10,17 @@ classdef Gain < matsim.library.unary_operator
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
             addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addParamValue(p,'value',{},@(x) ischar(x) || isnumeric(x));
+            addParamValue(p,'Gain',{},@(x) ischar(x) || isnumeric(x));
             parse(p,varargin{:})
             
             b1 = p.Results.b1;
-            value = p.Results.value;
+            Gain = p.Results.Gain;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
             this = this@matsim.library.unary_operator(b1,'ops','Gain',args{:});
-            this.set('Gain',value)
+            if ~isempty(Gain)
+                this.set('Gain',Gain)
+            end
         end
     end
     

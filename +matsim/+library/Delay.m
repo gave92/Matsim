@@ -10,14 +10,14 @@ classdef Delay < matsim.library.unary_operator
             % p.PartialMatching = false;
             p.KeepUnmatched = true;            
             addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addOptional(p,'DelayLength',1,@isnumeric);
-            addParamValue(p,'Ts',-1,@isnumeric);
+            addParamValue(p,'DelayLength',1,@isnumeric);
+            addParamValue(p,'SampleTime',-1,@isnumeric);
             addParamValue(p,'x0',0,@isnumeric);
             parse(p,varargin{:})
             
             b1 = p.Results.b1;
             DelayLength = p.Results.DelayLength;
-            Ts = p.Results.Ts;
+            SampleTime = p.Results.SampleTime;
             x0 = p.Results.x0;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
@@ -28,7 +28,7 @@ classdef Delay < matsim.library.unary_operator
             end
             
             this = this@matsim.library.unary_operator(b1,'ops',dl,args{:});            
-            this.set('SampleTime',mat2str(Ts))
+            this.set('SampleTime',mat2str(SampleTime))
             if matsim.utils.getversion() >= 2014
                 this.set('InitialCondition',mat2str(x0))
             else

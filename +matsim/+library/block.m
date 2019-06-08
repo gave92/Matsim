@@ -43,7 +43,9 @@ classdef block < handle
                         this.simInputs = blk.inputs;
                         this.simSelectedOutport = blk.simSelectedOutport;
                         if ~copy
+                            this.setUserData('block',{});
                             this.setUserData('block',this);
+                            % this = blk;
                         end
                         this.setUserData('created',2)
                     else

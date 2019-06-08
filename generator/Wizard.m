@@ -50,6 +50,7 @@ function [] = search(src,~,blocks,hlb)
         set(hlb,'String',{blocks.name})
     else
         blks = blocks(contains(lower({blocks.name}),lower(value)));
+        set(hlb,'Value',1)
         set(hlb,'String',{blks.name})
     end
 end

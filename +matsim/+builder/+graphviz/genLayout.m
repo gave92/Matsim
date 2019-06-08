@@ -37,7 +37,7 @@ function writeDOTfile(obj)
 % Write the adjacency matrix into a dot file that graphViz can
 % understand. 
     fid = fopen('adjmat.dot','w');
-    fprintf(fid,'digraph G {\nordering=out;\ncenter=1;\nsize="10,10";\nrankdir="LR";\n');
+    fprintf(fid,'digraph G {\ncenter=1;\nsize="10,10";\nrankdir="LR";\n');
     fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
     n = size(obj.adjMatrix,1);
     for i=1:n

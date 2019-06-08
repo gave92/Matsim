@@ -9,18 +9,18 @@ classdef FromWorkspace < matsim.library.block
             p.CaseSensitive = false;
             % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addRequired(p,'varname',@(x) ischar(x) || isnumeric(x));
+            addRequired(p,'VariableName',@(x) ischar(x) || isnumeric(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
-            varname = p.Results.varname;
+            VariableName = p.Results.VariableName;
             parent = p.Results.parent;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
             this = this@matsim.library.block('type','From Workspace','parent',parent,args{:});
             
-            if ~isempty(varname)
-                this.set('VariableName',varname)
+            if ~isempty(VariableName)
+                this.set('VariableName',VariableName)
             end
         end               
     end
