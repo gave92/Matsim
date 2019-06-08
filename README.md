@@ -66,7 +66,7 @@ Wr = FromWorkspace('W_r');
 Rr = Constant(0.32);
 
 slip = 1 - Vx./(Wr.*Rr);                      % Evaluate complex mathematical expression
-sys.log(slip,'slip')                          % Log the output of the "slip" block
+sys.log(slip,'name','slip')                   % Log the output of the "slip" block
 
 s = Scope(slip);                              % Create and open scope block
 s.open()
@@ -83,13 +83,7 @@ sys.layout()                                  % Connect and layout the model
 ```matlab
 V_x = [0:0.1:10;linspace(5,20,101)]';         % Define input variables
 W_r = [0:0.1:10;linspace(5,23,101)/0.32]';
-simOut = sys.run('tstop',10).Logs;            % Simulate the system
+simOut = sys.run('StopTime',10).Logs;         % Simulate the system
 ```
 
-## Known issues
-The first time you execute a script you might get this error:
-> Attempt to modify 'simulink' which is a locked (read-only) library
-
-Keep calm and execute the script again.
-
-© Copyright 2017 - 2018 by Marco Gavelli
+© Copyright 2017 - 2019 by Marco Gavelli
