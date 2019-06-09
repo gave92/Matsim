@@ -1,4 +1,10 @@
 classdef %s < matsim.library.block
+%%%s Creates a simulink %s block.
+%% Example:
+%%   blk = %s('Name','my%s');
+%% 
+%%   See also BLOCK.
+
     properties
 
     end

@@ -1,4 +1,13 @@
 classdef %s < matsim.library.block
+%%%s Creates a simulink %s block.
+%% Example:
+%%   input1 = Constant(1);
+%%   input2 = Constant(2);
+%%   input3 = FromWorkspace('var3');
+%%   blk = %s({input1,input2,input3},'Name','my%s');
+%% 
+%%   See also BLOCK.
+
     properties
 
     end
@@ -27,7 +36,9 @@ classdef %s < matsim.library.block
             end
             
             this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
-            this.setInputs(inputs);
+            if this.getUserData('created') == 0
+                this.setInputs(inputs);
+            end
 
 %s
         end

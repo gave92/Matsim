@@ -1,4 +1,12 @@
 classdef %s < matsim.library.binary_operator
+%%%s Creates a simulink %s block.
+%% Example:
+%%   input1 = Constant('var1');
+%%   input2 = Constant(1);
+%%   blk = %s(input1,input2,'Name','my%s');
+%% 
+%%   See also BINARY_OPERATOR.
+
     properties
         
     end

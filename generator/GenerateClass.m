@@ -92,16 +92,16 @@ function [] = generate(~,~,block,params,hclass,selected_inputs)
     switch num_inputs
         case 1
             template = fileread('source.txt');
-            template = sprintf(template,name,name,paradd,parres,'simulink',block.name,parset);
+            template = sprintf(template,name,upper(name),name,name,name,name,paradd,parres,'simulink',block.name,parset);
         case 2
             template = fileread('unary.txt');
-            template = sprintf(template,name,name,paradd,parres,block.name,parset);
+            template = sprintf(template,name,upper(name),name,name,name,name,paradd,parres,block.name,parset);
         case 3
             template = fileread('binary.txt');
-            template = sprintf(template,name,name,paradd,parres,block.name,parset);
+            template = sprintf(template,name,upper(name),name,name,name,name,paradd,parres,block.name,parset);
         case 4
             template = fileread('multiple.txt');
-            template = sprintf(template,name,name,paradd,parres,'simulink',block.name,parset);
+            template = sprintf(template,name,upper(name),name,name,name,name,paradd,parres,'simulink',block.name,parset);
     end
     set(hclass,'String',template)
     jhEdit = findjobj(hclass);

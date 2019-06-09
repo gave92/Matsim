@@ -1,4 +1,6 @@
 classdef block < handle
+%BLOCK Creates a simulink block.
+
     properties (Access = private)
         % Handle to simulink block
         simBlock

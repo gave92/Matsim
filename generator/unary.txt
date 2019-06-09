@@ -1,4 +1,11 @@
 classdef %s < matsim.library.unary_operator
+%%%s Creates a simulink %s block.
+%% Example:
+%%   input = Constant('var1');
+%%   blk = %s(input,'Name','my%s');
+%% 
+%%   See also UNARY_OPERATOR.
+
     properties
         
     end
