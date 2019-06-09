@@ -2,6 +2,10 @@ classdef Subsystem < matsim.library.block
     properties (Access = private)
         % Handle to input ports
         simInport
+        % Handle to enable ports
+        simEnable
+        % Handle to trigger ports
+        simTrigger
         % Handle to output ports
         simOutport
     end
@@ -42,48 +46,33 @@ classdef Subsystem < matsim.library.block
                 
                 this.setInputs(inputs);
                 this.setHeight();            
-            elseif this.getUserData('created') == 1
+            else
                 % Subsystem already exists, fill input and output ports
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
+                enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
+                triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
                 for i = 1:length(inports)
                     this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(i),'name'),'parent',this));
-                    this.setInput(i,'value',{},'type','input');
+                    if this.getUserData('created') == 1
+                        this.setInput(i,'value',{},'type','input');
+                    end
                 end
-                enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
                 for i = 1:length(enables)
-                    this.simInport = concat(this.simInport,matsim.library.block('name',get(enables(i),'name'),'parent',this));
-                    this.setInput(i+length(inports),'value',{},'type','enable');
+                    this.simEnable = concat(this.simEnable,matsim.library.block('name',get(enables(i),'name'),'parent',this));
+                    if this.getUserData('created') == 1
+                        this.setInput(i,'value',{},'type','enable');
+                    end
                 end
-                triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
                 for i = 1:length(triggers)
-                    this.simInport = concat(this.simInport,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
-                    this.setInput(i+length(inports)+length(enables),'value',{},'type','trigger');
+                    this.simTrigger = concat(this.simTrigger,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
+                    if this.getUserData('created') == 1
+                        this.setInput(i,'value',{},'type','trigger');
+                    end
                 end
                 outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
                 for i = 1:length(outports)
                     this.simOutport = concat(this.simOutport,matsim.library.block('name',get(outports(i),'name'),'parent',this));
-                end
-            elseif this.getUserData('created') == 2
-                inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
-                enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
-                triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
-                inport_idx = 1; enable_idx = 1; trigger_idx = 1;
-                for i = 1:length(this.inputs)
-                    if strcmp(this.inputs{i}.type,'input')
-                        this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(inport_idx),'name'),'parent',this));
-                        inport_idx = inport_idx+1;
-                    elseif strcmp(this.inputs{i}.type,'enable')
-                        this.simInport = concat(this.simInport,matsim.library.block('name',get(enables(enable_idx),'name'),'parent',this));
-                        enable_idx = enable_idx+1;
-                    elseif strcmp(this.inputs{i}.type,'trigger')
-                        this.simInport = concat(this.simInport,matsim.library.block('name',get(triggers(trigger_idx),'name'),'parent',this));
-                        trigger_idx = trigger_idx+1;
-                    end                    
-                end
-                outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
-                for i = 1:length(outports)
-                    this.simOutport = concat(this.simOutport,matsim.library.block('name',get(outports(i),'name'),'parent',this));
-                end
+                end                
             end
         end
         
@@ -97,9 +86,14 @@ classdef Subsystem < matsim.library.block
             
             input = p.Results.input;
             args = matsim.helpers.unpack(p.Unmatched);
-            enable = matsim.library.block('type','Enable','parent',this,args{:});
-            this.setInput(this.inlen+1,'value',input,'type','enable');
-            this.simInport = concat(this.simInport,enable);
+            
+            if isempty(this.simEnable)
+                enable = matsim.library.block('type','Enable','parent',this,args{:});
+                this.setInput(length(this.simEnable)+1,'value',input,'type','enable');
+                this.simEnable = concat(this.simEnable,enable);
+            else
+                this.setInput(length(this.simEnable),'value',input,'type','enable');
+            end
         end
         
         function trigger = trigger(this,varargin)
@@ -112,9 +106,14 @@ classdef Subsystem < matsim.library.block
             
             input = p.Results.input;
             args = matsim.helpers.unpack(p.Unmatched);
-            trigger = matsim.library.block('type','Trigger','parent',this,args{:});
-            this.setInput(this.inlen+1,'value',input,'type','trigger');
-            this.simInport = concat(this.simInport,trigger);
+            
+            if isempty(this.simTrigger)
+                trigger = matsim.library.block('type','Trigger','parent',this,args{:});
+                this.setInput(length(this.simTrigger)+1,'value',input,'type','trigger');
+                this.simTrigger = concat(this.simTrigger,trigger);
+            else
+                this.setInput(length(this.simTrigger),'value',input,'type','trigger');
+            end
         end
         
         function in = in(this,index,varargin)
@@ -130,7 +129,7 @@ classdef Subsystem < matsim.library.block
             input = p.Results.input;
             args = matsim.helpers.unpack(p.Unmatched);
             
-            if index <= this.inlen
+            if index <= length(this.simInport)
                 % Return inport block
                 in = this.simInport(index);
                 set(in.handle,args{:});
@@ -144,9 +143,6 @@ classdef Subsystem < matsim.library.block
                 this.setInput(index,'value',input);
                 this.setHeight();
             end
-        end
-        function inlen = inlen(this)
-            inlen = length(this.simInport);
         end
         
         function out = out(this,index,varargin)
@@ -162,7 +158,7 @@ classdef Subsystem < matsim.library.block
             input = p.Results.input;
             args = matsim.helpers.unpack(p.Unmatched);
 
-            if index <= this.outlen
+            if index <= length(this.simOutport)
                 % Return outport block
                 out = this.simOutport(index);
                 set(out.handle,args{:});
@@ -177,13 +173,10 @@ classdef Subsystem < matsim.library.block
                 this.setHeight();
             end
         end
-        function outlen = outlen(this)
-            outlen = length(this.simOutport);
-        end
         
         function [] = setHeight(this)
             pos = this.get('position');
-            pos(4) = pos(2)+42*max([1,this.inlen,this.outlen]);
+            pos(4) = pos(2)+42*max([1,length(this.simInport),length(this.simOutport)]);
             this.set('position',pos);
         end
     end

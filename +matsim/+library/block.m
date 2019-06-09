@@ -52,7 +52,8 @@ classdef block < handle
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
                         this.setUserData('created',1)
-                    end                    
+                        this.simInputs = struct('input',{{}},'enable',{{}},'trigger',{{}});
+                    end
                     this.simSelectedOutport = 1;
                     return;
                 end
@@ -65,6 +66,7 @@ classdef block < handle
                 this.setUserData('block',this)
                 this.setUserData('created',0)
                 this.simSelectedOutport = 1;
+                this.simInputs = struct('input',{{}},'enable',{{}},'trigger',{{}});
                 % Set position to far right
                 blockSizeRef = this.get('position');
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
@@ -72,7 +74,7 @@ classdef block < handle
                 error('Invalid block name')
             end            
         end
-    
+
         function in = inputs(this)
             in = this.simInputs;
         end
@@ -149,10 +151,13 @@ classdef block < handle
             value = p.Results.value;
             parent = matsim.helpers.getValidParent(this);
             if ~isempty(value)
-                this.simInputs = matsim.helpers.validateInputs(value,parent);
-                if ~iscell(this.simInputs)
-                    this.simInputs = {this.simInputs};
+                validatedInputs = matsim.helpers.validateInputs(value,parent);
+                if ~iscell(validatedInputs)
+                    validatedInputs = {validatedInputs};
                 end
+                this.simInputs.input = validatedInputs(cellfun(@(x) strcmp(x.type,'input'),validatedInputs));
+                this.simInputs.enable = validatedInputs(cellfun(@(x) strcmp(x.type,'enable'),validatedInputs));
+                this.simInputs.trigger = validatedInputs(cellfun(@(x) strcmp(x.type,'trigger'),validatedInputs));
             end
         end
         function [] = setInput(this,varargin)
@@ -167,27 +172,22 @@ classdef block < handle
             parse(p,varargin{:})
             
             index = p.Results.index;
-            if index <= length(this.simInputs)
-                current = this.simInputs{index};
+            srcport = p.Results.srcport;
+            type = p.Results.type;
+            
+            if index <= length(this.simInputs.(type))
+                current = this.simInputs.(type){index};
             else
                 current = matsim.library.block_input({});
             end
             
-            % Only update specified fields
-            if ~any(strcmp(p.UsingDefaults,'value'))
-                parent = matsim.helpers.getValidParent(this);
-                new_input = matsim.helpers.validateInputs(p.Results.value,parent);
-                current.value = new_input.value;
-                current.srcport = new_input.srcport;
-            end
-            if ~any(strcmp(p.UsingDefaults,'srcport'))
-                current.srcport = p.Results.srcport;
-            end
-            if ~any(strcmp(p.UsingDefaults,'type'))
-                current.type = p.Results.type;
-            end
+            parent = matsim.helpers.getValidParent(this);
+            new_input = matsim.helpers.validateInputs(p.Results.value,parent);
+            current.value = new_input.value;
+            current.srcport = srcport;
+            current.type = type;
 
-            this.simInputs{index} = current;
+            this.simInputs.(type){index} = current;
         end
         
         function setMaskParam(this,name,value)

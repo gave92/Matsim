@@ -7,12 +7,10 @@ function neighbours = getNeighbours(sys,root)
     if ~isempty(data) && isfield(data,'block') && ~isempty(data.block)
         inputs = data.block.inputs;
         if ~isempty(inputs)
-            if ~iscell(inputs), inputs = {inputs}; end
-            
             % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers]
-            in = inputs(cellfun(@(x) isa(x,'matsim.library.block_input') && strcmp(x.type,'input'),inputs));
-            en = inputs(cellfun(@(x) isa(x,'matsim.library.block_input') && strcmp(x.type,'enable'),inputs));
-            tr = inputs(cellfun(@(x) isa(x,'matsim.library.block_input') && strcmp(x.type,'trigger'),inputs));
+            in = inputs.input(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.input));
+            en = inputs.enable(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.enable));
+            tr = inputs.trigger(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.trigger));
             inputs = [in,en,tr];
             
             for i=1:length(inputs)
