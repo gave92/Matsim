@@ -52,7 +52,8 @@ classdef block < handle
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
                         this.setUserData('created',1)
-                        this.simInputs = struct('input',{{}},'enable',{{}},'trigger',{{}});
+                        this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}});
+                        this.setInputsFromBlock();
                     end
                     this.simSelectedOutport = 1;
                     return;
@@ -66,7 +67,7 @@ classdef block < handle
                 this.setUserData('block',this)
                 this.setUserData('created',0)
                 this.simSelectedOutport = 1;
-                this.simInputs = struct('input',{{}},'enable',{{}},'trigger',{{}});
+                this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}});
                 % Set position to far right
                 blockSizeRef = this.get('position');
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
@@ -137,6 +138,19 @@ classdef block < handle
                 warning(ex.message)
             end
         end
+        function [] = setInputsFromBlock(this)
+            ports = get(this,'porthandles');
+            for i=1:length(ports.Inport)
+                line = get(ports.Inport(i),'line');
+                if (line == -1 || get(line,'SrcBlockHandle') == -1)
+                    this.setInput(i,'value',{},'type','inport');
+                else                    
+                    src_block = matsim.library.block('name',get(get(line,'SrcBlockHandle'),'name'),'parent',matsim.helpers.getValidParent(this));
+                    src_port = get(get(line,'SrcPortHandle'),'PortNumber');
+                    this.setInput(i,'value',src_block,'srcport',src_port,'type','inport');
+                end
+            end
+        end
     end
     
     methods (Access = protected)
@@ -155,7 +169,7 @@ classdef block < handle
                 if ~iscell(validatedInputs)
                     validatedInputs = {validatedInputs};
                 end
-                this.simInputs.input = validatedInputs(cellfun(@(x) strcmp(x.type,'input'),validatedInputs));
+                this.simInputs.inport = validatedInputs(cellfun(@(x) strcmp(x.type,'inport'),validatedInputs));
                 this.simInputs.enable = validatedInputs(cellfun(@(x) strcmp(x.type,'enable'),validatedInputs));
                 this.simInputs.trigger = validatedInputs(cellfun(@(x) strcmp(x.type,'trigger'),validatedInputs));
             end
@@ -168,7 +182,7 @@ classdef block < handle
             addRequired(p,'index',@isnumeric);
             addParamValue(p,'value',{});
             addParamValue(p,'srcport',1,@isnumeric);
-            addParamValue(p,'type','input',@ischar);
+            addParamValue(p,'type','inport',@ischar);
             parse(p,varargin{:})
             
             index = p.Results.index;

@@ -32,7 +32,9 @@ classdef REF < matsim.library.block
             
             this = this@matsim.library.block('type',type,'parent',parent,args{:});
             this.set('ShowName','off');
-            this.setInputs(inputs);
+            if this.getUserData('created') == 0
+                this.setInputs(inputs);
+            end
             
             if isnumeric(tag)
                 tag = ['ref', mat2str(tag)];

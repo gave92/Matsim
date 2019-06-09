@@ -101,7 +101,7 @@ classdef simulation < handle
         end
         
         function [] = export(this)
-            blocks = find_system(this.handle,'type','matsim.library.block');
+            blocks = find_system(this.handle,'type','block');
             for i=1:length(blocks)
                 data = get(blocks(i),'UserData');
                 data.block = [];

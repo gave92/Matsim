@@ -16,7 +16,7 @@ classdef block_input
             p.KeepUnmatched = true;
             addRequired(p,'value',@(x) isempty(x) || isa(x,'matsim.library.block'));
             addOptional(p,'srcport',1,@isnumeric);
-            addOptional(p,'type','input',@ischar);
+            addOptional(p,'type','inport',@ischar);
             parse(p,varargin{:})
             
             this.value = p.Results.value;

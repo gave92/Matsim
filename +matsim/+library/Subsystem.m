@@ -53,21 +53,12 @@ classdef Subsystem < matsim.library.block
                 triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
                 for i = 1:length(inports)
                     this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(i),'name'),'parent',this));
-                    if this.getUserData('created') == 1
-                        this.setInput(i,'value',{},'type','input');
-                    end
                 end
                 for i = 1:length(enables)
                     this.simEnable = concat(this.simEnable,matsim.library.block('name',get(enables(i),'name'),'parent',this));
-                    if this.getUserData('created') == 1
-                        this.setInput(i,'value',{},'type','enable');
-                    end
                 end
                 for i = 1:length(triggers)
                     this.simTrigger = concat(this.simTrigger,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
-                    if this.getUserData('created') == 1
-                        this.setInput(i,'value',{},'type','trigger');
-                    end
                 end
                 outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
                 for i = 1:length(outports)

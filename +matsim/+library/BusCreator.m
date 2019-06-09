@@ -27,9 +27,11 @@ classdef BusCreator < matsim.library.block
             end
             
             this = this@matsim.library.block('type','Bus Creator','parent',parent,args{:});
-            
-            this.set('Inputs',mat2str(length(inputs)))            
-            this.setInputs(inputs);
+                        
+            if this.getUserData('created') == 0
+                this.set('Inputs',mat2str(length(inputs)))
+                this.setInputs(inputs);
+            end
         end
     end
 end

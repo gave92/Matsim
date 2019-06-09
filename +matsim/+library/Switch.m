@@ -23,9 +23,11 @@ classdef Switch < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','Switch','parent',parent,args{:});
-            this.set('Criteria','u2 ~= 0')            
-            this.setInputs(inputs);
+            this = this@matsim.library.block('type','Switch','parent',parent,args{:});            
+            if this.getUserData('created') == 0
+                this.set('Criteria','u2 ~= 0')
+                this.setInputs(inputs);
+            end
         end
     end
 end

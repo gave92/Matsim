@@ -26,16 +26,18 @@ classdef Scope < matsim.library.block
             end
             
             this = this@matsim.library.block('type','Scope','parent',parent,args{:});
-            
-            if matsim.utils.getversion() >= 2015
-                scope_configuration = this.get('ScopeConfiguration');
-                scope_configuration.NumInputPorts = mat2str(length(inputs));
-                scope_configuration.LayoutDimensions = [length(inputs), 1]; % Rows, columns
-            else
-                this.set('NumInputPorts',mat2str(length(inputs)));
-            end
 
-            this.setInputs(inputs);
+            if this.getUserData('created') == 0
+                if matsim.utils.getversion() >= 2015
+                    scope_configuration = this.get('ScopeConfiguration');
+                    scope_configuration.NumInputPorts = mat2str(length(inputs));
+                    scope_configuration.LayoutDimensions = [length(inputs), 1]; % Rows, columns
+                else
+                    this.set('NumInputPorts',mat2str(length(inputs)));
+                end
+
+                this.setInputs(inputs);
+            end
         end
         
         function [] = open(this)

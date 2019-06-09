@@ -29,7 +29,9 @@ classdef binary_operator < matsim.library.block
             end
                         
             this = this@matsim.library.block('type',ops,'parent',parent,args{:});
-            this.setInputs(inputs);
+            if this.getUserData('created') == 0
+                this.setInputs(inputs);
+            end
         end
     end
 end

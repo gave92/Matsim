@@ -8,7 +8,7 @@ function neighbours = getNeighbours(sys,root)
         inputs = data.block.inputs;
         if ~isempty(inputs)
             % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers]
-            in = inputs.input(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.input));
+            in = inputs.inport(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.inport));
             en = inputs.enable(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.enable));
             tr = inputs.trigger(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.trigger));
             inputs = [in,en,tr];
@@ -38,7 +38,7 @@ function neighbours = getNeighbours(sys,root)
     if strcmp(get(root,'blocktype'),'From')
         GotoTag = get(root, 'Gototag');
         Gotos = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','Goto','Gototag',GotoTag);
-        for h = 1:length(Gotos)
+        for i = 1:length(Gotos)
             in = [get(Gotos(i),'handle'), -1, 1]; % -1 is implicit connection
             neighbours = [neighbours; in];
         end
