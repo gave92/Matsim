@@ -1,4 +1,23 @@
 classdef Lookup2D < matsim.library.binary_operator
+%LOOKUP2D Creates a simulink 2-D Lookup Table block.
+% Syntax:
+%   blk = Lookup2D(IN1,IN2,'Table',TABLE,'breakpoints1',BREAKPOINTS1,'breakpoints2',BREAKPOINTS2);
+%     The blocks specified as IN1 and IN2 will be connected to the input
+%     ports of this block.
+%     TABLE is a numeric array or string (variable name) to be set as table
+%     data.
+%     BREAKPOINTS1 is a numeric array or string (variable name) to be set as
+%     table x-data.
+%     BREAKPOINTS2 is a numeric array or string (variable name) to be set as
+%     table y-data.
+%
+% Example:
+%   in1 = FromWorkspace('var1');
+%   in2 = FromWorkspace('var2');
+%   blk = Lookup2D(in1,in2,'Table',rand(3,4),'breakpoints1',[1:3],'breakpoints2',[1:4]);
+% 
+%   See also BINARY_OPERATOR.
+
     properties
         
     end

@@ -1,6 +1,21 @@
 classdef block < handle
-%BLOCK Creates a simulink block.
-
+%BLOCK Creates any simulink block.
+% Syntax:
+%   blk = block('model',MODEL,'type',TYPE);
+%     MODEL is the name of the library containing the desired block.
+%     TYPE is the name ("BlockName") of the block to be created.
+%   blk = block('model',MODEL,'type',TYPE,ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% block Methods:
+%    setInputs - set all block inputs
+%    setInput - set a specific block inport input
+%    outport - "selects" a block outport or sets its name
+% 
+% Example:
+%   blk = block('model','simulink','type','Gain','ShowName','off','ForegroundColor','red');
+    
     properties (Access = private)
         % Handle to simulink block
         simBlock
@@ -82,6 +97,22 @@ classdef block < handle
             in = this.simInputs;
         end
         function out = outport(this,varargin)
+            %OUTPORT "Selects" a block outport or sets its name.
+            % Syntax:
+            %   out = blk.outport(INDEX)
+            %     Selects INDEX output port of the block. You can use this
+            %     to specify which outport of the block to use as input for
+            %     another block.
+            %   blk.outport(INDEX,'name',SIGNAME)
+            %     Set SIGNAME as name of the INDEX outport. Also sets the
+            %     label of the outgoing line.
+            % 
+            % Example:
+            %   blk = Demux('Outputs',[1 1]);
+            %   blk.outport(1,'name','OUT1');
+            %   Terminator(blk.outport(1));
+            %   sc = Scope(blk.outport(2));
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -157,6 +188,24 @@ classdef block < handle
     
     methods (Access = protected)
         function [] = setInputs(this,varargin)
+            %SETINPUTS Set all block inputs
+            % Syntax:
+            %   blk.setInputs(INPUTS)
+            %   INPUTS blocks will be connected to the block input ports.
+            %   INPUTS can be:
+            %     - an empty cell {}
+            %     - a matsim block
+            %     - a number
+            %     - a cell array of the above
+            %   If INPUTS is a number a Constant block with that value will
+            %   be created.
+            % 
+            % Example:
+            %   in1 = FromWorkspace('var1');
+            %   in2 = Constant('var2');
+            %   blk = block('model','simulink','type','Mux','Inputs','4');
+            %   blk.setInputs({in1,{},0,in2})
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -177,6 +226,24 @@ classdef block < handle
             end
         end
         function [] = setInput(this,varargin)
+            %SETINPUT Set a specific block inport input
+            % Syntax:
+            %   blk.setInput(INDEX,'value',VALUE,'srcport',SRCPORT,'type',TYPE)
+            %   SRCPORT of block VALUE will be connected to INDEX input
+            %   port of the block.
+            %   VALUE can be:
+            %     - an empty cell {}
+            %     - a matsim block
+            %     - a number
+            %   If VALUE is a number a Constant block with that value will
+            %   be created.
+            %   TYPE is optional and can be "inport", "enable", "trigger".
+            % 
+            % Example:
+            %   in1 = FromWorkspace('var1');
+            %   blk = block('model','simulink','type','Mux','Inputs','2');
+            %   blk.setInput(1,'value',in1,'srcport',1)
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
