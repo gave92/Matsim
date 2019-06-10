@@ -1,4 +1,11 @@
 classdef Atan < matsim.library.unary_operator
+%ATAN Creates a simulink Atan block.
+% Example:
+%   input = Constant('var1');
+%   blk = Atan(input,'Name','myAtan');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end

@@ -1,4 +1,19 @@
 classdef Delay < matsim.library.unary_operator
+%DELAY Creates a simulink Delay block.
+% Syntax:
+%   blk = Delay(INPUT,'DelayLength',DELAYLENGTH,'x0',X0);
+%     The block specified as INPUT will be connected to the input port of this block.
+%     DELAYLENGTH is an integer specifying the number of delay steps. If 1
+%     a "Unit Delay" block will be used, if greater than 1 the "Delay"
+%     simulink block will be used.
+%     X0 is a number that will be set as block's Initial Condition.
+%
+% Example:
+%   in1 = FromWorkspace('var1');
+%   blk = Delay(in1,'DelayLength',2,'x0',0);
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end

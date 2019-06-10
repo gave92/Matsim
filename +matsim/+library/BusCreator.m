@@ -1,4 +1,21 @@
 classdef BusCreator < matsim.library.block
+%BUSCREATOR Creates a simulink BusCreator block.
+% Example:
+%   % Create inputs for BusCreator
+%   in1 = Constant('var1');
+%   in2 = Constant('var2');
+%   in3 = FromWorkspace('var3');
+% 
+%   % Set signal names
+%   in1.outport(1,'name','sig1');
+%   in2.outport(1,'name','sig2');
+%   in3.outport(1,'name','sig3');
+% 
+%   % Create block
+%   blk = BusCreator({in1,in2,in3},'parent',gcs);
+% 
+%   See also BLOCK.
+
     properties
 
     end

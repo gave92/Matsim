@@ -1,4 +1,20 @@
 classdef Integrator < matsim.library.unary_operator
+%INTEGRATOR Creates a simulink Integrator block.
+% Syntax:
+%   blk = Integrator(INPUT,'SampleTime',SAMPLETIME,'x0',X0);
+%     The block specified as INPUT will be connected to the input port of
+%     this block.
+%     SAMPLETIME is optional (integer). If the SampleTime is specified a
+%     "Discrete-Time Integrator" will be created, otherwise an "Integrator"
+%     block will be created.
+%     X0 is a number that will be set as block's Initial Condition.
+%
+% Example:
+%   in1 = FromWorkspace('var1');
+%   blk = Integrator(in1,'SampleTime',-1,'x0',0);
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end

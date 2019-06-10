@@ -1,4 +1,11 @@
 classdef Cos < matsim.library.unary_operator
+%COS Creates a simulink Cos block.
+% Example:
+%   input = Constant('var1');
+%   blk = Cos(input,'Name','myCos');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end
