@@ -2,6 +2,7 @@ classdef IF < matsim.library.Switch
 %IF Creates a simulink Switch block.
 % Syntax:
 %   Same as Switch but Condition is first argument.
+% 
 % Example:
 %   in1 = FromWorkspace('var1');
 %   out = FromWorkspace('var2');
