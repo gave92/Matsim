@@ -1,4 +1,6 @@
 classdef block_input
+%BLOCK_INPUT Holds input info (input block, source port, input type).
+
     properties (Access = public)
         % Input block
         value

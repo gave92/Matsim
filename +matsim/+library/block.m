@@ -191,14 +191,14 @@ classdef block < handle
             %SETINPUTS Set all block inputs
             % Syntax:
             %   blk.setInputs(INPUTS)
-            %   INPUTS blocks will be connected to the block input ports.
-            %   INPUTS can be:
-            %     - an empty cell {}
-            %     - a matsim block
-            %     - a number
-            %     - a cell array of the above
-            %   If INPUTS is a number a Constant block with that value will
-            %   be created.
+            %     INPUTS blocks will be connected to the block input ports.
+            %     INPUTS can be:
+            %       - an empty cell {}
+            %       - a matsim block
+            %       - a number
+            %       - a cell array of the above
+            %     If INPUTS is a number a Constant block with that value will
+            %     be created.
             % 
             % Example:
             %   in1 = FromWorkspace('var1');
@@ -229,15 +229,15 @@ classdef block < handle
             %SETINPUT Set a specific block inport input
             % Syntax:
             %   blk.setInput(INDEX,'value',VALUE,'srcport',SRCPORT,'type',TYPE)
-            %   SRCPORT of block VALUE will be connected to INDEX input
-            %   port of the block.
-            %   VALUE can be:
-            %     - an empty cell {}
-            %     - a matsim block
-            %     - a number
-            %   If VALUE is a number a Constant block with that value will
-            %   be created.
-            %   TYPE is optional and can be "inport", "enable", "trigger".
+            %     SRCPORT of block VALUE will be connected to INDEX input
+            %     port of the block.
+            %     VALUE can be:
+            %       - an empty cell {}
+            %       - a matsim block
+            %       - a number
+            %     If VALUE is a number a Constant block with that value will
+            %     be created.
+            %     TYPE is optional and can be "inport", "enable", "trigger".
             % 
             % Example:
             %   in1 = FromWorkspace('var1');

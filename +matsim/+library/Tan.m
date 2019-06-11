@@ -1,4 +1,11 @@
 classdef Tan < matsim.library.unary_operator
+%TAN Creates a simulink Tan block.
+% Example:
+%   input = Constant('var1');
+%   blk = Tan(input,'Name','myTan');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end

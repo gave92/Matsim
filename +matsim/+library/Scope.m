@@ -1,4 +1,31 @@
 classdef Scope < matsim.library.block
+%SCOPE Creates a simulink Scope block.
+% Syntax:
+%   blk = Scope(INPUTS);
+%     INPUTS blocks will be connected to the block input ports.
+%     INPUTS can be:
+%       - an empty cell {}
+%       - a matsim block
+%       - a number
+%       - a cell array of the above
+%     If INPUTS is a number a Constant block with that value will
+%     be created.
+%   blk = Scope(INPUTS, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% Example:
+%   in1 = Constant(0);
+%   in2 = FromWorkspace('var1');
+%   in3 = FromWorkspace('var2');
+%   blk = Scope({[in1,in2],in3});
+% 
+%  Scope Methods:
+%    open - Open the Scope window
+%    close - Close the Scope window
+% 
+%   See also BLOCK.
+
     properties
 
     end
@@ -41,7 +68,19 @@ classdef Scope < matsim.library.block
         end
         
         function [] = open(this)
+            %OPEN Open the Scope window
+            % Example:
+            %   blk = Scope({{}});
+            %   blk.open()
             set_param(this.handle,'open','on');
+        end
+        
+        function [] = close(this)
+            %CLOSE Close the Scope window
+            % Example:
+            %   blk = Scope({{}});
+            %   blk.close()
+            set_param(this.handle,'open','off');
         end
     end
 end

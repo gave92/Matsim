@@ -1,4 +1,11 @@
 classdef Sin < matsim.library.unary_operator
+%SIN Creates a simulink Sin block.
+% Example:
+%   input = Constant('var1');
+%   blk = Sin(input,'Name','mySin');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end

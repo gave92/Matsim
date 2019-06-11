@@ -1,5 +1,19 @@
 classdef BusCreator < matsim.library.block
 %BUSCREATOR Creates a simulink BusCreator block.
+% Syntax:
+%   blk = BusCreator(INPUTS);
+%     INPUTS blocks will be connected to the block input ports.
+%     INPUTS can be:
+%       - an empty cell {}
+%       - a matsim block
+%       - a number
+%       - a cell array of the above
+%     If INPUTS is a number a Constant block with that value will
+%     be created.
+%   blk = BusCreator(INPUTS, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
 % Example:
 %   % Create inputs for BusCreator
 %   in1 = Constant('var1');

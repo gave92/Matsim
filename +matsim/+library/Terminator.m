@@ -1,4 +1,11 @@
 classdef Terminator < matsim.library.unary_operator
+%TERMINATOR Creates a simulink Terminator block.
+% Example:
+%   input = Demux();
+%   blk = Terminator(input.outport(2),'Name','myTerminator');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
         
     end
