@@ -1,4 +1,31 @@
 classdef simulation < handle
+%SIMULATION Creates or loads a simulink block diagram.
+% Syntax:
+%   sys = simulation.load(MODEL);
+%     MODEL is the name of the simulink model to be loaded. If MODEL does
+%     not exist, a new simulink model will be created.
+%
+% Simulation Methods:
+%    setSolver - set solver for this model
+%    show - show the model window
+%    save - save the model
+%    close - close the model (without saving)
+%    clear - deletes all model content
+%    layout - layout and connect blocks in the model
+%    open - navigate to subsystem
+%    run - run simulation
+%    log - log a signal
+% 
+% Example:
+%   sys = simulation.load('my_model');            % Create or load a model named 'my_model'
+%   sys.setSolver('Ts',0.01,'DiscreteOnly',true)  % Set solver for the model
+%   sys.clear()                                   % Delete all blocks
+%   sys.show()                                    % Show the model
+%   Scope(Gain(FromWorkspace('var'),'gain',0.5)) % Add blocks to the model
+%   sys.layout()                                  % Connect and layout the model
+%   sys.save()
+%   sys.close()
+
     properties (Access = private)
         % Handle to simulink system
         simDiagram
@@ -6,12 +33,24 @@ classdef simulation < handle
     
     methods (Static)
         function sim = new(name)
+            %NEW Creates a new simulink block diagram.
+            % Syntax:
+            %   sys = simulation.new(MODEL);
+            %     MODEL is the name of the simulink model to be created. If
+            %     MODEL already exists an erro is thrown.
+
             sys = new_system(name,'ErrorIfShadowed');
             sim = matsim.library.simulation(sys);
             set_param(0,'CurrentSystem',sys)
         end
         
         function sim = load(name)
+            %LOAD Creates or loads a simulink block diagram.
+            % Syntax:
+            %   sys = simulation.load(MODEL);
+            %     MODEL is the name of the simulink model to be loaded. If MODEL does
+            %     not exist, a new simulink model will be created.
+
             try
                 sys = load_system(name);
                 sim = matsim.library.simulation(sys);                
@@ -40,6 +79,16 @@ classdef simulation < handle
         end
 
         function [] = setSolver(this,varargin)
+            %SETSOLVER Set solver options for this model
+            % Syntax:
+            %   sys.setSolver('Ts',TS);
+            %     Sets solver sample time. If TS~=0 a fixed step solver
+            %     will be set. Otherwise "VariableStepAuto" selver will be
+            %     used.
+            %   sys.setSolver('Ts',TS,'DiscreteOnly',DISCRONLY);
+            %     If DISCRONLY is true, "FixedStepDiscrete" solver will be
+            %     used. Otherwise "FixedStepAuto" solver is set.
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -64,6 +113,8 @@ classdef simulation < handle
         end
         
         function [] = show(this)
+            %SHOW Shows the model window
+            
             if strcmp(this.get('Shown'),'off') ...
                     || ~strcmp(bdroot, this.get('name'))
                 open_system(this.handle)
@@ -71,6 +122,13 @@ classdef simulation < handle
         end
         
         function [] = save(this,varargin)
+            %SAVE Save the model to file
+            % Syntax:
+            %   sys.save();
+            %     Save the model in the current folder.
+            %   sys.save('path',PATH);
+            %     Save the model in the specified path.
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -82,13 +140,17 @@ classdef simulation < handle
         end
         
         function [] = close(this)
-            % Close model without saving
-            if strcmp(this.get('Shown'),'off')
+            %CLOSE Close the model without saving
+            
+            if strcmp(this.get('Shown'),'off') ...
+                    || strcmp(this.get('Dirty'),'off')
                 close_system(this.handle,0)
             end
         end
         
         function [] = clear(this)
+            %CLEAR Deletes all model content
+            
             if strcmp(this.get('Shown'),'on') ...
                     && ~strcmp(gcs, this.get('name'))
                 open_system(this.handle)
@@ -97,10 +159,14 @@ classdef simulation < handle
         end
         
         function [] = layout(this)
-            matsim.builder.graphviz.simlayout(this.handle) % Connect and layout model            
+            %LAYOUT Layout and connect blocks in the model
+            
+            matsim.builder.graphviz.simlayout(this.handle)
         end
         
         function [] = export(this)
+            %EXPORT Removes all Matsim info from the model
+            
             blocks = find_system(this.handle,'type','block');
             for i=1:length(blocks)
                 data = get(blocks(i),'UserData');
@@ -110,6 +176,20 @@ classdef simulation < handle
         end
 
         function [] = open(this,varargin)
+            %OPEN Navigate to specified subsystem
+            % Syntax:
+            %   sys.open(PATH);
+            %     Navigate to the selected path in the model
+            %   sys.open(PATH,'show',SHOW);
+            %     If SHOW is true open the subsystem in a new tab. If false
+            %     only set the "CurrentSystem" property.
+            % 
+            % Example:
+            %   sys = simulation.load('my_model')
+            %   sys.show()
+            %   s = Subsystem('name','TEST');
+            %   sys.open('my_model/TEST','show',true)
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -134,6 +214,15 @@ classdef simulation < handle
         end
         
         function simOut = run(this,varargin)
+            %RUN Run simulation and return results
+            % Syntax:
+            %   results = sys.run(ARGS);
+            %     ARGS are passed to simulink "sim" command
+            % 
+            % Example:
+            %   sys = simulation.load('my_model')
+            %   simOut = sys.run('StartTime',0,'StopTime',10);
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
@@ -145,6 +234,25 @@ classdef simulation < handle
         end
 
         function [] = log(this,varargin)
+            %LOG Log a signal
+            % Syntax:
+            %   results = sys.log(BLOCK);
+            %     Logs first outport of BLOCK. Line label is used as signal name.
+            %   results = sys.log(BLOCK,'name',MYSIGNAL);
+            %     Logs first outport of BLOCK. MYSIGNAL is used as signal name.
+            %   results = sys.log(BLOCK,'port',PORT);
+            %     Logs PORT outport of BLOCK. PORT is integer.
+            % 
+            % Example:
+            %   sys = simulation.load('my_model')
+            %   sys.show()
+            %   blk = Gain(Constant(1));
+            %   blk.outport(1,'name','test_signal');
+            %   Terminator(blk);
+            %   sys.layout()
+            %   sys.log(blk)
+            %   sys.log(blk,'name','custom_name')
+            
             p = inputParser;
             p.CaseSensitive = false;
             % p.PartialMatching = false;
