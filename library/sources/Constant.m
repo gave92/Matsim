@@ -1,4 +1,19 @@
 classdef Constant < block
+%CONSTANT Creates a simulink Constant block.
+% Syntax:
+%   blk = Constant(VALUE);
+%     VALUE may be numeric or string (variable name)
+%   blk = Constant(VALUE, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% Example:
+%   blk = Constant(0);
+%   blk = Constant('var1','parent',gcs);
+%   blk = Constant(-1,'Name','myConst','BackgroundColor','red');
+% 
+%   See also BLOCK.
+
     properties
 
     end

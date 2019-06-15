@@ -1,4 +1,28 @@
 classdef Mux < block
+%MUX Creates a simulink Mux block.
+% Syntax:
+%   blk = Mux(INPUTS);
+%     INPUTS blocks will be connected to the block input ports.
+%     INPUTS can be:
+%       - an empty cell {}
+%       - a matsim block
+%       - a number
+%       - a cell array of the above
+%     If INPUTS is a number a Constant block with that value will
+%     be created.
+%   blk = Mux(INPUTS, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% Example:
+%   in1 = Constant(0);
+%   in2 = FromWorkspace('var1');
+%   in3 = FromWorkspace('var2');
+%   blk1 = Mux({in1,in2,in3});
+%   blk2 = [in1,in2,in3];
+% 
+%   See also BLOCK.
+
     properties
 
     end

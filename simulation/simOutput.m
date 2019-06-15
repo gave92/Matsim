@@ -1,4 +1,6 @@
 classdef simOutput < handle
+%SIMOUTPUT Holds simulation output info (e.g. logged signals).
+
     properties (Access = private)
         simOut
     end

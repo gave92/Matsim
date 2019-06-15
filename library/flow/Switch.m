@@ -1,4 +1,28 @@
 classdef Switch < block
+%SWITCH Creates a simulink Switch block.
+% Syntax:
+%   blk = Switch(IN1,COND,IN2);
+%     IN1 block will be connected to the block first input port.
+%     COND block will be connected to the block second input port
+%     (condition port).
+%     IN2 block will be connected to the block third input port.
+%     IN1, IN2 and COND can be:
+%       - an empty cell {}
+%       - a matsim block
+%       - a number
+%     If IN1, IN2 or COND is a number a Constant block with that value will
+%     be created.
+%   blk = Switch(IN1,COND,IN2, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+% 
+% Example:
+%   in1 = FromWorkspace('var1');
+%   out = FromWorkspace('var2');
+%   Switch(1,in1>0,out);
+% 
+%   See also BLOCK.
+
     properties
 
     end

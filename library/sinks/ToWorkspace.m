@@ -1,4 +1,19 @@
 classdef ToWorkspace < unary_operator        
+%TOWORKSPACE Creates a simulink ToWorkspace block.
+% Syntax:
+%   blk = ToWorkspace(INPUT,'varname',VARIABLENAME);
+%     VARIABLENAME may be numeric or string
+%   blk = ToWorkspace(INPUT,'varname',VARIABLENAME,ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% Example:
+%   in1 = Constant('var1');
+%   blk = ToWorkspace(in1,'varname','varOut','parent',gcs);
+%   blk = ToWorkspace(in1,'varname','varOut2','Name','myVar','BackgroundColor','red');
+% 
+%   See also UNARY_OPERATOR.
+
     properties
 
     end

@@ -1,6 +1,15 @@
 classdef IF < Switch
-    %IF Same as switch
-    %   Condition is first argument    
+%IF Creates a simulink Switch block.
+% Syntax:
+%   Same as Switch but Condition is first argument.
+% 
+% Example:
+%   in1 = FromWorkspace('var1');
+%   out = FromWorkspace('var2');
+%   IF(in1>0,1,out);
+% 
+%   See also SWITCH.
+
     properties
 
     end

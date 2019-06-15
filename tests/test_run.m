@@ -16,7 +16,7 @@ sys.show()
 test_files = dir(fullfile(script_path,'*.m'));
 test_names = setdiff(strrep({test_files.name},'.m',''),script_name);
 test_numbered = arrayfun(@(i) sprintf('%d. %s',i,test_names{i}),1:length(test_names),'uni',0);
-fprintf('Available tests:\n\t%s\n',strjoin(test_numbered,'\n\t'))
+fprintf('Available tests:\n\t%s\n',strjoin(test_numbered,sprintf('\n\t')))
 test = input('Select test: ','s');
 if ~isnan(str2double(test))
     feval(test_names{str2double(test)},sys)

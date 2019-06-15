@@ -1,5 +1,28 @@
 classdef REF < block
-    %REF From or Goto block
+%REF Creates a simulink From or Goto block
+% Syntax:
+%   blk = REF('TAG')
+%     A FROM block with tag 'TAG' will be created.
+%   blk = REF('TAG',INPUT)
+%     If INPUT is specified a GOTO block will be created.
+%     INPUT block will be connected to the block input port.
+%     INPUT can be:
+%       - an empty cell {}
+%       - a matsim block
+%       - a number
+%     If INPUT is a number a Constant block with that value will
+%     be created.
+%   blk = REF('TAG',ARGS)
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+% 
+% Example:
+%   in1 = Constant(1);
+%   REF('mySig',in1);
+%   Scope(REF('mySig'));
+% 
+%   See also BLOCK.
+
     properties
         
     end

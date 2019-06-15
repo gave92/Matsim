@@ -1,4 +1,18 @@
 classdef FromWorkspace < block        
+%FROMWORKSPACE Creates a simulink FromWorkspace block.
+% Syntax:
+%   blk = FromWorkspace(VARIABLENAME);
+%     VARIABLENAME may be numeric or string
+%   blk = FromWorkspace(VARIABLENAME, ARGS);
+%     ARGS is an optional list of parameter/value pairs specifying simulink
+%     block properties.
+%
+% Example:
+%   blk = FromWorkspace('var1','parent',gcs);
+%   blk = FromWorkspace('var1','Name','myVar','BackgroundColor','red');
+% 
+%   See also BLOCK.
+
     properties
 
     end
