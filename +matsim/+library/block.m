@@ -7,7 +7,23 @@ classdef block < handle
 %   blk = block('model',MODEL,'type',TYPE,ARGS);
 %     ARGS is an optional list of parameter/value pairs specifying simulink
 %     block properties.
-%
+%   blk = [block1+block2./0.5, block3];
+%     Operations on matsim blocks will be converted into simulink
+%     connections and blocks. "a+b" will create an Add block, "[a,b]" will
+%     create a Mux block, "a(-1)" will create a Delay block.
+% 
+% Supported operations:
+%   Math operations
+%     plus (a+b), minus (a-b), unary minus (-a)
+%     product (a.*b), matrix product (a*b), division (a./b), matrix division (a/b)
+%     power (a.^b), matrix power (a^b)
+%   Logical operations
+%     greater than (a > b), less than (a < b), greater or equal than (a >= b), less or equal than (a <= b)
+%     equal to (a == b), not equal to (a ~= b)
+%     and (a && b), or (a || b), not (~a)
+%   Array operations
+%     horzcat ([a,b,c]), vertcat ([a;b;c])
+% 
 % block Methods:
 %    setInputs - set all block inputs
 %    setInput - set a specific block inport input

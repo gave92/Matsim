@@ -3,7 +3,7 @@ classdef ToWorkspace < matsim.library.unary_operator
 % Syntax:
 %   blk = ToWorkspace(INPUT,'VariableName',VARIABLENAME);
 %     VARIABLENAME may be numeric or string
-%   blk = ToWorkspace(INPUT,VARIABLENAME, ARGS);
+%   blk = ToWorkspace(INPUT,'VariableName',VARIABLENAME,ARGS);
 %     ARGS is an optional list of parameter/value pairs specifying simulink
 %     block properties.
 %
