@@ -7,11 +7,13 @@ function neighbours = getNeighbours(sys,root)
     if ~isempty(data) && isfield(data,'block') && ~isempty(data.block)
         inputs = data.block.inputs;
         if ~isempty(inputs)
-            % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers]
+            % Ordine porte Simulink: [N Inports, 0/1 Enables, 0/1 Triggers, 0/1 Resets, 0/1 IfAction]
             in = inputs.inport(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.inport));
             en = inputs.enable(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.enable));
             tr = inputs.trigger(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.trigger));
-            inputs = [in,en,tr];
+            rs = inputs.reset(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.reset));
+            ia = inputs.ifaction(cellfun(@(x) isa(x,'matsim.library.block_input'),inputs.ifaction));
+            inputs = [in,en,tr,rs,ia];
             
             for i=1:length(inputs)
                 if ~isempty(inputs{i}.value)
@@ -25,7 +27,7 @@ function neighbours = getNeighbours(sys,root)
         end
     else
         ports = get(root,'porthandles');
-        ports = [ports.Inport, ports.Enable, ports.Trigger];
+        ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
         for i=1:length(ports)
             line = get(ports(i),'line');
             if (line == -1 || get(line,'SrcBlockHandle') == -1), continue; end;

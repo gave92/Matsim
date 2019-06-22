@@ -85,7 +85,7 @@ classdef block < handle
                         % Block was a SIMULINK block
                         this.setUserData('block',this);
                         this.setUserData('created',1)
-                        this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}});
+                        this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}},'reset',{{}},'ifaction',{{}});
                         this.setInputsFromBlock();
                     end
                     this.simSelectedOutport = 1;
@@ -100,7 +100,7 @@ classdef block < handle
                 this.setUserData('block',this)
                 this.setUserData('created',0)
                 this.simSelectedOutport = 1;
-                this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}});
+                this.simInputs = struct('inport',{{}},'enable',{{}},'trigger',{{}},'reset',{{}},'ifaction',{{}});
                 % Set position to far right
                 blockSizeRef = this.get('position');
                 this.set('position',[1e4, 0, 1e4+blockSizeRef(3)-blockSizeRef(1), blockSizeRef(4)-blockSizeRef(2)])
@@ -189,7 +189,7 @@ classdef block < handle
         end
         function [] = setInputsFromBlock(this)
             ports = get(this,'porthandles');
-            ports = [ports.Inport, ports.Enable, ports.Trigger];
+            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
             for i=1:length(ports)
                 line = get(ports(i),'line');
                 if (line == -1 || get(line,'SrcBlockHandle') == -1)
@@ -240,6 +240,8 @@ classdef block < handle
                 this.simInputs.inport = validatedInputs(cellfun(@(x) strcmp(x.type,'inport'),validatedInputs));
                 this.simInputs.enable = validatedInputs(cellfun(@(x) strcmp(x.type,'enable'),validatedInputs));
                 this.simInputs.trigger = validatedInputs(cellfun(@(x) strcmp(x.type,'trigger'),validatedInputs));
+                this.simInputs.reset = validatedInputs(cellfun(@(x) strcmp(x.type,'reset'),validatedInputs));
+                this.simInputs.ifaction = validatedInputs(cellfun(@(x) strcmp(x.type,'ifaction'),validatedInputs));
             end
         end
         function [] = setInput(this,varargin)
@@ -254,7 +256,7 @@ classdef block < handle
             %       - a number
             %     If VALUE is a number a Constant block with that value will
             %     be created.
-            %     TYPE is optional and can be "inport", "enable", "trigger".
+            %     TYPE is optional and can be "inport", "enable", "trigger", "reset", "ifaction".
             % 
             % Example:
             %   in1 = FromWorkspace('var1');
@@ -273,7 +275,7 @@ classdef block < handle
             
             index = p.Results.index;
             srcport = p.Results.srcport;
-            type = p.Results.type;
+            type = lower(p.Results.type);
             
             if index <= length(this.simInputs.(type))
                 current = this.simInputs.(type){index};

@@ -170,7 +170,8 @@ classdef simulation < handle
             blocks = find_system(this.handle,'type','block');
             for i=1:length(blocks)
                 data = get(blocks(i),'UserData');
-                data.block = [];
+                if isfield(data,'block'), data = rmfield(data,'block'); end
+                if isfield(data,'created'), data = rmfield(data,'created'); end
                 set(blocks(i),'UserData',data);
             end
         end

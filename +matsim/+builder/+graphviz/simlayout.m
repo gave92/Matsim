@@ -45,7 +45,7 @@ function [] = simlayout(varargin)
     for i=1:length(blocks)
         % Create lines
         h = get(blocks(i),'PortHandles');
-        ports = [h.Inport, h.Enable, h.Trigger];
+        ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction];
         parents = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
         
         for p = 1:size(parents,1)

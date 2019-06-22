@@ -35,9 +35,9 @@ function match = findBlock(sys,varargin)
     end
 
     if matsim.utils.getversion() >= 2012
-        args = {'CaseSensitive','off','RegExp','on','IncludeCommented','on','Type','block'};
+        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks','all','IncludeCommented','on','Type','block'};
     else
-        args = {'CaseSensitive','off','RegExp','on','Type','block'};
+        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks','all','Type','block'};
     end
     if search_depth >= 0
         args = ['SearchDepth',mat2str(search_depth),args];

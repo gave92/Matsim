@@ -44,7 +44,7 @@ function writeDOTfile(obj)
         w = obj.width(i)*0.8/30;
         h = obj.height(i)*0.8/30;
         ports = get(obj.blocks(i),'porthandles');
-        inputnum = length([ports.Inport, ports.Enable, ports.Trigger]);
+        inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction]);
         outputnum = length([ports.Outport]);
         dotfile = [num2str(i),' [label="{'];
         if inputnum ~= 0
@@ -82,7 +82,7 @@ function writeDOTfile(obj)
         end
         if isempty(conn), continue; end;
         ports = get(obj.blocks(i),'porthandles');
-        ports = [ports.Inport, ports.Enable, ports.Trigger];
+        ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
         s = matsim.utils.quicksort(conn,@(m,x,y) order_ports(m,x,y,ports));
         conn = conn(s,:);
         conn(:,5) = 1:size(conn,1);
@@ -100,13 +100,13 @@ function writeDOTfile(obj)
 end
 
 function comp = order_ports(m,x,y,ports)
-    ports_order = {'trigger','enable','inport'};
+    ports_order = {'ifaction','reset','trigger','enable','inport'};
     pt1 = ports(m(x,5));
     pt2 = ports(m(y,5));
-    if strcmp(get(pt1,'porttype'),get(pt2,'porttype'))
+    if strcmpi(get(pt1,'porttype'),get(pt2,'porttype'))
         comp = sign(get(pt1,'portnumber') - get(pt2,'portnumber'));
     else
-        comp = sign(find(strcmp(ports_order,get(pt1,'porttype')),1) - find(strcmp(ports_order,get(pt2,'porttype')),1));
+        comp = sign(find(strcmpi(ports_order,get(pt1,'porttype')),1) - find(strcmpi(ports_order,get(pt2,'porttype')),1));
     end
 end
 

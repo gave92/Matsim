@@ -19,6 +19,8 @@ classdef Subsystem < matsim.library.block
 % Subsystem Methods:
 %    enable - adds an enable port
 %    trigger - adds a trigger port
+%    reset - adds a reset port
+%    action - adds an action port
 %    in - adds an input port
 %    out - adds an output port
 % 
@@ -41,6 +43,10 @@ classdef Subsystem < matsim.library.block
         simEnable
         % Handle to trigger ports
         simTrigger
+        % Handle to reset ports
+        simReset
+        % Handle to action ports
+        simAction
         % Handle to output ports
         simOutport
     end
@@ -86,6 +92,8 @@ classdef Subsystem < matsim.library.block
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
                 enables = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','EnablePort');
                 triggers = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','TriggerPort');
+                resets = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','ResetPort');
+                actions = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','ActionPort');
                 for i = 1:length(inports)
                     this.simInport = concat(this.simInport,matsim.library.block('name',get(inports(i),'name'),'parent',this));
                 end
@@ -94,6 +102,12 @@ classdef Subsystem < matsim.library.block
                 end
                 for i = 1:length(triggers)
                     this.simTrigger = concat(this.simTrigger,matsim.library.block('name',get(triggers(i),'name'),'parent',this));
+                end
+                for i = 1:length(resets)
+                    this.simReset = concat(this.simReset,matsim.library.block('name',get(resets(i),'name'),'parent',this));
+                end
+                for i = 1:length(actions)
+                    this.simAction = concat(this.simAction,matsim.library.block('name',get(actions(i),'name'),'parent',this));
                 end
                 outports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Outport');
                 for i = 1:length(outports)
@@ -169,6 +183,76 @@ classdef Subsystem < matsim.library.block
                 this.simTrigger = concat(this.simTrigger,trigger);
             else
                 this.setInput(length(this.simTrigger),'value',input,'type','trigger');
+            end
+        end
+
+        function reset = reset(this,varargin)
+            %RESET Adds a reset port
+            % Syntax:
+            %   s.reset(INPUT)
+            %     INPUT block will be connected to the block reset port.
+            %     INPUT can be:
+            %       - an empty cell {}
+            %       - a matsim block
+            %       - a number
+            %     If INPUT is a number a Constant block with that value will
+            %     be created.
+            % 
+            % Example:
+            %   s = Subsystem({{}});
+            %   s.reset(Delay(1))
+            
+            p = inputParser;
+            p.CaseSensitive = false;
+            % p.PartialMatching = false;
+            p.KeepUnmatched = true;
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            parse(p,varargin{:})
+            
+            input = p.Results.input;
+            args = matsim.helpers.unpack(p.Unmatched);
+            
+            if isempty(this.simReset)
+                reset = matsim.library.block('type','Reset','parent',this,args{:});
+                this.setInput(length(this.simReset)+1,'value',input,'type','reset');
+                this.simReset = concat(this.simReset,reset);
+            else
+                this.setInput(length(this.simReset),'value',input,'type','reset');
+            end
+        end
+        
+        function action = action(this,varargin)
+            %ACTION Adds an action port
+            % Syntax:
+            %   s.action(INPUT)
+            %     INPUT block will be connected to the block action port.
+            %     INPUT can be:
+            %       - an empty cell {}
+            %       - a matsim block
+            %       - a number
+            %     If INPUT is a number a Constant block with that value will
+            %     be created.
+            % 
+            % Example:
+            %   s = Subsystem({{}});
+            %   s.action(...)
+            
+            p = inputParser;
+            p.CaseSensitive = false;
+            % p.PartialMatching = false;
+            p.KeepUnmatched = true;
+            addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            parse(p,varargin{:})
+            
+            input = p.Results.input;
+            args = matsim.helpers.unpack(p.Unmatched);
+            
+            if isempty(this.simAction)
+                action = matsim.library.block('type','Action Port','parent',this,args{:});
+                this.setInput(length(this.simAction)+1,'value',input,'type','ifaction');
+                this.simAction = concat(this.simAction,action);
+            else
+                this.setInput(length(this.simAction),'value',input,'type','ifaction');
             end
         end
         
