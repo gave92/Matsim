@@ -86,7 +86,6 @@ classdef Subsystem < matsim.library.block
                 end
                 
                 this.setInputs(inputs);
-                this.setHeight();            
             else
                 % Subsystem already exists, fill input and output ports
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
@@ -299,7 +298,6 @@ classdef Subsystem < matsim.library.block
                 in = matsim.library.block('type','In1','parent',this,args{:});
                 this.simInport = concat(this.simInport,in);
                 this.setInput(index,'value',input);
-                this.setHeight();
             end
         end
         
@@ -349,14 +347,7 @@ classdef Subsystem < matsim.library.block
                 out = matsim.library.block('type','Out1','parent',this,args{:});
                 out.setInputs({input});
                 this.simOutport = concat(this.simOutport,out);
-                this.setHeight();
             end
-        end
-        
-        function [] = setHeight(this)
-            pos = this.get('position');
-            pos(4) = pos(2)+42*max([1,length(this.simInport),length(this.simOutport)]);
-            this.set('position',pos);
-        end
+        end               
     end
 end

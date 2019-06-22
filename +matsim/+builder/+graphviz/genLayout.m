@@ -13,7 +13,7 @@ obj.xmax        = bounds(3);
 obj.ymax        = bounds(4);
 obj.maxNodeSize = 1;
 
-blockSizeRef = get(blocks,'Position');
+blockSizeRef = getDimensions(blocks);
 if ~isempty(blockSizeRef) && ~iscell(blockSizeRef)
     blockSizeRef = {blockSizeRef};
 end
@@ -23,6 +23,21 @@ obj.height = blockSizeRef(:,4) - blockSizeRef(:,2);
     
 obj = calcLayout(obj);
 
+end
+
+function blockSizeRef = getDimensions(blocks)
+    blockSizeRef = cell(length(blocks),1);
+    for i=1:length(blocks)
+        ports = get(blocks(i),'porthandles');
+        inputnum = length([ports.Inport]);
+        outputnum = length([ports.Outport]);
+        pos = get(blocks(i),'position');
+        if max(inputnum,outputnum)>1
+            pos(4) = pos(2)+42*max([1,inputnum,outputnum]);
+        end
+        set(blocks(i),'position',pos);
+        blockSizeRef{i} = pos;
+    end
 end
 
 function obj = calcLayout(obj)

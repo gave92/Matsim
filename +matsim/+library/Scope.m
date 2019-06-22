@@ -57,10 +57,10 @@ classdef Scope < matsim.library.block
             if this.getUserData('created') == 0
                 if matsim.utils.getversion() >= 2015
                     scope_configuration = this.get('ScopeConfiguration');
-                    scope_configuration.NumInputPorts = mat2str(length(inputs));
-                    scope_configuration.LayoutDimensions = [length(inputs), 1]; % Rows, columns
+                    scope_configuration.NumInputPorts = mat2str(max(1,length(inputs)));
+                    scope_configuration.LayoutDimensions = [max(1,length(inputs)), 1]; % Rows, columns
                 else
-                    this.set('NumInputPorts',mat2str(length(inputs)));
+                    this.set('NumInputPorts',mat2str(max(1,length(inputs))));
                 end
 
                 this.setInputs(inputs);
