@@ -8,9 +8,8 @@ function [] = test_flow(sys)
     
     r = REF('in',in);
     d = Demux(r,'Outputs',[1,3]);
-    m = Mux({d.outport(2)+1,-1});
-    f = IF({m>0,in(-1)>1});
-    s = Selector(f,'Indices',[1,4],'InputPortWidth',4);
+    m = Mux({d.outport(2)+1,-1});    
+    s = Selector(m,'Indices',[1,4],'InputPortWidth',4);
     w = Switch(s,0);
     g = Merge({w,{},s});
     g.outport(1,'name','MERGE')
