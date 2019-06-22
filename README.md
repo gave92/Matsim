@@ -33,7 +33,7 @@ Matsim is a high level interface to create Simulink models from a [Matlab](https
 `res = [a,b]` | <img src="https://github.com/gave92/matsim/blob/master/docs/images/readme/readme_3.PNG?raw=true" height="80" /> | Create an Mux block and connect its inputs to blocks `a` and `b`
 `res = Max(a,b)` | <img src="https://github.com/gave92/matsim/blob/master/docs/images/readme/readme_4.PNG?raw=true" height="80" /> | Create an MinMax block and connect its inputs to blocks `a` and `b`
 `res = 1 - u1./(u2.*u3)` | <img src="https://github.com/gave92/matsim/blob/master/docs/images/readme/readme_5.PNG?raw=true" height="80" /> | Create a group of simulink blocks that computes a complex expression
-`Scope(Gain(FromWorkspace('var'),'value',0.5))` | <img src="https://github.com/gave92/matsim/blob/master/docs/images/readme/readme_6.PNG?raw=true" width="150" /> | Easily combine blocks
+`Scope(Gain(FromWorkspace('var'),'Gain',0.5))` | <img src="https://github.com/gave92/matsim/blob/master/docs/images/readme/readme_6.PNG?raw=true" width="150" /> | Easily combine blocks
 
 ## Installation
 

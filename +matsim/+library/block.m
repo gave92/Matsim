@@ -189,14 +189,15 @@ classdef block < handle
         end
         function [] = setInputsFromBlock(this)
             ports = get(this,'porthandles');
-            for i=1:length(ports.Inport)
-                line = get(ports.Inport(i),'line');
+            ports = [ports.Inport, ports.Enable, ports.Trigger];
+            for i=1:length(ports)
+                line = get(ports(i),'line');
                 if (line == -1 || get(line,'SrcBlockHandle') == -1)
-                    this.setInput(i,'value',{},'type','inport');
+                    this.setInput(i,'value',{},'type',get(ports(i),'porttype'));
                 else                    
                     src_block = matsim.library.block('name',get(get(line,'SrcBlockHandle'),'name'),'parent',matsim.helpers.getValidParent(this));
                     src_port = get(get(line,'SrcPortHandle'),'PortNumber');
-                    this.setInput(i,'value',src_block,'srcport',src_port,'type','inport');
+                    this.setInput(i,'value',src_block,'srcport',src_port,'type',get(ports(i),'porttype'));
                 end
             end
         end

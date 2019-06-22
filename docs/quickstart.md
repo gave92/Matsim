@@ -70,7 +70,7 @@ A block can become an input for the next.
 <table>
 <tr style="background: none;">
 <td>
-<pre class="  language-matlab"><code class="  language-matlab"><span class="token function">Scope</span><span class="token punctuation">(</span><span class="token function">Gain</span><span class="token punctuation">(</span><span class="token function">FromWorkspace</span><span class="token punctuation">(</span><span class="token string">'var'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'value'</span><span class="token punctuation">,</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<pre class="  language-matlab"><code class="  language-matlab"><span class="token function">Scope</span><span class="token punctuation">(</span><span class="token function">Gain</span><span class="token punctuation">(</span><span class="token function">FromWorkspace</span><span class="token punctuation">(</span><span class="token string">'var'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'Gain'</span><span class="token punctuation">,</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 </td>
 <td><pre style="font-size: 48px;">&nbsp;&#8594;&nbsp;</pre></td>
 <td><pre>
