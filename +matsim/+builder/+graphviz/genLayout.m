@@ -1,6 +1,7 @@
 function obj = genLayout(adjMatrix,blocks)
 % Use the graphVIZ package to determine the optimal layout for a graph.
 
+obj = struct;
 obj.blocks = blocks;
 obj.adjMatrix   = adjMatrix;
 obj.layoutFile  = 'layout.dot';
@@ -92,7 +93,7 @@ function writeDOTfile(obj)
         conn = [];
         for j=1:n
             if(~isempty(obj.adjMatrix{i,j}))
-                conn = [conn; [i,j,obj.adjMatrix{i,j}{1},obj.adjMatrix{i,j}{2}]];
+                conn = [conn; [i,j,obj.adjMatrix{i,j}]];
             end
         end
         if isempty(conn), continue; end;
@@ -106,7 +107,7 @@ function writeDOTfile(obj)
                 fprintf(fid,'%d%s%d;\n',conn(j,2),edgetxt,i);
             else
                 fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
-            end            
+            end
         end
     end       
     
@@ -153,25 +154,8 @@ function obj = readLayout(obj)
     locations = reshape(sscanf(strjoin(location_tokens(:,2:3)), '%f'),[],2);
     locations(node_idx,:) = locations; % reorder based on id
 
-    % obj = scaleLocations(obj,locations,dims);
     locations(:,2) = dims(4)-locations(:,2);
     obj.centers = locations;
-end
-
-function obj = scaleLocations(obj,locations,graphVizDims)
-% Scale the graphViz node locations to the smartgraph dimensions and
-% set the node size. 
-    dims = graphVizDims; loc = locations;
-    loc(:,1) = (loc(:,1)-dims(1)) ./ (dims(3)-dims(1))*(obj.xmax - obj.xmin) + obj.xmin;
-    loc(:,2) = (loc(:,2)-dims(2)) ./ (dims(4)-dims(2))*(obj.ymax - obj.ymin) + obj.ymin;
-    obj.centers = loc;
-
-    a = min(abs(loc(:,1) - obj.xmin));
-    b = min(abs(loc(:,1) - obj.xmax));
-    c = min(abs(loc(:,2) - obj.ymin));
-    d = min(abs(loc(:,2) - obj.ymax));
-    obj.nodeSize = min(2*min([a,b,c,d]),obj.maxNodeSize);
-
 end
 
 function cleanup(obj)

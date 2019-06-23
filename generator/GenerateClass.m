@@ -1,6 +1,6 @@
 function [fig] = GenerateClass(block,par)
     
-    selected_inputs = handlevar([]);
+    selected_inputs = matsim.utils.handlevar([]);
 
     if isempty(par)
         params = [];

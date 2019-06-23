@@ -12,6 +12,7 @@ function [] = test_subsystems(sys)
     s.out(2,{});
     s.out(2,'name','OUTPUT');
     s.trigger(Constant(-1));
+    Terminator(s)
     Scope(s.outport(2))
     s.in(3,{});
     

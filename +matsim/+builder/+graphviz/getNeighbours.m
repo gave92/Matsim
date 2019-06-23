@@ -50,5 +50,7 @@ function neighbours = getNeighbours(sys,root)
         % [~,u] = unique(neighbours(:,1),'stable');
         % neighbours = neighbours(u,:);
     end
+    
+    % neighbours = [src_blk, src_port/-1, my_port]
 end
 

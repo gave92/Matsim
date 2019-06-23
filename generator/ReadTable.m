@@ -1,6 +1,6 @@
 function [out] = ReadTable()
     % https://it.mathworks.com/help/simulink/slref/block-specific-parameters.html
-    blocks = handlevar.empty;
+    blocks = matsim.utils.handlevar([]);
     fid = fopen('blockparams.csv');
     
     try
@@ -13,7 +13,7 @@ function [out] = ReadTable()
                 % Skip
             elseif length(fields) == 1        
                 [~,nt]=regexp(fields{1},'(.*)\((.*)\)','match','tokens');            
-                block = handlevar(struct('params',struct('name',{},'dialog',{},'type',{})));
+                block = matsim.utils.handlevar(struct('params',struct('name',{},'dialog',{},'type',{})));
                 blocks(end+1) = block; %#ok            
                 if isempty(nt)
                     block.Value.name = strtrim(tline);

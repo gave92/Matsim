@@ -61,7 +61,8 @@ function [overlap_exists, overlaps] = detectOverlaps(baseBlock, otherBlocks, var
     end
 
     %
-    otherBlocks = cell2mat(get_param(otherBlocks,'handle'));
+    otherBlocks = get_param(otherBlocks,'handle');
+    if iscell(otherBlocks), otherBlocks = cell2mat(otherBlocks); end
 
     %
     overlap_exists = false; % Guess no overlaps

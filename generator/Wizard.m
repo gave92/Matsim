@@ -6,8 +6,8 @@ blocks = ReadTable();
 [~,I] = sort({blocks.name});
 blocks = blocks(I);
 
-selected_block = handlevar([]);
-selected_params = handlevar([]);
+selected_block = matsim.utils.handlevar([]);
+selected_params = matsim.utils.handlevar([]);
 
 fig = figure('Units','norm','Position',[0.2 0.2 0.6 0.6],'Toolbar','none');
 set(fig,'Resize','off');
