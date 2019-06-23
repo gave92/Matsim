@@ -41,9 +41,8 @@ classdef MatlabFunction < matsim.library.block
         function this = MatlabFunction(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'inputs',[],@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'Script','',@(x) ischar(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
@@ -57,7 +56,6 @@ classdef MatlabFunction < matsim.library.block
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
@@ -74,7 +72,7 @@ classdef MatlabFunction < matsim.library.block
                 this.chartHandle.Script = sprintf('function [y] = fcn(%s)',strjoin(arrayfun(@(i) sprintf('u%d',i),1:length(inputs),'Uni',0),','));
             end
 
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'inputs')
                 this.setInputs(inputs);
             end
         end

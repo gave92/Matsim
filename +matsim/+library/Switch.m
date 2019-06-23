@@ -31,11 +31,10 @@ classdef Switch < matsim.library.block
         function this = Switch(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addOptional(p,'b2',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addOptional(p,'cond',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b2',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'cond',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
@@ -48,7 +47,7 @@ classdef Switch < matsim.library.block
             end
             
             this = this@matsim.library.block('type','Switch','parent',parent,args{:});            
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'b1')
                 this.set('Criteria','u2 ~= 0')
                 this.setInputs(inputs);
             end

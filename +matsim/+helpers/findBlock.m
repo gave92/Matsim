@@ -12,7 +12,6 @@ function match = findBlock(sys,varargin)
 
     p = inputParser;
     p.CaseSensitive = false;
-    % p.PartialMatching = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@(x) isnumeric(x) && ishandle(x) || ischar(x));
     addParamValue(p,'Exact',true,@islogical);

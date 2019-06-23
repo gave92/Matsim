@@ -38,9 +38,8 @@ classdef BusCreator < matsim.library.block
         function this = BusCreator(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'inputs',[],@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
@@ -52,14 +51,13 @@ classdef BusCreator < matsim.library.block
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
             
             this = this@matsim.library.block('type','Bus Creator','parent',parent,args{:});
                         
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'inputs')
                 this.set('Inputs',mat2str(max(1,length(inputs))))
                 this.setInputs(inputs);
             end

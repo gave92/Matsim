@@ -31,10 +31,9 @@ classdef REF < matsim.library.block
         function this = REF(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'tag',@(x) isnumeric(x) || ischar(x));
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
 
@@ -55,7 +54,7 @@ classdef REF < matsim.library.block
             
             this = this@matsim.library.block('type',type,'parent',parent,args{:});
             this.set('ShowName','off');
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'b1')
                 this.setInputs(inputs);
             end
             

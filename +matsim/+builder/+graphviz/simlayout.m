@@ -3,7 +3,6 @@ function [] = simlayout(varargin)
 
     p = inputParser;
     p.CaseSensitive = false;
-    % p.PartialMatching = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@ishandle);
     addParamValue(p,'ConnectOnly',false,@islogical);

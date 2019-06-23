@@ -36,9 +36,8 @@ classdef IF < matsim.library.block
         function this = IF(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'inputs',[],@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'Expression','',@(x) ischar(x) || iscellstr(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
@@ -58,7 +57,7 @@ classdef IF < matsim.library.block
             
             this = this@matsim.library.block('type','If','parent',parent,args{:});
 
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'inputs')
                 this.set('NumInputs',mat2str(max(1,length(inputs))));
                 if ~isempty(expression)
                     if ~iscell(expression), expression = {expression}; end
@@ -74,7 +73,7 @@ classdef IF < matsim.library.block
                 end                
                 this.setInputs(inputs);
             end
-        end               
+        end
     end
 end
 

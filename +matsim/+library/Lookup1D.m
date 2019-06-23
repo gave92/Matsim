@@ -22,13 +22,12 @@ classdef Lookup1D < matsim.library.unary_operator
         function this = Lookup1D(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
-            p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            p.KeepUnmatched = true;
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'Table','',@(x) isnumeric(x) || ischar(x));
             addParamValue(p,'breakpoints','',@(x) isnumeric(x) || ischar(x));
             parse(p,varargin{:})
-            
+
             b1 = p.Results.b1;
             Table = p.Results.Table;
             breakpoints = p.Results.breakpoints;

@@ -36,7 +36,7 @@ classdef Subsystem < matsim.library.block
 % 
 %   See also BLOCK.
 
-    properties (Access = private)
+    properties (Access = protected)
         % Handle to input ports
         simInport
         % Handle to enable ports
@@ -55,9 +55,8 @@ classdef Subsystem < matsim.library.block
         function this = Subsystem(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'inputs',{},@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'inputs',[],@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
@@ -69,7 +68,6 @@ classdef Subsystem < matsim.library.block
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.unpack(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
@@ -81,11 +79,8 @@ classdef Subsystem < matsim.library.block
                 Simulink.SubSystem.deleteContents(this.handle);
 
                 for i = 1:length(inputs)
-                    % obj.simInport = builtin('horzcat',obj.simInport,matsim.library.block('In1',obj));
                     this.simInport = concat(this.simInport,matsim.library.block('type','In1','parent',this));
-                end
-                
-                this.setInputs(inputs);
+                end                               
             else
                 % Subsystem already exists, fill input and output ports
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
@@ -113,6 +108,10 @@ classdef Subsystem < matsim.library.block
                     this.simOutport = concat(this.simOutport,matsim.library.block('name',get(outports(i),'name'),'parent',this));
                 end                
             end
+            
+            if matsim.helpers.isArgSpecified(p,'inputs')
+                this.setInputs(inputs);
+            end
         end
         
         function enable = enable(this,varargin)
@@ -133,7 +132,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             parse(p,varargin{:})
@@ -168,7 +166,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             parse(p,varargin{:})
@@ -203,7 +200,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             parse(p,varargin{:})
@@ -238,7 +234,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             parse(p,varargin{:})
@@ -276,7 +271,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'index',@isnumeric)
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
@@ -325,7 +319,6 @@ classdef Subsystem < matsim.library.block
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'index',@isnumeric)
             addOptional(p,'input',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
@@ -348,6 +341,16 @@ classdef Subsystem < matsim.library.block
                 out.setInputs({input});
                 this.simOutport = concat(this.simOutport,out);
             end
-        end               
+        end
+        
+        function ports = getPorts(this)
+            ports = struct;
+            ports.enable = this.simEnable;
+            ports.trigger = this.simTrigger;
+            ports.reset = this.simReset;
+            ports.action = this.simAction;
+            ports.inport = this.simInport;
+            ports.outport = this.simOutport;
+        end
     end
 end

@@ -14,7 +14,6 @@ classdef block_input
         function this = block_input(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'value',@(x) isempty(x) || isa(x,'matsim.library.block'));
             addOptional(p,'srcport',1,@isnumeric);

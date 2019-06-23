@@ -21,7 +21,6 @@ classdef FromWorkspace < matsim.library.block
         function this = FromWorkspace(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'VariableName',@(x) ischar(x) || isnumeric(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
@@ -30,6 +29,10 @@ classdef FromWorkspace < matsim.library.block
             VariableName = p.Results.VariableName;
             parent = p.Results.parent;
             args = matsim.helpers.validateArgs(p.Unmatched);
+
+            if isempty(parent)
+                parent = gcs;
+            end
             
             this = this@matsim.library.block('type','From Workspace','parent',parent,args{:});
             

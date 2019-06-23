@@ -21,7 +21,7 @@ classdef simulation < handle
 %   sys.setSolver('Ts',0.01,'DiscreteOnly',true)  % Set solver for the model
 %   sys.clear()                                   % Delete all blocks
 %   sys.show()                                    % Show the model
-%   Scope(Gain(FromWorkspace('var'),'gain',0.5)) % Add blocks to the model
+%   Scope(Gain(FromWorkspace('var1'),'Gain',0.5)) % Add blocks to the model
 %   sys.layout()                                  % Connect and layout the model
 %   sys.save()
 %   sys.close()
@@ -65,7 +65,6 @@ classdef simulation < handle
         function this = simulation(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'sys',@ishandle);
             parse(p,varargin{:})
@@ -91,7 +90,6 @@ classdef simulation < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addParamValue(p,'DiscreteOnly',false,@islogical);
             addParamValue(p,'Ts',0,@isnumeric);
@@ -131,7 +129,6 @@ classdef simulation < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'path',[],@ischar);
             parse(p,varargin{:})
@@ -193,7 +190,6 @@ classdef simulation < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'subsystem',{},@(x) isempty(x) || ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             addParamValue(p,'show',false,@islogical)
@@ -226,7 +222,6 @@ classdef simulation < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             parse(p,varargin{:})
             
@@ -256,7 +251,6 @@ classdef simulation < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'block',@(x) isa(x,'matsim.library.block'))
             addParamValue(p,'name','',@ischar)

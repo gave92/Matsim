@@ -28,9 +28,8 @@ classdef unary_operator < matsim.library.block
         function this = unary_operator(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'ops','',@ischar);
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
@@ -40,7 +39,6 @@ classdef unary_operator < matsim.library.block
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            % validateattributes(parent,{'char'},{'nonempty'},'','parent')
             if isempty(parent)
                 parent = gcs;
             end
@@ -49,7 +47,7 @@ classdef unary_operator < matsim.library.block
             end
             
             this = this@matsim.library.block('type',ops,'parent',parent,args{:});
-            if this.getUserData('created') == 0
+            if matsim.helpers.isArgSpecified(p,'b1')
                 this.setInputs(inputs);
             end
         end

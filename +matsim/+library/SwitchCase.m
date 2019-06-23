@@ -21,14 +21,13 @@ classdef SwitchCase < matsim.library.unary_operator
         function this = SwitchCase(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'CaseConditions',{},@(x) iscell(x) || isnumeric(x));
             parse(p,varargin{:})
             
             b1 = p.Results.b1;
-            CaseConditions = p.Results.CaseConditions;            
+            CaseConditions = p.Results.CaseConditions;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
             this = this@matsim.library.unary_operator(b1,'ops','Switch Case',args{:});

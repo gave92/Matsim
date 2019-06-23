@@ -27,9 +27,8 @@ classdef Selector < matsim.library.unary_operator
         function this = Selector(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
-            p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            p.KeepUnmatched = true;
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
             addParamValue(p,'Indices',[1,3],@(x) isnumeric(x));
             addParamValue(p,'InputPortWidth',3,@(x) isnumeric(x));
             parse(p,varargin{:})

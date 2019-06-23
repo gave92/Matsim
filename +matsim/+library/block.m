@@ -45,7 +45,6 @@ classdef block < handle
         function this = block(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addParamValue(p,'type','',@ischar);
             addParamValue(p,'model','simulink',@ischar);
@@ -131,7 +130,6 @@ classdef block < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addOptional(p,'index',[],@isnumeric);
             addParamValue(p,'name',[],@ischar);
@@ -225,7 +223,6 @@ classdef block < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;
             addRequired(p,'value');
             parse(p,varargin{:})
@@ -265,7 +262,6 @@ classdef block < handle
             
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
             p.KeepUnmatched = true;            
             addRequired(p,'index',@isnumeric);
             addParamValue(p,'value',{});
@@ -332,7 +328,7 @@ classdef block < handle
         end
         function r = uminus(b1)
             % r = matsim.library.binary_operator(b1,-1,'ops','Product');
-            r = Gain(b1,'value',-1);
+            r = Gain(b1,'Gain',-1);
         end
         
         %% Product

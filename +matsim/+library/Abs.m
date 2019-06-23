@@ -8,9 +8,8 @@ function blk = Abs(varargin)
 
     p = inputParser;
     p.CaseSensitive = false;
-    % p.PartialMatching = false;
-    p.KeepUnmatched = true;            
-    addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+    p.KeepUnmatched = true;
+    addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
     parse(p,varargin{:})
 
     b1 = p.Results.b1;
@@ -18,4 +17,3 @@ function blk = Abs(varargin)
 
     blk = matsim.library.unary_operator(b1,'ops','Abs',args{:});
 end
-

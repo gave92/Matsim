@@ -26,15 +26,14 @@ classdef Lookup2D < matsim.library.binary_operator
         function this = Lookup2D(varargin)
             p = inputParser;
             p.CaseSensitive = false;
-            % p.PartialMatching = false;
-            p.KeepUnmatched = true;            
-            addOptional(p,'b1',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addOptional(p,'b2',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            p.KeepUnmatched = true;
+            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addOptional(p,'b2',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block')); 
             addParamValue(p,'Table','',@(x) isnumeric(x) || ischar(x));
             addParamValue(p,'breakpoints1','',@(x) isnumeric(x) || ischar(x));
             addParamValue(p,'breakpoints2','',@(x) isnumeric(x) || ischar(x));
             parse(p,varargin{:})
-            
+
             b1 = p.Results.b1;
             b2 = p.Results.b2;
             Table = p.Results.Table;

@@ -5,7 +5,6 @@ function [out] = fun2model(varargin)
 
     p = inputParser;
     p.CaseSensitive = true;
-    % p.PartialMatching = false;
     p.KeepUnmatched = true;
     addRequired(p,'fun',@(x) isa(x,'function_handle'));
     addParamValue(p,'model','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
