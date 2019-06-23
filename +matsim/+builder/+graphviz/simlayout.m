@@ -86,6 +86,8 @@ function [] = tryAlignBlocks(layout)
     getRank(layout);
     % Get blocks without outputs (adj i-column all 0)
     roots = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(:,i)==0),1:size(layout.Value.adjBool,2)));
+    % Also use minimum rank (right-most) blocks
+    roots = union(roots,layout.Value.blocks(layout.Value.ranks==min(layout.Value.ranks)));
     % Layout blocks
     layout.Value.unvisited = layout.Value.blocks;    
     for i = 1:length(roots)
@@ -96,6 +98,8 @@ end
 function [] = tryAlignRoots(layout)
     % Get blocks without outputs (adj i-column all 0)
     roots = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(:,i)==0),1:size(layout.Value.adjBool,2)));
+    % Also use minimum rank (right-most) blocks
+    roots = union(roots,layout.Value.blocks(layout.Value.ranks==min(layout.Value.ranks)));
     % Layout roots
     for i = 1:length(roots)
         tryAlignRoots2(roots(i),layout);
