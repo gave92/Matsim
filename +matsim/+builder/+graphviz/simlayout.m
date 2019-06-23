@@ -46,20 +46,18 @@ function [] = simlayout(varargin)
         h = get(blocks(i),'PortHandles');
         ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction];
         parents = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
-        
+
+        port_num = get(ports,'portnumber');
+        if iscell(port_num)
+            port_num = cell2mat(port_num);
+        end
+        line = get(ports,'line');
+        if ~iscell(line), line={line}; end
+        delete_line(cell2mat(line(cell2mat(line)~=-1)));
+
         for p = 1:size(parents,1)
             onum = parents(p,2);
             inum = parents(p,3);
-
-            port_num = get(ports,'portnumber');
-            if iscell(port_num)
-                port_num = cell2mat(port_num);
-            end
-            line = get(ports(port_num==inum),'line');
-            if line ~= -1
-                % Line exists
-                delete_line(line)
-            end
 
             if parents(p,1) ~= -1 && onum ~= -1 % onum = -1 is implicit connection (goto->from)
                 h1 = get(parents(p,1),'PortHandles');

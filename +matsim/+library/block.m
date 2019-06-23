@@ -224,12 +224,12 @@ classdef block < handle
             p = inputParser;
             p.CaseSensitive = false;
             p.KeepUnmatched = true;
-            addRequired(p,'value');
+            addOptional(p,'value',[]);
             parse(p,varargin{:})
             
             value = p.Results.value;
             parent = matsim.helpers.getValidParent(this);
-            if ~isempty(value)
+            if matsim.helpers.isArgSpecified(p,'value')
                 validatedInputs = matsim.helpers.validateInputs(value,parent);
                 if ~iscell(validatedInputs)
                     validatedInputs = {validatedInputs};
