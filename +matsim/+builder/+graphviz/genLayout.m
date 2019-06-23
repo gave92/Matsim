@@ -56,8 +56,8 @@ function writeDOTfile(obj)
     fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
     n = size(obj.adjMatrix,1);
     for i=1:n
-        w = obj.width(i)*0.8/30;
-        h = obj.height(i)*0.8/30;
+        width = obj.width(i)*0.8/30;
+        height = obj.height(i)*0.8/30;
         ports = get(obj.blocks(i),'porthandles');
         inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction]);
         outputnum = length([ports.Outport]);
@@ -85,7 +85,7 @@ function writeDOTfile(obj)
             end
             dotfile = [dotfile '}'];
         end
-        fprintf(fid,'%s}", shape=record, fixedsize=true, width=%f, height=%f];\n',dotfile,w,h);
+        fprintf(fid,'%s}", shape=record, fixedsize=true, width=%f, height=%f];\n',dotfile,width,height);
     end
     edgetxt = ' -> ';
     for i=1:n
@@ -176,6 +176,7 @@ end
 
 function cleanup(obj)
 % delete the temporary files. 
+   % !dot -Tpng adjmat.dot -o graph.png
    delete(obj.adjFile);
    delete(obj.layoutFile);
 end
