@@ -13,16 +13,18 @@ function blk = EnabledSubsystem(varargin)
     p = inputParser;
     p.CaseSensitive = false;
     p.KeepUnmatched = true;
-    addParamValue(p,'Enable',{},@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+    addOptional(p,'inputs',[],@(x) isnumeric(x) || iscell(x) || isa(x,'matsim.library.block'));
+    addParamValue(p,'Enable',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
     parse(p,varargin{:})
 
+    inputs = p.Results.inputs;
     enable = p.Results.Enable;
     args = matsim.helpers.unpack(p.Unmatched);
 
-    blk = matsim.library.Subsystem(args{:});
+    blk = matsim.library.Subsystem(inputs,args{:});
     ports = blk.getPorts();
     
-    if ~any(strcmp(p.UsingDefaults,'Enable')) || isempty(ports.enable)
+    if matsim.helpers.isArgSpecified(p,'Enable') || isempty(ports.enable)
         blk.enable(enable);
     end
 end

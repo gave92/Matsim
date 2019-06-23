@@ -78,9 +78,11 @@ classdef Subsystem < matsim.library.block
                 % Subsystem was created, delete default content
                 Simulink.SubSystem.deleteContents(this.handle);
 
-                for i = 1:length(inputs)
-                    this.simInport = concat(this.simInport,matsim.library.block('type','In1','parent',this));
-                end                               
+                if matsim.helpers.isArgSpecified(p,'inputs')
+                    for i = 1:length(inputs)
+                        this.simInport = concat(this.simInport,matsim.library.block('type','In1','parent',this));
+                    end
+                end
             else
                 % Subsystem already exists, fill input and output ports
                 inports = matsim.helpers.findBlock(this.handle,'SearchDepth',1,'BlockType','Inport');
