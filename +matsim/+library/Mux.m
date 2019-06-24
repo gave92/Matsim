@@ -48,7 +48,7 @@ classdef Mux < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','Mux','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','Mux','parent',parent,args{:});
 
             if matsim.helpers.isArgSpecified(p,'inputs')
                 this.set('Inputs',mat2str(max(1,length(inputs))))

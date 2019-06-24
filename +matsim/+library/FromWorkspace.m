@@ -34,7 +34,7 @@ classdef FromWorkspace < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','From Workspace','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','FromWorkspace','parent',parent,args{:});
             
             if ~isempty(VariableName)
                 this.set('VariableName',VariableName)

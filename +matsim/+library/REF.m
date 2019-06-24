@@ -52,7 +52,7 @@ classdef REF < matsim.library.block
                 type = 'Goto';
             end
             
-            this = this@matsim.library.block('type',type,'parent',parent,args{:});
+            this = this@matsim.library.block('BlockType',type,'parent',parent,args{:});
             this.set('ShowName','off');
             if matsim.helpers.isArgSpecified(p,'b1')
                 this.setInputs(inputs);

@@ -35,7 +35,7 @@ classdef %s < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
+            this = this@matsim.library.block('model','%s','BlockName','%s','parent',parent,args{:});
             if matsim.helpers.isArgSpecified(p,'inputs')
                 this.setInputs(inputs);
             end

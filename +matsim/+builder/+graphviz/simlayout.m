@@ -55,7 +55,11 @@ function [] = simlayout(varargin)
     % Create lines
     for i=1:length(blocks)        
         h = get(blocks(i),'PortHandles');
-        ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction];
+        if matsim.utils.getversion() >= 2015
+            ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction];
+        else
+            ports = [h.Inport, h.Enable, h.Trigger, h.Ifaction];
+        end
         parents = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
 
         port_num = get(ports,'portnumber');
@@ -115,7 +119,11 @@ function [] = tryAlignRoots2(block,layout)
         hparent = get(parents(1),'porthandles');
         oports = [hparent.Outport];
         hblk = get(block,'porthandles');
-        ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction];
+        if matsim.utils.getversion() >= 2015
+            ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction];
+        else
+            ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Ifaction];
+        end
         if adj(2) ~= -1
             blockSizeRef = get(block,'Position');
             % width = blockSizeRef(3) - blockSizeRef(1);
@@ -123,7 +131,11 @@ function [] = tryAlignRoots2(block,layout)
             if strcmpi(get(ports(adj(3)),'porttype'),'inport')
                 port_pos = get(oports(adj(2)),'position');
             else
-                order = find([hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction]==ports(adj(3)));
+                if matsim.utils.getversion() >= 2015
+                    order = find([hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction]==ports(adj(3)));
+                else
+                    order = find([hblk.Enable, hblk.Trigger, hblk.Ifaction]==ports(adj(3)));
+                end
                 port_pos = get(oports(adj(3)),'position');
                 port_pos(2) = port_pos(2)+42*order;
             end            
@@ -164,7 +176,11 @@ function [] = tryAlignBlocks2(block,layout)
         child_idx = str2double(get(children(cidx),'tag'));
         adj = layout.Value.adjMatrix{child_idx,blk_idx};
         hchild = get(children(cidx),'porthandles');
-        ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction];
+        if matsim.utils.getversion() >= 2015
+            ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction];
+        else
+            ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Ifaction];
+        end
         hblk = get(block,'porthandles');
         oports = [hblk.Outport];
         if adj(2) ~= -1
@@ -174,7 +190,11 @@ function [] = tryAlignBlocks2(block,layout)
             if strcmpi(get(ports(adj(3)),'porttype'),'inport')
                 port_pos = get(ports(adj(3)),'position');
             else
-                order = find([hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction]==ports(adj(3)));
+                if matsim.utils.getversion() >= 2015
+                    order = find([hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction]==ports(adj(3)));
+                else
+                    order = find([hchild.Enable, hchild.Trigger, hchild.Ifaction]==ports(adj(3)));
+                end
                 port_pos = get(ports(adj(3)),'position');
                 port_pos(2) = port_pos(2)-42*order;
             end            

@@ -48,7 +48,7 @@ classdef binary_operator < matsim.library.block
                 error('Invalid operator.')
             end
 
-            this = this@matsim.library.block('type',ops,'parent',parent,args{:});
+            this = this@matsim.library.block('BlockName',ops,'parent',parent,args{:});
             if matsim.helpers.isArgSpecified(p,'b1')
                 this.setInputs(inputs);
             end

@@ -46,7 +46,7 @@ classdef Switch < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','Switch','parent',parent,args{:});            
+            this = this@matsim.library.block('BlockType','Switch','parent',parent,args{:});
             if matsim.helpers.isArgSpecified(p,'b1')
                 this.set('Criteria','u2 ~= 0')
                 this.setInputs(inputs);

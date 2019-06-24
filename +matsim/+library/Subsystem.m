@@ -72,7 +72,7 @@ classdef Subsystem < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','SubSystem','parent',parent,args{:});
+            this = this@matsim.library.block('BlockName','SubSystem','parent',parent,args{:});
             
             if this.getUserData('created') == 0
                 % Subsystem was created, delete default content
@@ -80,7 +80,7 @@ classdef Subsystem < matsim.library.block
 
                 if matsim.helpers.isArgSpecified(p,'inputs')
                     for i = 1:length(inputs)
-                        this.simInport = concat(this.simInport,matsim.library.block('type','In1','parent',this));
+                        this.simInport = concat(this.simInport,matsim.library.block('BlockType','Inport','parent',this));
                     end
                 end
             else
@@ -142,7 +142,7 @@ classdef Subsystem < matsim.library.block
             args = matsim.helpers.unpack(p.Unmatched);
             
             if isempty(this.simEnable)
-                enable = matsim.library.block('type','Enable','parent',this,args{:});
+                enable = matsim.library.block('BlockType','EnablePort','parent',this,args{:});
                 this.setInput(length(this.simEnable)+1,'value',input,'type','enable');
                 this.simEnable = concat(this.simEnable,enable);
             else
@@ -176,7 +176,7 @@ classdef Subsystem < matsim.library.block
             args = matsim.helpers.unpack(p.Unmatched);
             
             if isempty(this.simTrigger)
-                trigger = matsim.library.block('type','Trigger','parent',this,args{:});
+                trigger = matsim.library.block('BlockType','TriggerPort','parent',this,args{:});
                 this.setInput(length(this.simTrigger)+1,'value',input,'type','trigger');
                 this.simTrigger = concat(this.simTrigger,trigger);
             else
@@ -210,7 +210,7 @@ classdef Subsystem < matsim.library.block
             args = matsim.helpers.unpack(p.Unmatched);
             
             if isempty(this.simReset)
-                reset = matsim.library.block('type','Reset','parent',this,args{:});
+                reset = matsim.library.block('BlockType','ResetPort','parent',this,args{:});
                 this.setInput(length(this.simReset)+1,'value',input,'type','reset');
                 this.simReset = concat(this.simReset,reset);
             else
@@ -244,7 +244,7 @@ classdef Subsystem < matsim.library.block
             args = matsim.helpers.unpack(p.Unmatched);
             
             if isempty(this.simAction)
-                action = matsim.library.block('type','Action Port','parent',this,args{:});
+                action = matsim.library.block('BlockType','ActionPort','parent',this,args{:});
                 this.setInput(length(this.simAction)+1,'value',input,'type','ifaction');
                 this.simAction = concat(this.simAction,action);
             else
@@ -291,7 +291,7 @@ classdef Subsystem < matsim.library.block
                 end
             else
                 % Create new inport
-                in = matsim.library.block('type','In1','parent',this,args{:});
+                in = matsim.library.block('BlockType','Inport','parent',this,args{:});
                 this.simInport = concat(this.simInport,in);
                 this.setInput(index,'value',input);
             end
@@ -339,7 +339,7 @@ classdef Subsystem < matsim.library.block
                 end
             else
                 % Create new outport
-                out = matsim.library.block('type','Out1','parent',this,args{:});
+                out = matsim.library.block('BlockType','Outport','parent',this,args{:});
                 out.setInputs({input});
                 this.simOutport = concat(this.simOutport,out);
             end

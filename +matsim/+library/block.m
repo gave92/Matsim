@@ -1,10 +1,13 @@
 classdef block < handle
 %BLOCK Creates any simulink block.
 % Syntax:
-%   blk = block('model',MODEL,'type',TYPE);
+%   blk = block('model',MODEL,'BlockName',NAME);
 %     MODEL is the name of the library containing the desired block.
-%     TYPE is the name ("BlockName") of the block to be created.
-%   blk = block('model',MODEL,'type',TYPE,ARGS);
+%     NAME is the name (prop: "Name") of the block to be created.
+%   blk = block('model',MODEL,'BlockType',TYPE);
+%     MODEL is the name of the library containing the desired block.
+%     TYPE is the type (prop: "BlockType") of the block to be created.
+%   blk = block('model',MODEL,'BlockType',TYPE,ARGS);
 %     ARGS is an optional list of parameter/value pairs specifying simulink
 %     block properties.
 %   blk = [block1+block2./0.5, block3];
@@ -30,7 +33,7 @@ classdef block < handle
 %    outport - "selects" a block outport or sets its name
 % 
 % Example:
-%   blk = block('model','simulink','type','Gain','ShowName','off','ForegroundColor','red');
+%   blk = block('model','simulink','BlockType','Gain','ShowName','off','ForegroundColor','red');
     
     properties (Access = private)
         % Handle to simulink block
@@ -46,13 +49,15 @@ classdef block < handle
             p = inputParser;
             p.CaseSensitive = false;
             p.KeepUnmatched = true;
-            addParamValue(p,'type','',@ischar);
+            addParamValue(p,'BlockName','',@ischar);
+            addParamValue(p,'BlockType','',@ischar);
             addParamValue(p,'model','simulink',@ischar);
             addParamValue(p,'copy',false,@islogical);
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
-            type = p.Results.type;
+            block_name = p.Results.BlockName;
+            block_type = p.Results.BlockType;
             model = p.Results.model;
             copy = p.Results.copy;
             strParent = matsim.helpers.getBlockPath(p.Results.parent);
@@ -93,9 +98,12 @@ classdef block < handle
             end
             
             % Create block
-            match = matsim.helpers.findBlock(model,'BlockName',type);
+            match = matsim.helpers.findBlock(model,'BlockName',block_name,'BlockType',block_type);
+            if isempty(match)
+                match = matsim.helpers.findBlock(model,'BlockName',block_name,'BlockType',block_type,'LookUnderMasks','all');
+            end
             if ~isempty(match)
-                this.simBlock = add_block(match{1},strjoin({strParent,type},'/'),'MakeNameUnique','on',args{:});
+                this.simBlock = add_block(match{1},strjoin({strParent,get_param(match{1},'name')},'/'),'MakeNameUnique','on',args{:});
                 this.setUserData('block',this)
                 this.setUserData('created',0)
                 this.simSelectedOutport = 1;
@@ -187,7 +195,11 @@ classdef block < handle
         end
         function [] = setInputsFromBlock(this)
             ports = get(this,'porthandles');
-            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
+            if matsim.utils.getversion() >= 2015
+                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
+            else
+                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
+            end
             for i=1:length(ports)
                 line = get(ports(i),'line');
                 if (line == -1 || get(line,'SrcBlockHandle') == -1)
@@ -218,7 +230,7 @@ classdef block < handle
             % Example:
             %   in1 = FromWorkspace('var1');
             %   in2 = Constant('var2');
-            %   blk = block('model','simulink','type','Mux','Inputs','4');
+            %   blk = block('model','simulink','BlockType','Mux','Inputs','4');
             %   blk.setInputs({in1,{},0,in2})
             
             p = inputParser;
@@ -257,7 +269,7 @@ classdef block < handle
             % 
             % Example:
             %   in1 = FromWorkspace('var1');
-            %   blk = block('model','simulink','type','Mux','Inputs','2');
+            %   blk = block('model','simulink','BlockType','Mux','Inputs','2');
             %   blk.setInput(1,'value',in1,'srcport',1)
             
             p = inputParser;

@@ -47,7 +47,7 @@ classdef Merge < matsim.library.block
                 parent = gcs;
             end            
             
-            this = this@matsim.library.block('type','Merge','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','Merge','parent',parent,args{:});
 
             if matsim.helpers.isArgSpecified(p,'inputs')
                 this.set('Inputs',mat2str(max(2,length(inputs))));

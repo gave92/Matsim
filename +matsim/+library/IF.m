@@ -55,7 +55,7 @@ classdef IF < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','If','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','If','parent',parent,args{:});
 
             if matsim.helpers.isArgSpecified(p,'inputs')
                 this.set('NumInputs',mat2str(max(1,length(inputs))));

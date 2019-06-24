@@ -22,7 +22,7 @@ classdef %s < matsim.library.block
             parent = p.Results.parent;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.block('model','%s','type','%s','parent',parent,args{:});
+            this = this@matsim.library.block('model','%s','BlockName','%s','parent',parent,args{:});
 
 %s
         end

@@ -43,10 +43,10 @@ classdef Delay < matsim.library.unary_operator
             
             this = this@matsim.library.unary_operator(b1,'ops',dl,args{:});
             this.set('SampleTime',mat2str(SampleTime))
-            if matsim.utils.getversion() >= 2014
-                this.set('InitialCondition',mat2str(x0))
-            else
+            if matsim.utils.getversion() < 2014 && strcmp(dl, 'Unit Delay')
                 this.set('X0',mat2str(x0))
+            else
+                this.set('InitialCondition',mat2str(x0))
             end
             if DelayLength ~= 1
                 this.set('DelayLength',mat2str(DelayLength))

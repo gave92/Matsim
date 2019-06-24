@@ -51,7 +51,7 @@ classdef Scope < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','Scope','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','Scope','parent',parent,args{:});
 
             if matsim.helpers.isArgSpecified(p,'inputs')
                 if matsim.utils.getversion() >= 2015

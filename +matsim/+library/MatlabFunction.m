@@ -60,7 +60,7 @@ classdef MatlabFunction < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','MATLAB Function','parent',parent,args{:});
+            this = this@matsim.library.block('BlockName','MATLAB Function','parent',parent,args{:});
             this.chartHandle = find(slroot, '-isa', 'Stateflow.EMChart', 'Path', matsim.helpers.getBlockPath(this));
             
             [~,~,ext] = fileparts(Script);

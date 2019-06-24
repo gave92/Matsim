@@ -27,7 +27,11 @@ function neighbours = getNeighbours(sys,root)
         end
     else
         ports = get(root,'porthandles');
-        ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
+        if matsim.utils.getversion() >= 2015
+            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
+        else
+            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
+        end
         for i=1:length(ports)
             line = get(ports(i),'line');
             if (line == -1 || get(line,'SrcBlockHandle') == -1), continue; end;
@@ -41,7 +45,15 @@ function neighbours = getNeighbours(sys,root)
         GotoTag = get(root, 'Gototag');
         Gotos = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','Goto','Gototag',GotoTag);
         for i = 1:length(Gotos)
-            in = [get(Gotos(i),'handle'), -1, 1]; % -1 is implicit connection
+            in = [get(Gotos(i),'handle'), -1, -1]; % -1 is implicit connection
+            neighbours = [neighbours; in];
+        end
+    end
+    if strcmp(get(root,'blocktype'),'DataStoreMemory')
+        DataTag = get(root, 'DataStoreName');
+        DataWrite = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','DataStoreWrite','DataStoreName',DataTag);
+        for i = 1:length(DataWrite)
+            in = [get(DataWrite(i),'handle'), -1, -1]; % -1 is implicit connection
             neighbours = [neighbours; in];
         end
     end

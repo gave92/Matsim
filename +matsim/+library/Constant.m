@@ -35,7 +35,7 @@ classdef Constant < matsim.library.block
                 parent = gcs;
             end
             
-            this = this@matsim.library.block('type','Constant','parent',parent,args{:});
+            this = this@matsim.library.block('BlockType','Constant','parent',parent,args{:});
             if ~isempty(Value)
                 this.set({'Value',Value,'VectorParams1D','off'})
             end

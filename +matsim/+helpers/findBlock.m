@@ -17,6 +17,7 @@ function match = findBlock(sys,varargin)
     addParamValue(p,'Exact',true,@islogical);
     addParamValue(p,'BlockName','',@ischar);
     addParamValue(p,'BlockType','',@ischar);
+    addParamValue(p,'LookUnderMasks','graphical',@ischar);
     addParamValue(p,'SearchDepth',-1,@isnumeric);
     parse(p,sys,varargin{:})
 
@@ -25,22 +26,26 @@ function match = findBlock(sys,varargin)
     block_name = p.Results.BlockName;
     block_type = p.Results.BlockType;
     exact = p.Results.Exact;
+    masks = p.Results.LookUnderMasks;
     other = matsim.helpers.unpack(p.Unmatched);
         
     try
         load_system(sys);
-        % set_param(sys,'Lock','off')
     catch
+        warning('MATSIM:Build','Could not load %s',get_param(sys,'name'))
     end
 
     if matsim.utils.getversion() >= 2012
-        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks','all','IncludeCommented','on','Type','block'};
+        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks',masks,'IncludeCommented','on','Type','block'};
     else
-        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks','all','Type','block'};
+        args = {'CaseSensitive','off','RegExp','on','LookUnderMasks',masks,'Type','block'};
     end
     if search_depth >= 0
         args = ['SearchDepth',mat2str(search_depth),args];
     end
+    
+    args = [args,other];
+    
     if ~isempty(block_type)
         args = [args,'BlockType',['^',escape(block_type),'$']];
     end
@@ -50,10 +55,9 @@ function match = findBlock(sys,varargin)
         else
             args = [args,'name',escape(block_name)];
         end        
-    end
-    args = [args,other];
+    end    
     
-    % Find match in system    
+    % Find match in system
     match = find_system(sys,args{:});
     
     % Restore current system
