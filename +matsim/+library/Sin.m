@@ -6,5 +6,5 @@ function blk = Sin(varargin)
 % 
 %   See also UNARY_OPERATOR.
 
-    blk = matsim.library.unary_operator(varargin{:},'ops','Trigonometric Function','Operator','Sin');
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Sin');
 end

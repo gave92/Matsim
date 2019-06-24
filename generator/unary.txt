@@ -23,7 +23,7 @@ classdef %s < matsim.library.unary_operator
 %s
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','%s',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','%s',args{:});
 
 %s
         end

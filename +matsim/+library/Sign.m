@@ -6,6 +6,6 @@ function blk = Sign(varargin)
 % 
 %   See also UNARY_OPERATOR.
 
-    blk = matsim.library.unary_operator(varargin{:},'ops','Sign');
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','Sign');
 end
 

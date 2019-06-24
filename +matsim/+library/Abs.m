@@ -6,5 +6,5 @@ function blk = Abs(varargin)
 % 
 %   See also UNARY_OPERATOR.
 
-    blk = matsim.library.unary_operator(varargin{:},'ops','Abs');
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','Abs');
 end

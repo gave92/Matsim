@@ -33,7 +33,7 @@ classdef Lookup1D < matsim.library.unary_operator
             breakpoints = p.Results.breakpoints;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','1-D Lookup Table',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','1-D Lookup Table',args{:});
             this.set('ExtrapMethod','Clip')
             this.set('UseLastTableValue','on')
 

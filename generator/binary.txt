@@ -26,7 +26,7 @@ classdef %s < matsim.library.binary_operator
 %s
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.binary_operator(b1,b2,'ops','%s','Function','Max','Inputs',mat2str(2),args{:});
+            this = this@matsim.library.binary_operator(b1,b2,'BlockName','%s','Function','Max','Inputs',mat2str(2),args{:});
 
 %s
         end

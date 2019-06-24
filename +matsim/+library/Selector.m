@@ -38,7 +38,7 @@ classdef Selector < matsim.library.unary_operator
             InputPortWidth = p.Results.InputPortWidth;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','Selector',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Selector',args{:});
             this.set({'NumberOfDimensions','1','IndexOptions','Index vector (dialog)','InputPortWidth',mat2str(InputPortWidth),'Indices',mat2str(Indices)})
         end
     end

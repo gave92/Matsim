@@ -41,7 +41,7 @@ classdef Delay < matsim.library.unary_operator
                 dl = 'Unit Delay';
             end
             
-            this = this@matsim.library.unary_operator(b1,'ops',dl,args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName',dl,args{:});
             this.set('SampleTime',mat2str(SampleTime))
             if matsim.utils.getversion() < 2014 && strcmp(dl, 'Unit Delay')
                 this.set('X0',mat2str(x0))

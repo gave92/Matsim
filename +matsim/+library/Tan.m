@@ -6,6 +6,6 @@ function blk = Tan(varargin)
 % 
 %   See also UNARY_OPERATOR.
 
-    blk = matsim.library.unary_operator(varargin{:},'ops','Trigonometric Function','Operator','Tan');
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Tan');
 end
 

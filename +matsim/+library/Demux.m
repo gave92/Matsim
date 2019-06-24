@@ -33,7 +33,7 @@ classdef Demux < matsim.library.unary_operator
             Outputs = p.Results.Outputs;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','Demux',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Demux',args{:});
             this.set('Outputs',Outputs)
         end
     end

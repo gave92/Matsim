@@ -40,7 +40,7 @@ classdef BusSelector < matsim.library.unary_operator
             outputsignals = p.Results.OutputSignals;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','Bus Selector',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Bus Selector',args{:});
             if ~iscell(outputsignals), outputsignals = {outputsignals}; end
             if ~isempty(outputsignals), this.set('OutputSignals',strjoin(outputsignals,',')); end
         end

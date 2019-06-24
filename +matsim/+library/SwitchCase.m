@@ -30,7 +30,7 @@ classdef SwitchCase < matsim.library.unary_operator
             CaseConditions = p.Results.CaseConditions;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','Switch Case',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Switch Case',args{:});
             
             if ~isempty(CaseConditions)
                 if ~iscell(CaseConditions), CaseConditions={CaseConditions}; end

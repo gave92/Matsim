@@ -31,7 +31,7 @@ classdef ToWorkspace < matsim.library.unary_operator
             VariableName = p.Results.VariableName;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','To Workspace',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','To Workspace',args{:});
             
             if ~isempty(VariableName)
                 this.set('VariableName',VariableName)

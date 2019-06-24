@@ -21,7 +21,7 @@ classdef Terminator < matsim.library.unary_operator
             b1 = p.Results.b1;
             args = matsim.helpers.validateArgs(p.Unmatched);
 
-            this = this@matsim.library.unary_operator(b1,'ops','Terminator',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Terminator',args{:});
         end
     end
     

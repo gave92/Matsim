@@ -6,6 +6,6 @@ function blk = Cos(varargin)
 % 
 %   See also UNARY_OPERATOR.
 
-    blk = matsim.library.unary_operator(varargin{:},'ops','Trigonometric Function','Operator','Cos');
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Cos');
 end
 

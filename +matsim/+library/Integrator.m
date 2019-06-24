@@ -40,7 +40,7 @@ classdef Integrator < matsim.library.unary_operator
                 integ = 'Integrator';
             end
             
-            this = this@matsim.library.unary_operator(b1,'ops',integ,args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName',integ,args{:});
             this.set('InitialCondition',mat2str(x0));
             if SampleTime ~= 0
                 this.set('SampleTime',mat2str(SampleTime));

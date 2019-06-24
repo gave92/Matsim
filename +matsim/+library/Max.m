@@ -7,6 +7,6 @@ function blk = Max(varargin)
 % 
 %   See also BINARY_OPERATOR.
 
-    blk = matsim.library.binary_operator(varargin{:},'ops','MinMax','Function','Max','Inputs',mat2str(2));
+    blk = matsim.library.binary_operator(varargin{:},'BlockName','MinMax','Function','Max','Inputs',mat2str(2));
 end
 

@@ -41,7 +41,7 @@ classdef Lookup2D < matsim.library.binary_operator
             breakpoints2 = p.Results.breakpoints2;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.binary_operator(b1,b2,'ops','2-D Lookup Table',args{:});
+            this = this@matsim.library.binary_operator(b1,b2,'BlockName','2-D Lookup Table',args{:});
             this.set('ExtrapMethod','Clip')
             this.set('UseLastTableValue','on')
 

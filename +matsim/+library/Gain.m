@@ -29,7 +29,7 @@ classdef Gain < matsim.library.unary_operator
             Gain = p.Results.Gain;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
-            this = this@matsim.library.unary_operator(b1,'ops','Gain',args{:});
+            this = this@matsim.library.unary_operator(b1,'BlockName','Gain',args{:});
             if ~isempty(Gain)
                 this.set('Gain',Gain)
             end

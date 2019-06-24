@@ -330,39 +330,39 @@ classdef block < handle
         % From https://it.mathworks.com/help/matlab/matlab_oop/implementing-operators-for-your-class.html
         %% Add
         function r = plus(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Add');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Add');
         end
         function r = minus(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Subtract');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Subtract');
         end
         function r = uplus(b1)
             r = b1;
         end
         function r = uminus(b1)
-            % r = matsim.library.binary_operator(b1,-1,'ops','Product');
+            % r = matsim.library.binary_operator(b1,-1,'BlockName','Product');
             r = Gain(b1,'Gain',-1);
         end
         
         %% Product
         function r = times(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Product');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Product');
         end
         function r = mtimes(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Product','Multiplication','Matrix(*)');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Product','Multiplication','Matrix(*)');
         end       
         
         %% Division
         function r = rdivide(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Divide');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Divide');
         end
         function r = ldivide(b1,b2)
-            r = matsim.library.binary_operator(b2,b1,'ops','Divide','Multiplication','Matrix(*)');
+            r = matsim.library.binary_operator(b2,b1,'BlockName','Divide','Multiplication','Matrix(*)');
         end
         function r = mrdivide(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Divide','Multiplication','Matrix(*)');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Divide','Multiplication','Matrix(*)');
         end
         function r = mldivide(b1,b2)
-            r = matsim.library.binary_operator(b2,b1,'ops','Divide','Multiplication','Matrix(*)');
+            r = matsim.library.binary_operator(b2,b1,'BlockName','Divide','Multiplication','Matrix(*)');
         end
         
         %% Math operation
@@ -370,44 +370,44 @@ classdef block < handle
             if isnumeric(b2) && isscalar(b2) && b2==1
                 r = b1;
             elseif isnumeric(b2) && isscalar(b2) && b2==2
-                r = matsim.library.binary_operator(b1,b1,'ops','Product');
+                r = matsim.library.binary_operator(b1,b1,'BlockName','Product');
             else
-                r = matsim.library.binary_operator(b1,b2,'ops','Math Function','Function','pow');
+                r = matsim.library.binary_operator(b1,b2,'BlockName','Math Function','Function','pow');
             end
         end
         function r = mpower(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Math Function','Function','pow');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Math Function','Function','pow');
         end
         
         %% Compare
         function r = lt(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Relational Operator','Operator','<');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Relational Operator','Operator','<');
         end
         function r = gt(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Relational Operator','Operator','>');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Relational Operator','Operator','>');
         end
         function r = le(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Relational Operator','Operator','<=');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Relational Operator','Operator','<=');
         end
         function r = ge(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Relational Operator','Operator','>=');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Relational Operator','Operator','>=');
         end
         function r = ne(b1,b2)
             r = matsim.library.binary_operator(b1,b2,'Relational Operator','Operator','~=');
         end
         function r = eq(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Relational Operator','Operator','==');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Relational Operator','Operator','==');
         end
         
         %% Logical
         function r = and(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Logical Operator','Operator','AND');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Logical Operator','Operator','AND');
         end
         function r = or(b1,b2)
-            r = matsim.library.binary_operator(b1,b2,'ops','Logical Operator','Operator','OR');
+            r = matsim.library.binary_operator(b1,b2,'BlockName','Logical Operator','Operator','OR');
         end
         function r = not(b1)
-            r = matsim.library.unary_operator(b1,'ops','Logical Operator','Operator','NOT');
+            r = matsim.library.unary_operator(b1,'BlockName','Logical Operator','Operator','NOT');
         end
         
         %% Vector
