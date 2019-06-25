@@ -56,7 +56,7 @@ function writeDOTfile(obj)
     fprintf(fid,'digraph G {\ncenter=1;\nsize="10,10";\nrankdir="LR";\n');
     fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
     n = size(obj.adjMatrix,1);
-    for i=1:n
+    for i=n:-1:1
         width = obj.width(i)*0.8/30;
         height = obj.height(i)*0.8/30;
         ports = get(obj.blocks(i),'porthandles');
@@ -93,7 +93,7 @@ function writeDOTfile(obj)
         fprintf(fid,'%s}", shape=record, fixedsize=true, width=%f, height=%f];\n',dotfile,width,height);
     end
     edgetxt = ' -> ';
-    for i=1:n
+    for i=n:-1:1
         conn = [];
         for j=1:n
             if(~isempty(obj.adjMatrix{i,j}))

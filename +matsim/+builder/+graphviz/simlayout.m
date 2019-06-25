@@ -43,12 +43,12 @@ function [] = simlayout(varargin)
     layout = matsim.utils.handlevar(layout);
     tryAlignBlocks(layout);
     while layout.Value.dirty
-        tryAlignBlocks(layout);
-        passes = passes+1;
         if passes>3
-            warning('Loop detected: stopping layout.');
+            warning('MATSIM:Layout','Loop detected: stopping layout.');
             break
         end
+        tryAlignBlocks(layout);
+        passes = passes+1;        
     end
     tryAlignRoots(layout);
     

@@ -276,7 +276,7 @@ classdef simulation < handle
                 set(ph.Outport(port),'DataLoggingName',get(ph.Outport(port),'PropagatedSignals'));
             else
                 set(ph.Outport(port),'DataLogging','off');
-                warning('Cannot log this line. Specify the ''name'' parameter.')
+                warning('MATSIM:Simulation','Cannot log this line. Specify the ''name'' parameter.')
             end
         end
         
