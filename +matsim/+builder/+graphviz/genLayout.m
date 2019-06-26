@@ -53,71 +53,98 @@ function writeDOTfile(obj)
 % Write the adjacency matrix into a dot file that graphViz can
 % understand. 
     fid = fopen('adjmat.dot','w');
-    fprintf(fid,'digraph G {\ncenter=1;\nsize="10,10";\nrankdir="LR";\n');
-    fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
-    n = size(obj.adjMatrix,1);
-    for i=n:-1:1
-        width = obj.width(i)*0.8/30;
-        height = obj.height(i)*0.8/30;
-        ports = get(obj.blocks(i),'porthandles');
-        if matsim.utils.getversion() >= 2015
-            inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction]);
-        else
-            inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction]);
-        end
-        outputnum = length([ports.Outport]);
-        dotfile = [num2str(i),' [label="{'];
-        if inputnum ~= 0
-            dotfile = [dotfile '{'];
-            for x = 1:inputnum
-                if x == inputnum
-                    dotfile = [dotfile '<i' num2str(x) '>' num2str(x)];
-                else
-                    dotfile = [dotfile '<i' num2str(x) '>' num2str(x) '|'];
-                end
-            end
-            dotfile = [dotfile '}|'];
-        end
-        dotfile = [dotfile num2str(i)];
-        if outputnum ~= 0
-            dotfile = [dotfile '|{'];
-            for w = 1:outputnum
-                if w == outputnum
-                    dotfile = [dotfile '<o' num2str(w) '>' num2str(w)];
-                else
-                    dotfile = [dotfile '<o' num2str(w) '>' num2str(w) '|'];
-                end
-            end
-            dotfile = [dotfile '}'];
-        end
-        fprintf(fid,'%s}", shape=record, fixedsize=true, width=%f, height=%f];\n',dotfile,width,height);
-    end
-    edgetxt = ' -> ';
-    for i=n:-1:1
-        conn = [];
-        for j=1:n
-            if(~isempty(obj.adjMatrix{i,j}))
-                conn = [conn; [i,j,obj.adjMatrix{i,j}]];
-            end
-        end
-        if isempty(conn), continue; end;
-        ports = get(obj.blocks(i),'porthandles');
-        if matsim.utils.getversion() >= 2015
-            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
-        else
-            ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
-        end
-        for j=1:size(conn,1)
-            if conn(j,4) == -1 % conn(j,4) = -1 is implicit connection (goto->from)
-                fprintf(fid,'%d%s%d;\n',conn(j,2),edgetxt,i);
+    try
+        fprintf(fid,'digraph G {\ncenter=1;\nsize="10,10";\nrankdir="LR";\n');
+        fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
+        n = size(obj.adjMatrix,1);
+        for i=n:-1:1
+            width = obj.width(i)*0.8/30;
+            height = obj.height(i)*0.8/30;
+            ports = get(obj.blocks(i),'porthandles');
+            if matsim.utils.getversion() >= 2015
+                inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction]);
             else
-                fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
+                inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction]);
             end
+            outputnum = length([ports.Outport]);
+            dotfile = [num2str(i),' [label="{'];
+            if inputnum ~= 0
+                dotfile = [dotfile '{'];
+                for x = 1:inputnum
+                    if x == inputnum
+                        dotfile = [dotfile '<i' num2str(x) '>' num2str(x)];
+                    else
+                        dotfile = [dotfile '<i' num2str(x) '>' num2str(x) '|'];
+                    end
+                end
+                dotfile = [dotfile '}|'];
+            end
+            dotfile = [dotfile num2str(i)];
+            if outputnum ~= 0
+                dotfile = [dotfile '|{'];
+                for w = 1:outputnum
+                    if w == outputnum
+                        dotfile = [dotfile '<o' num2str(w) '>' num2str(w)];
+                    else
+                        dotfile = [dotfile '<o' num2str(w) '>' num2str(w) '|'];
+                    end
+                end
+                dotfile = [dotfile '}'];
+            end
+            fprintf(fid,'%s}", shape=record, fixedsize=true, width=%f, height=%f];\n',dotfile,width,height);
         end
-    end       
-    
-    fprintf(fid,'}');
+        edgetxt = ' -> ';
+        for i=n:-1:1
+            conn = [];
+            for j=1:n
+                if(~isempty(obj.adjMatrix{i,j}))
+                    conn = [conn; [i,j,obj.adjMatrix{i,j}]];
+                end
+            end
+            if isempty(conn), continue; end;
+            ports = get(obj.blocks(i),'porthandles');
+            if matsim.utils.getversion() >= 2015
+                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
+            else
+                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
+            end
+            s = matsim.utils.quicksort(conn,@(m,x,y) order_ports(m,x,y,ports));
+            conn = conn(s,:);
+            conn(:,5) = 1:size(conn,1);
+            for j=1:size(conn,1)
+                if conn(j,4) == -1 % conn(j,4) = -1 is implicit connection (goto->from)
+                    fprintf(fid,'%d%s%d;\n',conn(j,2),edgetxt,i);
+                else
+                    fprintf(fid,'%d:o%d%s%d:i%d;\n',conn(j,2),conn(j,4),edgetxt,i,conn(j,5));
+                end
+            end
+        end       
+
+        fprintf(fid,'}');
+    catch ex
+        fclose(fid);
+        error(ex.message)
+    end
     fclose(fid);
+end
+
+function comp = order_ports(m,x,y,ports)
+    ports_order = {'ifaction','reset','trigger','enable','inport'};
+    if m(x,4) == -1 && m(y,4) == -1
+        comp = 0;
+    elseif m(x,4) == -1 && m(y,4) ~= -1
+        comp = -1;
+    elseif m(x,4) ~= -1 && m(y,4) == -1
+        comp = 1;
+    else
+        pt1 = ports(m(x,5));
+        pt2 = ports(m(y,5));
+        if strcmpi(get(pt1,'porttype'),get(pt2,'porttype'))
+            comp = sign(get(pt1,'portnumber') - get(pt2,'portnumber'));
+        else
+            comp = sign(find(strcmpi(ports_order,get(pt1,'porttype')),1) - find(strcmpi(ports_order,get(pt2,'porttype')),1));
+        end
+    end
 end
 
 function callGraphViz(obj)

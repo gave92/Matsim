@@ -115,45 +115,53 @@ function [] = tryAlignRoots2(block,layout)
     parents = layout.Value.blocks(layout.Value.adjBool(blk_idx,:));
     if ~isempty(parents)
         parent_idx = str2double(get(parents(1),'tag'));
-        adj = layout.Value.adjMatrix{blk_idx,parent_idx};
-        hparent = get(parents(1),'porthandles');
-        oports = [hparent.Outport];
-        hblk = get(block,'porthandles');
-        if matsim.utils.getversion() >= 2015
-            ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction];
-        else
-            ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Ifaction];
-        end
+        adj = layout.Value.adjMatrix{blk_idx,parent_idx};        
         if adj(2) ~= -1
-            blockSizeRef = get(block,'Position');
-            % width = blockSizeRef(3) - blockSizeRef(1);
-            height = blockSizeRef(4) - blockSizeRef(2);
+            hparent = get(parents(1),'porthandles');
+            oports = [hparent.Outport];
+            hblk = get(block,'porthandles');
+            if matsim.utils.getversion() >= 2015
+                ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction];
+            else
+                ports = [hblk.Inport, hblk.Enable, hblk.Trigger, hblk.Ifaction];
+            end
             if strcmpi(get(ports(adj(3)),'porttype'),'inport')
                 port_pos = get(oports(adj(2)),'position');
             else
                 if matsim.utils.getversion() >= 2015
-                    order = find([hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction]==ports(adj(3)));
+                    all_ports = [hblk.Enable, hblk.Trigger, hblk.Reset, hblk.Ifaction];
                 else
-                    order = find([hblk.Enable, hblk.Trigger, hblk.Ifaction]==ports(adj(3)));
+                    all_ports = [hblk.Enable, hblk.Trigger, hblk.Ifaction];
                 end
-                port_pos = get(oports(adj(3)),'position');
+                lines = get(all_ports,'line');
+                if iscell(lines), lines = cell2mat(lines); end
+                order = find(all_ports(lines~=-1)==ports(adj(3)));
+                port_pos = get(oports(adj(2)),'position');
                 port_pos(2) = port_pos(2)+42*order;
-            end            
-            iport_pos = get(ports(adj(3)),'position');
-            yTL = port_pos(2)-(iport_pos(2)-blockSizeRef(2));
-            location = [blockSizeRef(1) yTL blockSizeRef(3) yTL+height];
-            set(block,'position',location)
-            intermediateRank = setdiff(layout.Value.blocks(layout.Value.ranks>=layout.Value.ranks(blk_idx) & layout.Value.ranks<layout.Value.ranks(parent_idx)),block);
-            if ~matsim.builder.common.detectOverlaps(block,intermediateRank,'OverlapType','Vertical') && ...
-                    ~matsim.builder.common.detectOverlaps(block,setdiff(layout.Value.blocks,block),'OverlapType','All')
-                if port_pos(2) ~= layout.Value.centers(blk_idx,2)
-                    layout.Value.centers(blk_idx,2) = port_pos(2);
-                    layout.Value.dirty = 1; % Something changed
-                end
-            else
-                location = [blockSizeRef(1) layout.Value.centers(blk_idx,2)-ceil(height/2) blockSizeRef(3) layout.Value.centers(blk_idx,2)+floor(height/2)];
-                set(block,'position',location)
             end
+            iport_pos = get(ports(adj(3)),'position');
+        else
+            block_pos = get(block,'Position');
+            parent_pos = get(parents(1),'Position');
+            port_pos = [parent_pos(1)+parent_pos(3), parent_pos(2)+ceil((parent_pos(4)-parent_pos(2))/2)];
+            iport_pos = [block_pos(1), block_pos(2)+ceil((block_pos(4)-block_pos(2))/2)];
+        end
+        blockSizeRef = get(block,'Position');
+        % width = blockSizeRef(3) - blockSizeRef(1);
+        height = blockSizeRef(4) - blockSizeRef(2);
+        yTL = port_pos(2)-(iport_pos(2)-blockSizeRef(2));
+        location = [blockSizeRef(1) yTL blockSizeRef(3) yTL+height];
+        set(block,'position',location)
+        intermediateRank = setdiff(layout.Value.blocks(layout.Value.ranks>=layout.Value.ranks(blk_idx) & layout.Value.ranks<layout.Value.ranks(parent_idx)),block);
+        if ~matsim.builder.common.detectOverlaps(block,intermediateRank,'OverlapType','Vertical') && ...
+                ~matsim.builder.common.detectOverlaps(block,setdiff(layout.Value.blocks,block),'OverlapType','All')
+            if port_pos(2) ~= layout.Value.centers(blk_idx,2)
+                layout.Value.centers(blk_idx,2) = port_pos(2);
+                layout.Value.dirty = 1; % Something changed
+            end
+        else
+            location = [blockSizeRef(1) layout.Value.centers(blk_idx,2)-ceil(height/2) blockSizeRef(3) layout.Value.centers(blk_idx,2)+floor(height/2)];
+            set(block,'position',location)
         end
     end
 end
@@ -174,45 +182,53 @@ function [] = tryAlignBlocks2(block,layout)
         if iscell(children_pos), children_pos = cell2mat(children_pos); end
         [~,cidx] = max(children_pos(:,2));
         child_idx = str2double(get(children(cidx),'tag'));
-        adj = layout.Value.adjMatrix{child_idx,blk_idx};
-        hchild = get(children(cidx),'porthandles');
-        if matsim.utils.getversion() >= 2015
+        adj = layout.Value.adjMatrix{child_idx,blk_idx};        
+        if adj(2) ~= -1            
+            hchild = get(children(cidx),'porthandles');
+            if matsim.utils.getversion() >= 2015
             ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction];
-        else
-            ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Ifaction];
-        end
-        hblk = get(block,'porthandles');
-        oports = [hblk.Outport];
-        if adj(2) ~= -1
-            blockSizeRef = get(block,'Position');
-            % width = blockSizeRef(3) - blockSizeRef(1);
-            height = blockSizeRef(4) - blockSizeRef(2);
+            else
+                ports = [hchild.Inport, hchild.Enable, hchild.Trigger, hchild.Ifaction];
+            end
+            hblk = get(block,'porthandles');
+            oports = [hblk.Outport];
             if strcmpi(get(ports(adj(3)),'porttype'),'inport')
                 port_pos = get(ports(adj(3)),'position');
             else
                 if matsim.utils.getversion() >= 2015
-                    order = find([hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction]==ports(adj(3)));
+                    all_ports = [hchild.Enable, hchild.Trigger, hchild.Reset, hchild.Ifaction];
                 else
-                    order = find([hchild.Enable, hchild.Trigger, hchild.Ifaction]==ports(adj(3)));
+                    all_ports = [hchild.Enable, hchild.Trigger, hchild.Ifaction];
                 end
+                lines = get(all_ports,'line');
+                if iscell(lines), lines = cell2mat(lines); end
+                order = find(all_ports(lines~=-1)==ports(adj(3)));
                 port_pos = get(ports(adj(3)),'position');
                 port_pos(2) = port_pos(2)-42*order;
-            end            
-            oport_pos = get(oports(adj(2)),'position');
-            yTL = port_pos(2)-(oport_pos(2)-blockSizeRef(2));
-            location = [blockSizeRef(1) yTL blockSizeRef(3) yTL+height];
-            set(block,'position',location)
-            intermediateRank = setdiff(layout.Value.blocks(layout.Value.ranks<=layout.Value.ranks(blk_idx) & layout.Value.ranks>layout.Value.ranks(child_idx)),block);
-            if ~matsim.builder.common.detectOverlaps(block,intermediateRank,'OverlapType','Vertical') && ...
-                    ~matsim.builder.common.detectOverlaps(block,setdiff(layout.Value.blocks,block),'OverlapType','All')
-                if port_pos(2) ~= layout.Value.centers(blk_idx,2)
-                    layout.Value.centers(blk_idx,2) = port_pos(2);
-                    layout.Value.dirty = 1; % Something changed
-                end
-            else
-                location = [blockSizeRef(1) layout.Value.centers(blk_idx,2)-ceil(height/2) blockSizeRef(3) layout.Value.centers(blk_idx,2)+floor(height/2)];
-                set(block,'position',location)
             end
+            oport_pos = get(oports(adj(2)),'position');
+        else
+            block_pos = get(block,'Position');
+            child_pos = get(children(cidx),'Position');
+            port_pos = [child_pos(1), child_pos(2)+ceil((child_pos(4)-child_pos(2))/2)];
+            oport_pos = [block_pos(1)+block_pos(3), block_pos(2)+ceil((block_pos(4)-block_pos(2))/2)];
+        end
+        blockSizeRef = get(block,'Position');
+        % width = blockSizeRef(3) - blockSizeRef(1);
+        height = blockSizeRef(4) - blockSizeRef(2);
+        yTL = port_pos(2)-(oport_pos(2)-blockSizeRef(2));
+        location = [blockSizeRef(1) yTL blockSizeRef(3) yTL+height];
+        set(block,'position',location)
+        intermediateRank = setdiff(layout.Value.blocks(layout.Value.ranks<=layout.Value.ranks(blk_idx) & layout.Value.ranks>layout.Value.ranks(child_idx)),block);
+        if ~matsim.builder.common.detectOverlaps(block,intermediateRank,'OverlapType','Vertical') && ...
+                ~matsim.builder.common.detectOverlaps(block,setdiff(layout.Value.blocks,block),'OverlapType','All')
+            if port_pos(2) ~= layout.Value.centers(blk_idx,2)
+                layout.Value.centers(blk_idx,2) = port_pos(2);
+                layout.Value.dirty = 1; % Something changed
+            end
+        else
+            location = [blockSizeRef(1) layout.Value.centers(blk_idx,2)-ceil(height/2) blockSizeRef(3) layout.Value.centers(blk_idx,2)+floor(height/2)];
+            set(block,'position',location)
         end
     end
     parents = layout.Value.blocks(layout.Value.adjBool(blk_idx,:));
