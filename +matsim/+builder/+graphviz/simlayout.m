@@ -133,9 +133,7 @@ function [] = tryAlignRoots2(block,layout)
                 else
                     all_ports = [hblk.Enable, hblk.Trigger, hblk.Ifaction];
                 end
-                lines = get(all_ports,'line');
-                if iscell(lines), lines = cell2mat(lines); end
-                order = find(all_ports(lines~=-1)==ports(adj(3)));
+                order = find(all_ports==ports(adj(3)));
                 port_pos = get(oports(adj(2)),'position');
                 port_pos(2) = port_pos(2)+42*order;
             end
@@ -200,9 +198,7 @@ function [] = tryAlignBlocks2(block,layout)
                 else
                     all_ports = [hchild.Enable, hchild.Trigger, hchild.Ifaction];
                 end
-                lines = get(all_ports,'line');
-                if iscell(lines), lines = cell2mat(lines); end
-                order = find(all_ports(lines~=-1)==ports(adj(3)));
+                order = find(all_ports==ports(adj(3)));
                 port_pos = get(ports(adj(3)),'position');
                 port_pos(2) = port_pos(2)-42*order;
             end
