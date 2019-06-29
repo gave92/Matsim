@@ -194,12 +194,7 @@ classdef block < handle
             end
         end
         function [] = setInputsFromBlock(this)
-            ports = get(this,'porthandles');
-            if matsim.utils.getversion() >= 2015
-                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
-            else
-                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
-            end
+            ports = matsim.utils.getBlockPorts(this,'input');
             for i=1:length(ports)
                 line = get(ports(i),'line');
                 if (line == -1 || get(line,'SrcBlockHandle') == -1)

@@ -30,8 +30,12 @@ function blockSizeRef = getDimensions(blocks)
     blockSizeRef = cell(length(blocks),1);
     for i=1:length(blocks)
         ports = get(blocks(i),'porthandles');
-        inputnum = length([ports.Inport]);
-        outputnum = length([ports.Outport]);
+        rot = get(ports.Inport,'Rotation');
+        if ~iscell(rot), rot = {rot}; end
+        inputnum = length(find(mod([rot{:}],2*pi) == 0));
+        rot = get(ports.Outport,'Rotation');
+        if ~iscell(rot), rot = {rot}; end
+        outputnum = length(find(mod([rot{:}],2*pi) == 0));
         pos = get(blocks(i),'position');
         if max(inputnum,outputnum)>1
             pos(4) = pos(2)+42*max([1,inputnum,outputnum]);
@@ -60,13 +64,8 @@ function writeDOTfile(obj)
         for i=n:-1:1
             width = obj.width(i)*0.8/30;
             height = obj.height(i)*0.8/30;
-            ports = get(obj.blocks(i),'porthandles');
-            if matsim.utils.getversion() >= 2015
-                inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction]);
-            else
-                inputnum = length([ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction]);
-            end
-            outputnum = length([ports.Outport]);
+            inputnum = length(matsim.utils.getBlockPorts(obj.blocks(i),'input'));
+            outputnum = length(matsim.utils.getBlockPorts(obj.blocks(i),'output'));
             dotfile = [num2str(i),' [label="{'];
             if inputnum ~= 0
                 dotfile = [dotfile '{'];
@@ -102,12 +101,7 @@ function writeDOTfile(obj)
                 end
             end
             if isempty(conn), continue; end;
-            ports = get(obj.blocks(i),'porthandles');
-            if matsim.utils.getversion() >= 2015
-                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Reset, ports.Ifaction];
-            else
-                ports = [ports.Inport, ports.Enable, ports.Trigger, ports.Ifaction];
-            end
+            ports = matsim.utils.getBlockPorts(obj.blocks(i),'input');
             s = matsim.utils.quicksort(conn,@(m,x,y) order_ports(m,x,y,ports));
             conn = conn(s,:);
             conn(:,5) = 1:size(conn,1);
