@@ -36,22 +36,22 @@ function neighbours = getNeighbours(sys,root)
     
     % Create edges between gotos and froms so the final graph will place
     % them closer to each other
-    if strcmp(get(root,'blocktype'),'From')
-        GotoTag = get(root, 'Gototag');
-        Gotos = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','Goto','Gototag',GotoTag);
-        for i = 1:length(Gotos)
-            in = [get(Gotos(i),'handle'), -1, -1]; % -1 is implicit connection
-            neighbours = [neighbours; in];
-        end
-    end
-    if strcmp(get(root,'blocktype'),'DataStoreMemory')
-        DataTag = get(root, 'DataStoreName');
-        DataWrite = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','DataStoreWrite','DataStoreName',DataTag);
-        for i = 1:length(DataWrite)
-            in = [get(DataWrite(i),'handle'), -1, -1]; % -1 is implicit connection
-            neighbours = [neighbours; in];
-        end
-    end
+%     if strcmp(get(root,'blocktype'),'From')
+%         GotoTag = get(root, 'Gototag');
+%         Gotos = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','Goto','Gototag',GotoTag);
+%         for i = 1:length(Gotos)
+%             in = [get(Gotos(i),'handle'), -1, -1]; % -1 is implicit connection
+%             neighbours = [neighbours; in];
+%         end
+%     end
+%     if strcmp(get(root,'blocktype'),'DataStoreMemory')
+%         DataTag = get(root, 'DataStoreName');
+%         DataWrite = matsim.helpers.findBlock(sys,'SearchDepth',1,'BlockType','DataStoreWrite','DataStoreName',DataTag);
+%         for i = 1:length(DataWrite)
+%             in = [get(DataWrite(i),'handle'), -1, -1]; % -1 is implicit connection
+%             neighbours = [neighbours; in];
+%         end
+%     end
     
     if ~isempty(neighbours)
         % [~,u] = unique(neighbours(:,1),'stable');

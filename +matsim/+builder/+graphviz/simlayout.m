@@ -38,9 +38,10 @@ function [] = simlayout(varargin)
         end
     end
     
-    % Improve layout
-    passes = 1;
     layout = matsim.utils.handlevar(layout);
+    
+    % Try align blocks
+    passes = 1;    
     tryAlignBlocks(layout);
     while layout.Value.dirty
         if passes>3
@@ -50,7 +51,18 @@ function [] = simlayout(varargin)
         tryAlignBlocks(layout);
         passes = passes+1;        
     end
+    
+    % Try align roots
+    passes = 1;
     tryAlignRoots(layout);
+    while layout.Value.dirty
+        if passes>3
+            warning('MATSIM:Layout','Loop detected: stopping layout.');
+            break
+        end
+        tryAlignRoots(layout);
+        passes = passes+1;        
+    end    
     
     % Create lines
     for i=1:length(blocks)        
@@ -77,7 +89,7 @@ function [] = simlayout(varargin)
 end
 
 function [] = tryAlignBlocks(layout)
-    layout.Value.dirty = 0;    
+    layout.Value.dirty = 0;
     % Convert adjMatrix to boolean
     layout.Value.adjBool = cell2mat(arrayfun(@(i) ~cellfun(@isempty,layout.Value.adjMatrix(:,i)),1:size(layout.Value.adjMatrix,2),'uni',0));    
     % Get blocks rank
@@ -94,6 +106,7 @@ function [] = tryAlignBlocks(layout)
 end
 
 function [] = tryAlignRoots(layout)
+    layout.Value.dirty = 0;
     % Get blocks without outputs (adj i-column all 0)
     roots = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(:,i)==0),1:size(layout.Value.adjBool,2)));
     % Also use minimum rank (right-most) blocks

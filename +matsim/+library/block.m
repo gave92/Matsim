@@ -432,6 +432,11 @@ classdef block < handle
                             dl = abs(S(1).subs{1});
                             varargout{1} = matsim.library.Delay(A,'DelayLength',dl);
                             return
+                        elseif length(S(1).subs) == 2 && all(S(1).subs{1} > 0) && length(S(1).subs{2}) == 1
+                            indices = S(1).subs{1};
+                            insize = S(1).subs{2};
+                            varargout{1} = matsim.library.Selector(A,'Indices',indices,'InputPortWidth',insize);
+                            return
                         end
                     otherwise
                 end
