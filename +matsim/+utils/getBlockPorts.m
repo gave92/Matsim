@@ -1,7 +1,7 @@
 function [ports] = getBlockPorts(block,type)
 %GETBLOCKPORTS Returns block port handles as array
 
-h = get(block,'porthandles');
+h = get_param(block,'porthandles');
 
 switch type
     case 'all'
