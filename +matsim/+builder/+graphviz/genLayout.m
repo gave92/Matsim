@@ -117,7 +117,7 @@ function writeDOTfile(obj)
         fprintf(fid,'}');
     catch ex
         fclose(fid);
-        error(ex.message)
+        rethrow(ex)
     end
     fclose(fid);
 end

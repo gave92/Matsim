@@ -5,16 +5,27 @@ function [] = simlayout(varargin)
     p.CaseSensitive = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@ishandle);
+    addParamValue(p,'Blocks',[],@(x) all(ishandle(x)) || (iscell(x) && all(cellfun(@(b) isa(b,'matsim.library.block') || ishandle(b),x))));
     parse(p,varargin{:})
 
     sys = p.Results.sys;
 
+    % Only layout specified blocks
+    blocksToLayout = p.Results.Blocks;
+    if ~isempty(blocksToLayout)
+        if iscell(blocksToLayout)
+            blocksToLayout = cellfun(@(b) get(b,'handle'),blocksToLayout);
+        else
+            blocksToLayout = get(blocksToLayout,'handle');
+        end
+    end
+
     % Build adjacency matrix
-    [adjMatrix, blocks] = matsim.builder.graphviz.sim2adj(sys);
+    [adjMatrix, blocks] = matsim.builder.graphviz.sim2adj(sys,blocksToLayout);
     if isempty(blocks), return, end
     
     % Call graphviz
-    layout = matsim.builder.graphviz.genLayout(adjMatrix,blocks);    
+    layout = matsim.builder.graphviz.genLayout(adjMatrix,blocks);
     locs = layout.centers;
 
     % Recursively set blocks position
@@ -63,6 +74,11 @@ function [] = simlayout(varargin)
         tryAlignRoots(layout);
         passes = passes+1;        
     end    
+    
+    % Move to empty place
+    if ~isempty(blocksToLayout)
+        tryMoveBlocks(layout,sys);
+    end
     
     % Create lines
     for i=1:length(blocks)        
@@ -244,5 +260,18 @@ function [] = getRank(layout)
         xcenter = blockSizeRef(1)+ceil(width/2);
         [~,layout.Value.ranks(i)] = min(abs(xcenters-xcenter));
     end
+end
+
+function [] = tryMoveBlocks(layout,sys)
+    other_blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
+    other_blocks = setdiff(other_blocks,[sys,layout.Value.blocks]); % Remove self    
+    oBlocksSize = get(other_blocks,'Position');
+    if iscell(oBlocksSize), oBlocksSize = cell2mat(oBlocksSize); end
+    lBlocksSize = get(layout.Value.blocks,'Position');
+    if iscell(lBlocksSize), lBlocksSize = cell2mat(lBlocksSize); end
+    
+    lBlocksSize(:,[2,4]) = lBlocksSize(:,[2,4])-min(lBlocksSize(:,2));
+    lBlocksSize(:,[2,4]) = lBlocksSize(:,[2,4])+max(oBlocksSize(:,4))+42;
+    arrayfun(@(b) set(layout.Value.blocks(b),'position',lBlocksSize(b,:)),1:numel(layout.Value.blocks))
 end
 

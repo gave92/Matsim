@@ -1,8 +1,12 @@
-function [adjMatrix, blocks] = sim2adj(sys)
+function [adjMatrix, blocks] = sim2adj(sys,blocksToLayout)
 %SIM2ADJ simulink system to adjacency matrix
 
-    blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
-    blocks = blocks(blocks ~= sys); % Remove self
+    if isempty(blocksToLayout)
+        blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
+        blocks = blocks(blocks ~= sys); % Remove self
+    else
+        blocks = blocksToLayout;
+    end
     adjMatrix = cell(length(blocks),length(blocks));
     
     for i=1:length(blocks)
