@@ -161,8 +161,14 @@ classdef block < handle
         function h = handle(this)
             h = this.simBlock;
         end
+        function p = get_param(this,prop)
+            p = this.get(prop);
+        end
         function p = get(this,prop)
             p = get(this.simBlock,prop);
+        end
+        function [] = set_param(this,prop,value)
+            this.set(prop,value);
         end
         function [] = set(this,prop,value)
             if iscell(prop)

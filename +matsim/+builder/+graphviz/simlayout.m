@@ -5,7 +5,7 @@ function [] = simlayout(varargin)
     p.CaseSensitive = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@ishandle);
-    addParamValue(p,'Blocks',[],@(x) all(ishandle(x)) || (iscell(x) && all(cellfun(@(b) isa(b,'matsim.library.block') || ishandle(b),x))));
+    addParamValue(p,'Blocks',[],@(x) all(ishandle(x)) || (iscell(x) && all(cellfun(@(b) ischar(b) || isa(b,'matsim.library.block') || ishandle(b),x))));
     parse(p,varargin{:})
 
     sys = p.Results.sys;
@@ -14,9 +14,9 @@ function [] = simlayout(varargin)
     blocksToLayout = p.Results.Blocks;
     if ~isempty(blocksToLayout)
         if iscell(blocksToLayout)
-            blocksToLayout = cellfun(@(b) get(b,'handle'),blocksToLayout);
+            blocksToLayout = cellfun(@(b) get_param(b,'handle'),blocksToLayout);
         else
-            blocksToLayout = get(blocksToLayout,'handle');
+            blocksToLayout = get_param(blocksToLayout,'handle');
         end
     end
 
