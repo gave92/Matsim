@@ -264,7 +264,7 @@ end
 
 function [] = tryMoveBlocks(layout,sys)
     other_blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
-    other_blocks = setdiff(other_blocks,[sys,layout.Value.blocks]); % Remove self    
+    other_blocks = setdiff(other_blocks,[sys;layout.Value.blocks(:)]); % Remove self    
     if isempty(other_blocks), return; end
     oBlocksSize = get(other_blocks,'Position');
     if iscell(oBlocksSize), oBlocksSize = cell2mat(oBlocksSize); end
