@@ -6,6 +6,9 @@ function hline = msim_add_line(srcs,dests)
         if iscell(srcs)
             srcs = cellfun(@(b) get_param(b,'handle'),srcs,'uni',1);
         end
+        if iscell(dests)
+            dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
+        end
         outports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'output'),srcs,'uni',0);
         inports = matsim.utils.getBlockPorts(dests,'input');
         if any(cellfun(@length,outports)>1)
@@ -18,6 +21,9 @@ function hline = msim_add_line(srcs,dests)
         hline = arrayfun(@(idx) add_line(get_param(srcs(idx),'parent'),outports(idx),inports(idx),'AutoRouting','on'),1:numel(srcs));
     elseif isscalar(srcs) && ~ischar(dests) && isvector(dests)
         % One to many
+        if iscell(srcs)
+            srcs = cellfun(@(b) get_param(b,'handle'),srcs,'uni',1);
+        end
         if iscell(dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
@@ -49,6 +55,12 @@ function hline = msim_add_line(srcs,dests)
         hline = arrayfun(@(idx) add_line(get_param(srcs(idx),'parent'),outports(idx),inports(idx),'AutoRouting','on'),1:numel(srcs));
     else
         % One to one
+        if iscell(srcs)
+            srcs = cellfun(@(b) get_param(b,'handle'),srcs,'uni',1);
+        end
+        if iscell(dests)
+            dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
+        end
         outports = matsim.utils.getBlockPorts(srcs,'output');
         inports = matsim.utils.getBlockPorts(dests,'input');
         if numel(outports) ~= 1 || numel(inports) ~= 1
