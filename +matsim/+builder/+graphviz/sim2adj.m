@@ -1,23 +1,24 @@
-function [adjMatrix, blocks] = sim2adj(sys,blocksToLayout)
+function [adjMatrix, blocksToLayout] = sim2adj(sys,blocksToLayout)
 %SIM2ADJ simulink system to adjacency matrix
 
     if isempty(blocksToLayout)
-        blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
-        blocks = blocks(blocks ~= sys); % Remove self
-    else
-        blocks = blocksToLayout;
-    end
-    adjMatrix = cell(length(blocks),length(blocks));
-    
-    for i=1:length(blocks)
-        set(blocks(i),'Tag',mat2str(i));
+        all_blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
+        all_blocks = all_blocks(all_blocks ~= sys); % Remove self
+        blocksToLayout = all_blocks;        
     end
     
-    for i=1:length(blocks)
-        neighbours = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
+    adjMatrix = cell(length(blocksToLayout),length(blocksToLayout));
+    
+    for i=1:length(blocksToLayout)
+        set(blocksToLayout(i),'Tag',mat2str(i));
+    end
+    
+    for i=1:length(blocksToLayout)
+        neighbours = matsim.builder.graphviz.getNeighbours(sys,blocksToLayout(i));
         for j=1:size(neighbours,1)
             if neighbours(j,1) == -1, continue, end;
-            col = str2double(get(neighbours(j,1),'Tag'));
+            if ~ismember(neighbours(j,1),blocksToLayout), continue, end;
+            col = str2double(get(neighbours(j,1),'Tag'));            
             adjMatrix{i,col} = neighbours(j,:); 
         end
     end

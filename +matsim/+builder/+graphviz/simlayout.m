@@ -138,7 +138,7 @@ function [] = tryAlignRoots2(block,layout)
     parents = layout.Value.blocks(layout.Value.adjBool(blk_idx,:));
     if ~isempty(parents)
         parent_idx = str2double(get(parents(1),'tag'));
-        adj = layout.Value.adjMatrix{blk_idx,parent_idx};        
+        adj = layout.Value.adjMatrix{blk_idx,parent_idx};
         if adj(2) ~= -1
             oports = matsim.utils.getBlockPorts(parents(1),'output');
             ports = matsim.utils.getBlockPorts(block,'input');
@@ -265,6 +265,7 @@ end
 function [] = tryMoveBlocks(layout,sys)
     other_blocks = matsim.helpers.findBlock(sys,'SearchDepth',1);
     other_blocks = setdiff(other_blocks,[sys,layout.Value.blocks]); % Remove self    
+    if isempty(other_blocks), return; end
     oBlocksSize = get(other_blocks,'Position');
     if iscell(oBlocksSize), oBlocksSize = cell2mat(oBlocksSize); end
     lBlocksSize = get(layout.Value.blocks,'Position');
