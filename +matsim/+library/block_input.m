@@ -36,4 +36,3 @@ classdef block_input
         end
     end
 end
-

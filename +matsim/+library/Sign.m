@@ -8,4 +8,3 @@ function blk = Sign(varargin)
 
     blk = matsim.library.unary_operator(varargin{:},'BlockName','Sign');
 end
-

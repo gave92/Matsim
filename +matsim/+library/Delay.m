@@ -55,4 +55,3 @@ classdef Delay < matsim.library.unary_operator
     end
     
 end
-

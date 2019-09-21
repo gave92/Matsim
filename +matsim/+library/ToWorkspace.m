@@ -1,4 +1,4 @@
-classdef ToWorkspace < matsim.library.unary_operator        
+function blk = ToWorkspace(varargin)
 %TOWORKSPACE Creates a simulink ToWorkspace block.
 % Syntax:
 %   blk = ToWorkspace(INPUT,'VariableName',VARIABLENAME);
@@ -14,29 +14,5 @@ classdef ToWorkspace < matsim.library.unary_operator
 % 
 %   See also UNARY_OPERATOR.
 
-    properties
-
-    end
-    
-    methods
-        function this = ToWorkspace(varargin)
-            p = inputParser;
-            p.CaseSensitive = false;
-            p.KeepUnmatched = true;
-            addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
-            addParamValue(p,'VariableName','',@(x) ischar(x) || isnumeric(x));
-            parse(p,varargin{:})
-            
-            b1 = p.Results.b1;
-            VariableName = p.Results.VariableName;
-            args = matsim.helpers.validateArgs(p.Unmatched);
-            
-            this = this@matsim.library.unary_operator(b1,'BlockName','To Workspace',args{:});
-            
-            if ~isempty(VariableName)
-                this.set('VariableName',VariableName)
-            end            
-        end               
-    end
+    blk = matsim.library.unary_operator(varargin{:},'BlockName','To Workspace');
 end
-

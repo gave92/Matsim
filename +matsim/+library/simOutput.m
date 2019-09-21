@@ -29,4 +29,3 @@ classdef simOutput < handle
     end
     
 end
-

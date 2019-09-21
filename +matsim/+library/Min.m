@@ -9,4 +9,3 @@ function blk = Min(varargin)
 
     blk = matsim.library.binary_operator(varargin{:},'BlockName','MinMax','Function','Min','Inputs',mat2str(2));
 end
-

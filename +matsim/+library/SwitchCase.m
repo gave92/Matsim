@@ -39,4 +39,3 @@ classdef SwitchCase < matsim.library.unary_operator
         end
     end
 end
-

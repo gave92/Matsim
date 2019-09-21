@@ -286,19 +286,14 @@ classdef block < handle
             srcport = p.Results.srcport;
             type = lower(p.Results.type);
             
-            if index <= length(this.simInputs.(type))
-                current = this.simInputs.(type){index};
-            else
-                current = matsim.library.block_input({});
-            end
-            
             parent = matsim.helpers.getValidParent(this);
             new_input = matsim.helpers.validateInputs(p.Results.value,parent);
-            current.value = new_input.value;
-            current.srcport = srcport;
-            current.type = type;
+            new_input.type = type;
+            if matsim.helpers.isArgSpecified(p,'srcport')
+                new_input.srcport = srcport;
+            end
 
-            this.simInputs.(type){index} = current;
+            this.simInputs.(type){index} = new_input;
         end
         
         function setMaskParam(this,name,value)
@@ -451,4 +446,3 @@ classdef block < handle
         end
     end
 end
-

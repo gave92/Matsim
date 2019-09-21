@@ -8,4 +8,3 @@ function blk = Tan(varargin)
 
     blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Tan');
 end
-

@@ -76,4 +76,3 @@ classdef IF < matsim.library.block
         end
     end
 end
-

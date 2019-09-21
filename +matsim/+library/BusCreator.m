@@ -64,4 +64,3 @@ classdef BusCreator < matsim.library.block
         end
     end
 end
-

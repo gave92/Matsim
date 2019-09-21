@@ -52,4 +52,3 @@ classdef Lookup2D < matsim.library.binary_operator
     end
     
 end
-

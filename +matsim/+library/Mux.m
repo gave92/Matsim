@@ -57,4 +57,3 @@ classdef Mux < matsim.library.block
         end
     end
 end
-

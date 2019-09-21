@@ -43,4 +43,3 @@ classdef Lookup1D < matsim.library.unary_operator
     end
     
 end
-

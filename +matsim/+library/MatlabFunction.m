@@ -101,4 +101,3 @@ classdef MatlabFunction < matsim.library.block
     end
     
 end
-

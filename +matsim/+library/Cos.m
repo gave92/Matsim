@@ -8,4 +8,3 @@ function blk = Cos(varargin)
 
     blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Cos');
 end
-

@@ -49,4 +49,3 @@ classdef Integrator < matsim.library.unary_operator
     end
     
 end
-

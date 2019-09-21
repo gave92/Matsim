@@ -42,4 +42,3 @@ classdef Constant < matsim.library.block
         end
     end
 end
-

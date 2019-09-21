@@ -14,4 +14,3 @@ function [] = test_base(sys)
     unary_operator(0,'BlockName','To Workspace');
     
 end
-

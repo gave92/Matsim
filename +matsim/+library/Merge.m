@@ -56,4 +56,3 @@ classdef Merge < matsim.library.block
         end
     end
 end
-

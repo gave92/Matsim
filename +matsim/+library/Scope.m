@@ -83,4 +83,3 @@ classdef Scope < matsim.library.block
         end
     end
 end
-

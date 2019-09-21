@@ -69,4 +69,3 @@ classdef REF < matsim.library.block
         end       
     end   
 end
-

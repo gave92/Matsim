@@ -8,4 +8,3 @@ function blk = Atan(varargin)
 
     blk = matsim.library.unary_operator(varargin{:},'BlockName','Trigonometric Function','Operator','Atan');
 end
-

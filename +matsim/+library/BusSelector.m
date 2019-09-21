@@ -47,4 +47,3 @@ classdef BusSelector < matsim.library.unary_operator
     end
     
 end
-

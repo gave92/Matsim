@@ -54,4 +54,3 @@ classdef Switch < matsim.library.block
         end
     end
 end
-

@@ -50,4 +50,3 @@ classdef binary_operator < matsim.library.block
         end
     end
 end
-
