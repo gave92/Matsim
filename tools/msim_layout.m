@@ -1,7 +1,7 @@
 function [] = msim_layout(blocks)
 %MSIM_LAYOUT Layout specified blocks.
 
-    if isempty(blocks)
+    if nargin < 1 || isempty(blocks)
         parent = get_param(gcs,'handle');
         matsim.builder.graphviz.simlayout(parent);
     else

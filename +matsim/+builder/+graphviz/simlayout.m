@@ -17,6 +17,7 @@ function [] = simlayout(varargin)
             blocksToLayout = cellfun(@(b) get_param(b,'handle'),blocksToLayout);
         else
             blocksToLayout = get_param(blocksToLayout,'handle');
+            if iscell(blocksToLayout), blocksToLayout = cell2mat(blocksToLayout); end
         end
     end
 
