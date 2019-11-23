@@ -42,7 +42,7 @@ function [out] = fun2model(varargin)
     res = eval(exprstr);
     subsystem.out(1,res,'name','res')
     
-    matsim.builder.graphviz.simlayout(subsystem.handle)
+    matsim.builder.graphviz.simlayout(subsystem.handle,'Recursive',true)
     out = subsystem;
 end
 

@@ -158,7 +158,7 @@ classdef simulation < handle
         function [] = layout(this)
             %LAYOUT Layout and connect blocks in the model
             
-            matsim.builder.graphviz.simlayout(this.handle)
+            matsim.builder.graphviz.simlayout(this.handle,'Recursive',true)
         end
         
         function [] = export(this)

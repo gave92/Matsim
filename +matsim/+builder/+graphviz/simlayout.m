@@ -5,10 +5,12 @@ function [] = simlayout(varargin)
     p.CaseSensitive = false;
     p.KeepUnmatched = true;
     addRequired(p,'sys',@ishandle);
+    addParamValue(p,'Recursive',false,@islogical);
     addParamValue(p,'Blocks',[],@(x) all(ishandle(x)) || (iscell(x) && all(cellfun(@(b) ischar(b) || isa(b,'matsim.library.block') || ishandle(b),x))));
     parse(p,varargin{:})
 
     sys = p.Results.sys;
+    recursive = p.Results.Recursive;
 
     % Only layout specified blocks
     blocksToLayout = p.Results.Blocks;
@@ -43,7 +45,7 @@ function [] = simlayout(varargin)
         
         % Layout subsystem, if not a chart
         % 2011: ~strcmp(get(blocks(i),'MaskType'),'Stateflow')
-        if strcmp(get(blocks(i),'blocktype'),'SubSystem') && ...
+        if recursive && strcmp(get(blocks(i),'blocktype'),'SubSystem') && ...
                 strcmp(get(blocks(i),'SFBlockType'),'NONE')
             matsim.builder.graphviz.simlayout(blocks(i))
             set(blocks(i),'ZoomFactor','FitSystem')
@@ -56,7 +58,7 @@ function [] = simlayout(varargin)
     passes = 1;    
     tryAlignBlocks(layout);
     while layout.Value.dirty
-        if passes>3
+        if passes>5
             warning('MATSIM:Layout','Loop detected: stopping layout.');
             break
         end
@@ -68,7 +70,7 @@ function [] = simlayout(varargin)
     passes = 1;
     tryAlignRoots(layout);
     while layout.Value.dirty
-        if passes>3
+        if passes>5
             warning('MATSIM:Layout','Loop detected: stopping layout.');
             break
         end
@@ -82,7 +84,7 @@ function [] = simlayout(varargin)
     end
     
     % Create lines
-    for i=1:length(blocks)        
+    for i=1:length(blocks)
         ports = matsim.utils.getBlockPorts(blocks(i),'input');
         parents = matsim.builder.graphviz.getNeighbours(sys,blocks(i));
         port_num = get(ports,'portnumber');
