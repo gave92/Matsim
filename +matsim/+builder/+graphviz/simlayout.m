@@ -53,28 +53,30 @@ function [] = simlayout(varargin)
     end
     
     layout = matsim.utils.handlevar(layout);
+    % Get blocks rank
+    getRank(layout);
     
     % Try align blocks
     passes = 1;    
-    tryAlignBlocks(layout);
+    tryAlignBlocksBackward(layout);
     while layout.Value.dirty
         if passes>5
             warning('MATSIM:Layout','Loop detected: stopping layout.');
             break
         end
-        tryAlignBlocks(layout);
+        tryAlignBlocksBackward(layout);
         passes = passes+1;        
     end
     
     % Try align roots
     passes = 1;
-    tryAlignRoots(layout);
+    tryAlignBlocksForward(layout);
     while layout.Value.dirty
         if passes>5
             warning('MATSIM:Layout','Loop detected: stopping layout.');
             break
         end
-        tryAlignRoots(layout);
+        tryAlignBlocksForward(layout);
         passes = passes+1;        
     end    
     
@@ -107,12 +109,10 @@ function [] = simlayout(varargin)
     end
 end
 
-function [] = tryAlignBlocks(layout)
+function [] = tryAlignBlocksBackward(layout)
     layout.Value.dirty = 0;
     % Convert adjMatrix to boolean
-    layout.Value.adjBool = cell2mat(arrayfun(@(i) ~cellfun(@isempty,layout.Value.adjMatrix(:,i)),1:size(layout.Value.adjMatrix,2),'uni',0));    
-    % Get blocks rank
-    getRank(layout);
+    layout.Value.adjBool = cell2mat(arrayfun(@(i) ~cellfun(@isempty,layout.Value.adjMatrix(:,i)),1:size(layout.Value.adjMatrix,2),'uni',0));        
     % Get blocks without outputs (adj i-column all 0)
     roots = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(:,i)==0),1:size(layout.Value.adjBool,2)));
     % Also use minimum rank (right-most) blocks
@@ -120,25 +120,33 @@ function [] = tryAlignBlocks(layout)
     % Layout blocks
     layout.Value.unvisited = layout.Value.blocks;    
     for i = 1:length(roots)
-        tryAlignBlocks2(roots(i),layout);
+        tryAlignBlocksBackward2(roots(i),layout);
     end    
 end
 
-function [] = tryAlignRoots(layout)
+function [] = tryAlignBlocksForward(layout)
     layout.Value.dirty = 0;
-    % Get blocks without outputs (adj i-column all 0)
-    roots = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(:,i)==0),1:size(layout.Value.adjBool,2)));
-    % Also use minimum rank (right-most) blocks
-    roots = union(roots,layout.Value.blocks(layout.Value.ranks==min(layout.Value.ranks)));
-    % Layout roots
-    for i = 1:length(roots)
-        tryAlignRoots2(roots(i),layout);
+    % Get blocks without inputs (adj i-row all 0)
+    leaf = layout.Value.blocks(arrayfun(@(i) all(layout.Value.adjBool(i,:)==0),1:size(layout.Value.adjBool,1)));
+    % Also use maximum rank (left-most) blocks
+    leaf = union(leaf,layout.Value.blocks(layout.Value.ranks==max(layout.Value.ranks)));
+    % Layout blocks
+    layout.Value.unvisited = layout.Value.blocks;
+    for i = 1:length(leaf)
+        tryAlignBlocksForward2(leaf(i),layout);
     end
 end
 
-function [] = tryAlignRoots2(block,layout)
-    blk_idx = str2double(get(block,'tag'));
+function [] = tryAlignBlocksForward2(block,layout)
+    if isempty(find(layout.Value.unvisited==block,1)), return; end
+    layout.Value.unvisited = setdiff(layout.Value.unvisited,block);    
+    blk_idx = str2double(get(block,'tag'));    
     parents = layout.Value.blocks(layout.Value.adjBool(blk_idx,:));
+    if ~isempty(parents)
+        parent_idx = str2double(get(parents,'tag'));
+        if iscell(parent_idx), parent_idx = cell2mat(parent_idx); end
+        parents = parents(layout.Value.ranks(parent_idx)>layout.Value.ranks(blk_idx));
+    end
     if ~isempty(parents)
         parent_idx = str2double(get(parents(1),'tag'));
         adj = layout.Value.adjMatrix{blk_idx,parent_idx};
@@ -178,9 +186,13 @@ function [] = tryAlignRoots2(block,layout)
             set(block,'position',location)
         end
     end
+    children = layout.Value.blocks(layout.Value.adjBool(:,blk_idx));
+    for i = 1:length(children)
+        tryAlignBlocksForward2(children(i),layout);
+    end
 end
 
-function [] = tryAlignBlocks2(block,layout)
+function [] = tryAlignBlocksBackward2(block,layout)
     % DFS
     if isempty(find(layout.Value.unvisited==block,1)), return; end
     layout.Value.unvisited = setdiff(layout.Value.unvisited,block);
@@ -235,7 +247,7 @@ function [] = tryAlignBlocks2(block,layout)
     end
     parents = layout.Value.blocks(layout.Value.adjBool(blk_idx,:));
     for i = 1:length(parents)
-        tryAlignBlocks2(parents(i),layout);
+        tryAlignBlocksBackward2(parents(i),layout);
     end
 end
 

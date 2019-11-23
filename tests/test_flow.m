@@ -16,9 +16,10 @@ function [] = test_flow(sys)
     g.outport(1,'name','MERGE')
     
     bc = BusCreator({r,g,w});
-    bs = BusSelector(bc,'OutputSignals',{'CONSTANT','MERGE'});
-    Terminator(bs.outport(1))
-    Scope(bs.outport(2))
+    bs = BusSelector(bc,'OutputSignals',{'CONSTANT','MERGE','CONSTANT','MERGE'});
+    Terminator(Gain(bs.outport(1)));
+    Terminator(Gain(bs.outport(2)));
+    Scope({bs.outport(3), bs.outport(4)});
     
 end
 
