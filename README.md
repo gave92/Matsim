@@ -19,7 +19,8 @@
 
 Matsim is a high level interface to create Simulink models from a [Matlab](https://www.mathworks.com/) script. Matsim is a wrapper around the standard [simulink API](https://it.mathworks.com/help/simulink/ug/approach-modeling-programmatically.html) that makes building a simulink model programmatically much faster.
 
-![logo](https://img.shields.io/badge/license-MIT-blue.svg)&nbsp;[![donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/gave92)
+[![View Matsim on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://it.mathworks.com/matlabcentral/fileexchange/68436-matsim)&nbsp;![logo](https://img.shields.io/badge/license-MIT-blue.svg)&nbsp;[![donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/gave92)
+
 
 ## Key features
 * **Automatic layout** (no need to specify block positions!)
