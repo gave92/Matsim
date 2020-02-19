@@ -14,18 +14,13 @@ function hline = msim_add_line(srcs,dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
         outports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'output'),srcs,'uni',0);
-        inports = matsim.utils.getBlockPorts(dests,'input');
-        if any(cellfun(@length,outports)>1)
-            error('Unsupported number of ports');
-        end
+        inports = free_inports(matsim.utils.getBlockPorts(dests,'input'));        
         outports = [outports{:}];
-        if numel(outports) > numel(inports)
-            error('Destination block does not have enough inputs');
-        end
+        if isempty(inports) || isempty(outports), return, end
         locs = get(outports,'position');
         if iscell(locs), locs = cell2mat(locs); end
         [~,sortIdx] = sort(locs(:,2));
-        hline = arrayfun(@(idx) add_line(get_param(srcs(idx),'parent'),outports(sortIdx(idx)),inports(idx),'AutoRouting','on'),1:numel(srcs));
+        hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(sortIdx(idx)),inports(idx),'AutoRouting','on'),1:min(numel(outports),numel(inports)));
     elseif isscalar(srcs) && ~ischar(dests) && ~isscalar(dests)
         % One to many
         if iscell(srcs)
@@ -36,20 +31,16 @@ function hline = msim_add_line(srcs,dests)
         end
         inports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'input'),dests,'uni',0);
         outports = matsim.utils.getBlockPorts(srcs,'output');
-        if any(cellfun(@length,inports)>1)
-            error('Unsupported number of ports');
-        end
-        inports = [inports{:}];
+        inports = free_inports([inports{:}]);
+        if isempty(inports) || isempty(outports), return, end
         locs = get(inports,'position');
         if iscell(locs), locs = cell2mat(locs); end
         [~,sortIdx] = sort(locs(:,2));
-        if numel(outports) ~= 1 && numel(outports) < numel(inports)
-            error('Source block does not have enough outputs');
-        elseif numel(outports) ~= 1
-            hline = arrayfun(@(idx) add_line(get_param(srcs,'parent'),outports(idx),inports(sortIdx(idx)),'AutoRouting','on'),1:numel(dests));
+        if numel(outports) ~= 1
+            hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(idx),inports(sortIdx(idx)),'AutoRouting','on'),1:min(numel(inports),numel(outports)));
         else
-            hline = arrayfun(@(idx) add_line(get_param(srcs,'parent'),outports(1),inports(sortIdx(idx)),'AutoRouting','on'),1:numel(dests));
-        end        
+            hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(1),inports(sortIdx(idx)),'AutoRouting','on'),1:numel(inports));
+        end
     elseif ~ischar(srcs) && ~isscalar(srcs) && ~ischar(dests) && ~isscalar(dests)
         % Many to many
         if iscell(srcs)
@@ -60,21 +51,16 @@ function hline = msim_add_line(srcs,dests)
         end
         inports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'input'),dests,'uni',0);
         outports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'output'),srcs,'uni',0);
-        if any(cellfun(@length,outports)>1) || any(cellfun(@length,inports)>1)
-            error('Unsupported number of ports');
-        end
         outports = [outports{:}];
-        inports = [inports{:}];
-        if numel(outports) > numel(inports)
-            error('Incompatible number of blocks');
-        end
+        inports = free_inports([inports{:}]);
+        if isempty(inports) || isempty(outports), return, end
         locs = get(inports,'position');
         if iscell(locs), locs = cell2mat(locs); end
         [~,sortInportIdx] = sort(locs(:,2));
         locs = get(outports,'position');
         if iscell(locs), locs = cell2mat(locs); end
         [~,sortOutportIdx] = sort(locs(:,2));
-        hline = arrayfun(@(idx) add_line(get_param(srcs(idx),'parent'),outports(sortOutportIdx(idx)),inports(sortInportIdx(idx)),'AutoRouting','on'),1:numel(srcs));
+        hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(sortOutportIdx(idx)),inports(sortInportIdx(idx)),'AutoRouting','on'),1:min(numel(inports),numel(outports)));
     else
         % One to one
         if iscell(srcs)
@@ -84,10 +70,16 @@ function hline = msim_add_line(srcs,dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
         outports = matsim.utils.getBlockPorts(srcs,'output');
-        inports = matsim.utils.getBlockPorts(dests,'input');
-        if numel(outports) < numel(inports)
-            error('Source block does not have enough outputs');
-        end
-        hline = arrayfun(@(idx) add_line(get_param(srcs,'parent'),outports(idx),inports(idx),'AutoRouting','on'),1:numel(inports));
+        inports = free_inports(matsim.utils.getBlockPorts(dests,'input'));
+        if isempty(inports) || isempty(outports), return, end
+        hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(idx),inports(idx),'AutoRouting','on'),1:min(numel(inports),numel(outports)));
+    end
+end
+
+function free = free_inports(inports)
+    if numel(inports)>1
+        free = inports(cell2mat(get(inports,'line'))==-1);
+    else
+        free = inports(get(inports,'line')==-1);
     end
 end
