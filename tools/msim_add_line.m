@@ -14,8 +14,8 @@ function hline = msim_add_line(srcs,dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
         outports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'output'),srcs,'uni',0);
-        inports = free_inports(matsim.utils.getBlockPorts(dests,'input'));        
-        outports = [outports{:}];
+        inports = free_ports(matsim.utils.getBlockPorts(dests,'input'));        
+        outports = free_ports([outports{:}]);
         if isempty(inports) || isempty(outports), return, end
         locs = get(outports,'position');
         if iscell(locs), locs = cell2mat(locs); end
@@ -30,8 +30,8 @@ function hline = msim_add_line(srcs,dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
         inports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'input'),dests,'uni',0);
-        outports = matsim.utils.getBlockPorts(srcs,'output');
-        inports = free_inports([inports{:}]);
+        outports = free_ports(matsim.utils.getBlockPorts(srcs,'output'));
+        inports = free_ports([inports{:}]);
         if isempty(inports) || isempty(outports), return, end
         locs = get(inports,'position');
         if iscell(locs), locs = cell2mat(locs); end
@@ -51,8 +51,8 @@ function hline = msim_add_line(srcs,dests)
         end
         inports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'input'),dests,'uni',0);
         outports = arrayfun(@(b) matsim.utils.getBlockPorts(b,'output'),srcs,'uni',0);
-        outports = [outports{:}];
-        inports = free_inports([inports{:}]);
+        outports = free_ports([outports{:}]);
+        inports = free_ports([inports{:}]);
         if isempty(inports) || isempty(outports), return, end
         locs = get(inports,'position');
         if iscell(locs), locs = cell2mat(locs); end
@@ -69,17 +69,17 @@ function hline = msim_add_line(srcs,dests)
         if iscell(dests)
             dests = cellfun(@(b) get_param(b,'handle'),dests,'uni',1);
         end
-        outports = matsim.utils.getBlockPorts(srcs,'output');
-        inports = free_inports(matsim.utils.getBlockPorts(dests,'input'));
+        outports = free_ports(matsim.utils.getBlockPorts(srcs,'output'));
+        inports = free_ports(matsim.utils.getBlockPorts(dests,'input'));
         if isempty(inports) || isempty(outports), return, end
         hline = arrayfun(@(idx) add_line(get_param(srcs(1),'parent'),outports(idx),inports(idx),'AutoRouting','on'),1:min(numel(inports),numel(outports)));
     end
 end
 
-function free = free_inports(inports)
-    if numel(inports)>1
-        free = inports(cell2mat(get(inports,'line'))==-1);
+function free = free_ports(ports)
+    if numel(ports)>1
+        free = ports(cell2mat(get(ports,'line'))==-1);
     else
-        free = inports(get(inports,'line')==-1);
+        free = ports(get(ports,'line')==-1);
     end
 end
