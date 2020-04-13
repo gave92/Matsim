@@ -5,13 +5,13 @@ h = get_param(block,'porthandles');
 
 switch type
     case 'all'
-        if matsim.utils.getversion() >= 2015
+        if isfield(h,'Reset')
             ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction, h.Outport];
         else
             ports = [h.Inport, h.Enable, h.Trigger, h.Ifaction, h.Outport];
         end
     case 'input'
-        if matsim.utils.getversion() >= 2015
+        if isfield(h,'Reset')
             ports = [h.Inport, h.Enable, h.Trigger, h.Reset, h.Ifaction];
         else
             ports = [h.Inport, h.Enable, h.Trigger, h.Ifaction];
@@ -19,7 +19,7 @@ switch type
     case 'output'
         ports = [h.Outport];
     case 'special'
-        if matsim.utils.getversion() >= 2015
+        if isfield(h,'Reset')
             ports = [h.Enable, h.Trigger, h.Reset, h.Ifaction];
         else
             ports = [h.Enable, h.Trigger, h.Ifaction];
