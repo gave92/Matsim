@@ -107,6 +107,30 @@ function [] = simlayout(varargin)
             end
         end
     end
+    
+    % Delete spacer blocks
+    for i=1:length(blocks)
+        data = get(blocks(i),'UserData');
+        if ~isempty(data) && isfield(data,'block') && ~isempty(data.block) ...
+                          && ~isempty(data.block.simIsVirtual) ...
+                          && data.block.simIsVirtual
+            inport = matsim.utils.getBlockPorts(blocks(i),'input');
+            outport = matsim.utils.getBlockPorts(blocks(i),'output');
+            if numel(inport)~=1 || numel(outport)~=1
+                continue
+            end
+            line_in = get(inport,'line');
+            line_out = get(outport,'line');
+            if line_in==-1 || line_out==-1
+                continue
+            end
+            line_in_pts = get(line_in,'points');
+            line_out_pts = get(line_out,'points');
+            parent = get(blocks(i),'parent');
+            delete_block(blocks(i))
+            add_line(parent,[line_in_pts(end,:); line_out_pts(1,:)])
+        end
+    end
 end
 
 function [] = tryAlignBlocksBackward(layout)

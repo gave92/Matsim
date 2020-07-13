@@ -37,7 +37,12 @@ function blockSizeRef = getDimensions(blocks)
         if ~iscell(rot), rot = {rot}; end
         outputnum = length(find(mod([rot{:}],2*pi) == 0));
         pos = get(blocks(i),'position');
-        if max(inputnum,outputnum)>1
+        data = get(blocks(i),'UserData');
+        if ~isempty(data) && isfield(data,'block') && ~isempty(data.block) ...
+                          && ~isempty(data.block.simHeight)
+            fixedheight = data.block.simHeight;
+            pos(4) = pos(2)+fixedheight;
+        elseif max(inputnum,outputnum)>1
             pos(4) = pos(2)+42*max([1,inputnum,outputnum]);
         end
         set(blocks(i),'position',pos);
@@ -62,7 +67,7 @@ function writeDOTfile(obj)
         fprintf(fid,'graph [ranksep=0.4, nodesep=0.4];\n');
         n = size(obj.adjMatrix,1);
         for i=n:-1:1
-            width = obj.width(i)*0.8/30;
+            width = obj.width(i)*0.5/30;
             height = obj.height(i)*0.8/30;
             inputnum = length(matsim.utils.getBlockPorts(obj.blocks(i),'input'));
             outputnum = length(matsim.utils.getBlockPorts(obj.blocks(i),'output'));

@@ -4,10 +4,10 @@ function [ blk ] = msim_add_block(dest,varargin)
 %   blk = msim_add_block(PARENT,'BlockName',NAME);
 %     PARENT is the path in which add the block (e.g. "gcs")
 %     NAME is the name (prop: "Name") of the block to be created.
-%   blk = block(PARENT,'BlockType',TYPE);
+%   blk = msim_add_block(PARENT,'BlockType',TYPE);
 %     PARENT is the path in which add the block (e.g. "gcs")
 %     TYPE is the type (prop: "BlockType") of the block to be created.
-%   blk = block(PARENT,'Library',MODEL,'BlockType',TYPE,ARGS);
+%   blk = msim_add_block(PARENT,'Library',MODEL,'BlockType',TYPE,ARGS);
 %     MODEL is the name of the library containing the desired block.
 %     ARGS is an optional list of parameter/value pairs specifying simulink
 %     block properties.

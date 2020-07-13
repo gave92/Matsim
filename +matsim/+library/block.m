@@ -42,6 +42,10 @@ classdef block < handle
         simInputs
         % Handle to output port
         simSelectedOutport
+        % Fixed height
+        simHeight
+        % Spacer block
+        simIsVirtual
     end
     
     methods (Access = public)
@@ -185,6 +189,10 @@ classdef block < handle
                     idx = 1+length(match);
                     this.safe_set(prop,sprintf('%s%d',matsim.helpers.validateArgs(value),idx));
                 end                
+            elseif strcmpi(prop,'height')
+                this.simHeight = value;
+            elseif strcmpi(prop,'isvirtual')
+                this.simIsVirtual = value;
             else
                 this.safe_set(prop,matsim.helpers.validateArgs(value));
             end

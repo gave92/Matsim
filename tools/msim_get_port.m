@@ -16,4 +16,3 @@ function [port] = msim_get_port(block,index,type)
         error('Invalid port index.')
     end
 end
-

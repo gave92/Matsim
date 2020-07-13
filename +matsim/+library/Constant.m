@@ -24,10 +24,12 @@ classdef Constant < matsim.library.block
             p.CaseSensitive = false;
             p.KeepUnmatched = true;
             addRequired(p,'Value',@(x) ischar(x) || isnumeric(x));
+            addParamValue(p,'FitSize',false,@(x) islogical(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
             
             Value = p.Results.Value;
+            FitSize = p.Results.FitSize;
             parent = p.Results.parent;
             args = matsim.helpers.validateArgs(p.Unmatched);
             
@@ -38,6 +40,11 @@ classdef Constant < matsim.library.block
             this = this@matsim.library.block('BlockType','Constant','parent',parent,args{:});
             if ~isempty(Value)
                 this.set({'Value',Value,'VectorParams1D','off'})
+                if FitSize
+                    location = this.get('Position');
+                    location(3) = location(1)+max(40,10*length(Value));
+                    this.set('Position',location);
+                end
             end
         end
     end

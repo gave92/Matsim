@@ -32,13 +32,15 @@ classdef REF < matsim.library.block
             p = inputParser;
             p.CaseSensitive = false;
             p.KeepUnmatched = true;
-            addRequired(p,'tag',@(x) isnumeric(x) || ischar(x));
+            addRequired(p,'tag',@(x) isnumeric(x) || ischar(x));            
             addOptional(p,'b1',[],@(x) isnumeric(x) || isempty(x) || isa(x,'matsim.library.block'));
+            addParamValue(p,'FitSize',true,@(x) islogical(x));
             addParamValue(p,'parent','',@(x) ischar(x) || ishandle(x) || isa(x,'matsim.library.block') || isa(x,'matsim.library.simulation'));
             parse(p,varargin{:})
 
             inputs = {p.Results.b1};
             tag = p.Results.tag;
+            FitSize = p.Results.FitSize;
             parent = matsim.helpers.getValidParent(inputs{:},p.Results.parent);
             args = matsim.helpers.validateArgs(p.Unmatched);
             
@@ -63,9 +65,11 @@ classdef REF < matsim.library.block
             end
             this.set('GotoTag',tag);
             
-            location = this.get('Position');
-            location(3) = location(1)+max(40,10*length(tag));
-            this.set('Position',location);           
+            if FitSize
+                location = this.get('Position');
+                location(3) = location(1)+max(40,10*length(tag));
+                this.set('Position',location);
+            end
         end       
     end   
 end

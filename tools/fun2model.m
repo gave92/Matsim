@@ -24,7 +24,7 @@ function [out] = fun2model(varargin)
     
     funstr = func2str(fun);
     [~,tok] = regexp(funstr,'@\(([\w|,]*)\)','match','tokens');
-    symb_names = strsplit(tok{1}{1},',');
+    symb_names = strtrim(strsplit(tok{1}{1},','));
     
     subsystem = Subsystem('parent',model,args{:});
     set_param(0,'CurrentSystem',subsystem.handle)

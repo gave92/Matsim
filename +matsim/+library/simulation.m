@@ -133,7 +133,8 @@ classdef simulation < handle
             addOptional(p,'path',[],@ischar);
             parse(p,varargin{:})
             
-            save_system(this.handle,fullfile(p.Results.path,this.get('name')))
+            args = matsim.helpers.validateArgs(p.Unmatched);
+            save_system(this.handle,fullfile(p.Results.path,this.get('name')),args{:})
         end
         
         function [] = close(this)
